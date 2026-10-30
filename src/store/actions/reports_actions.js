@@ -384,7 +384,7 @@ const completeReportExcel = (data, name) => {
 
         if (response.data.responseCode === 417) {
           await dispatch(refreshToken());
-          dispatch(completeReportExcel(data));
+          dispatch(completeReportExcel(data, name));
         } else if (response.status === 200) {
           const url = window.URL.createObjectURL(new Blob([response.data]));
           const link = document.createElement("a");
@@ -478,7 +478,7 @@ const ApprovedCasesSystemAdminExcel = (data, name) => {
 
         if (response.data.responseCode === 417) {
           await dispatch(refreshToken());
-          dispatch(completeReportExcel(data));
+          dispatch(ApprovedCasesSystemAdminExcel(data, name));
         } else if (response.status === 200) {
           const url = window.URL.createObjectURL(new Blob([response.data]));
           const link = document.createElement("a");
