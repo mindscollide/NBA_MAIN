@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Input } from "antd";
-import NumberFormat from "react-number-format";
+import { NumericFormat } from "react-number-format";
 import styles from "../FormatedInput/Finput.module.css";
 import fieldStyles from "../field.module.css";
 
@@ -10,7 +10,7 @@ export const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
 ) {
   const { onChange, textLength, ...other } = props;
   return (
-    <NumberFormat
+    <NumericFormat
       thousandsGroupStyle="thousand"
       decimalSeparator="."
       displayType="input"
@@ -70,7 +70,7 @@ export const FormattedInputs = ({
         {/* antd's Input is the rendered element (customInput). textLength is
             not applied: under MUI it never reached the <input> either, and
             as maxLength it would count the thousands separators. */}
-        <NumberFormat
+        <NumericFormat
           customInput={Input}
           className={fieldStyles.field}
           size="large"

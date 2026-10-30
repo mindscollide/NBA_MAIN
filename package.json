@@ -5,23 +5,14 @@
   "dependencies": {
     "@ant-design/icons": "^6.3.4",
     "@reduxjs/toolkit": "^2.13.0",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.7",
-    "@testing-library/user-event": "^12.8.3",
     "antd": "^6.6.8",
-    "axios": "^0.21.4",
+    "axios": "^1.21.0",
     "dayjs": "^1.11.23",
-    "file-saver": "^2.0.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-highlight-words": "^0.17.0",
-    "react-html-table-to-excel": "^2.0.0",
-    "react-imask": "^6.2.2",
-    "react-input-mask": "^3.0.0-alpha.2",
-    "react-number-format": "^4.7.3",
+    "react-number-format": "^5.4.5",
     "react-redux": "^9.3.0",
-    "react-router": "^7.18.5",
-    "web-vitals": "^1.1.2"
+    "react-router": "^7.18.5"
   },
   "scripts": {
     "start": "vite",
