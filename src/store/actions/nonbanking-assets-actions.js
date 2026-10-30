@@ -111,7 +111,7 @@ const GetAllInProcess = (filter) => {
         console.log("Response", response);
         if (response.data.responseCode === 417) {
           await dispatch(refreshToken());
-          dispatch(GetAllInProcess(Data));
+          dispatch(GetAllInProcess(filter));
         } else if (response.data.responseCode === 200) {
           if (response.data.responseResult.isExecuted === true) {
             dispatch(GetAllInProcessSuccess(response.data.responseResult));
@@ -171,7 +171,7 @@ const GetAllPendingForApproval = (filter) => {
         console.log("Response", response);
         if (response.data.responseCode === 417) {
           await dispatch(refreshToken());
-          dispatch(GetAllPendingForApproval(Data));
+          dispatch(GetAllPendingForApproval(filter));
         } else if (response.data.responseCode === 200) {
           if (response.data.responseResult.isExecuted === true) {
             dispatch(
@@ -235,7 +235,7 @@ const GetAllApprovedCases = (filter) => {
         console.log("Response", response);
         if (response.data.responseCode === 417) {
           await dispatch(refreshToken());
-          dispatch(GetAllApprovedCases(Data));
+          dispatch(GetAllApprovedCases(filter));
         } else if (response.data.responseCode === 200) {
           if (response.data.responseResult.isExecuted === true) {
             dispatch(GetAllApprovedCasesSuccess(response.data.responseResult));
@@ -375,9 +375,7 @@ const SearchCustomerMysis = (
         console.log("SearchCustomerMysis", response);
         if (response.data.responseCode === 417) {
           await dispatch(refreshToken());
-          dispatch(
-            SearchCustomerMysis(object, setCustomerSection, customerSection)
-          );
+          dispatch(SearchCustomerMysis(object, setCustomerSection, customerSection, setMisysError, misysError, setMisysErrMsg, misysErrMsg));
         } else if (response.data.responseCode === 200) {
           if (response.data.responseResult.isExecuted === true) {
             await dispatch(
@@ -577,7 +575,7 @@ const SearchNBACase = (object, State) => {
         console.log("SearchNBACase", response);
         if (response.data.responseCode === 417) {
           await dispatch(refreshToken());
-          dispatch(SearchNBACase(object));
+          dispatch(SearchNBACase(object, State));
         } else if (response.data.responseCode === 200) {
           if (response.data.responseResult.isExecuted === true) {
             dispatch(SearchNBACaseSuccess(response.data.responseResult));
@@ -686,7 +684,7 @@ const ApproveCase = (object, filter) => {
         console.log("ApproveCase", response);
         if (response.data.responseCode === 417) {
           await dispatch(refreshToken());
-          dispatch(ApproveCase(object));
+          dispatch(ApproveCase(object, filter));
         } else if (response.data.responseCode === 200) {
           if (response.data.responseResult.isExecuted === true) {
             console.log("ApproveCase", response.data.responseResult);

@@ -178,7 +178,7 @@ const EditApprovedWriteOff = (object, navigate, setOpen,routeCheck) => {
 
         if (response.data.responseCode === 417) {
           await dispatch(refreshToken());
-          dispatch(EditApprovedWriteOff(object, navigate, setOpen));
+          dispatch(EditApprovedWriteOff(object, navigate, setOpen, routeCheck));
         } else if (response.data.responseCode === 200) {
           console.log(response);
           if (response.data.responseResult.isExecuted === true) {

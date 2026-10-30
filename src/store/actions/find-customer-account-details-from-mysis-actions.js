@@ -54,7 +54,7 @@ const findCustomerAccountDetailsFromMysis = (
       console.log("async",res)
       if (res.data.responseCode === 417) {
        await dispatch(refreshToken());
-        dispatch(findCustomerAccountDetailsFromMysis = (
+        dispatch(findCustomerAccountDetailsFromMysis(
           Anum,
           Mcode,
           setAccountDetails,

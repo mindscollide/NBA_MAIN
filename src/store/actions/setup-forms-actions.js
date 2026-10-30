@@ -125,7 +125,7 @@ const SavePropertyType = (object) => {
       .then(async (response) => {
         if (response.data.responseCode === 417) {
           await dispatch(refreshToken());
-          dispatch(SavePropertyType(Data));
+          dispatch(SavePropertyType(object));
         } else if (response.data.responseCode === 200) {
           if (response.data.responseResult.isExecuted === true) {
             dispatch(
@@ -217,7 +217,7 @@ const EditPropertyType = (propertyType) => {
       .then(async (response) => {
         if (response.data.responseCode === 417) {
           await dispatch(refreshToken());
-          dispatch(SavePropertyType(propertyType));
+          dispatch(EditPropertyType(propertyType));
         } else if (response.data.responseCode === 200) {
           console.log(response);
           if (response.data.responseResult.isExecuted === true) {
@@ -326,7 +326,7 @@ const SaveApprovalRejectionReasons = (object) => {
       .then(async (response) => {
         if (response.data.responseCode === 417) {
           await dispatch(refreshToken());
-          dispatch(SaveApprovalRejectionReasons(Data));
+          dispatch(SaveApprovalRejectionReasons(object));
         } else if (response.data.responseCode === 200) {
           if (response.data.responseResult.isExecuted === true) {
             dispatch(
@@ -421,7 +421,7 @@ const EditApprovalRejectionReasons = (approvalRejectionReasons) => {
       .then(async (response) => {
         if (response.data.responseCode === 417) {
           await dispatch(refreshToken());
-          dispatch(SaveApprovalRejectionReasons(approvalRejectionReasons));
+          dispatch(EditApprovalRejectionReasons(approvalRejectionReasons));
         } else if (response.data.responseCode === 200) {
           console.log(response);
           if (response.data.responseResult.isExecuted === true) {
