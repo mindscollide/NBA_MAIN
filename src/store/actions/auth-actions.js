@@ -346,7 +346,11 @@ const validateEmailAddress = (UserData) => {
     })
       .then((response) => {
         console.log(response.data);
-        if (response.data.responseResult.isExecuted === true) {
+        if (response.data.responseCode === 400 || !response.data.responseResult) {
+          // ValidateEmailFromAD isn't implemented on the NBA backend (always
+          // 400): treat that as "can't verify" and let sign-up continue.
+          dispatch(validateEmailAddressSuccess({}, "Email could not be verified"));
+        } else if (response.data.responseResult.isExecuted === true) {
           console.log("true", response.data);
           dispatch(
             validateEmailAddressSuccess(
@@ -367,6 +371,11 @@ const validateEmailAddress = (UserData) => {
         }
       })
       .catch((response) => {
+        // Same "can't verify" case when the 400 comes as the HTTP status.
+        if (response && response.response && response.response.status === 400) {
+          dispatch(validateEmailAddressSuccess({}, "Email could not be verified"));
+          return;
+        }
         dispatch(SomeThingWentWrong(response));
       });
   };

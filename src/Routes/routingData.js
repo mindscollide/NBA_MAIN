@@ -109,7 +109,7 @@ const ManagerREMData = [
   { component: ViewNBAAssetsDEREM, path: "ManagerREM/ViewNonBankingAssets" },
   { component: AddEditNBAAssetsDEREM, path: "ManagerREM/EditNonBankingAssets" },
   { component: ApprovedCasesNBAMREM, path: "ManagerREM/ApprovedCases" },
-  // { component: RevertedCasesNBAMREM, path: "ManagerREM/RevertedCases" },
+  { component: RevertedCasesNBAMREM, path: "ManagerREM/RevertedCases" },
   { component: SearchNBADPSCasesMREM, path: "ManagerREM/SearchCases" },
   { component: NBAAssetsReports, path: "ManagerREM/NonBankingAssets" },
 ]
