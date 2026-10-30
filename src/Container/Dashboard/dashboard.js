@@ -6,13 +6,13 @@ import { UserSelection, } from "../../Routes/routingData";
 import { Loader } from "../../Components/Elements";
 import { useSelector ,useDispatch} from "react-redux";
 import {SomeThingWentWrongRemove} from '../../store/actions/ui-actions'
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router";
 import Helper from "../../Common/Functions/history_logout";
 import styles from "./dashboard.module.css";
 const Dashboard = () => {
   const state = useSelector((state) => state);
-  const history = useHistory();
-  Helper.history = history;
+  const navigate = useNavigate();
+  Helper.navigate = navigate;
   const {
     auth,
     ui

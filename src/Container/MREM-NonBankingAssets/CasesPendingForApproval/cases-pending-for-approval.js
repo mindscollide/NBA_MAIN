@@ -25,7 +25,7 @@ import {
 
 import styles from "../MREM.module.css";
 
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 import { CommaFormter } from "../../../Common/Functions/date-formatter";
 import {
@@ -47,7 +47,7 @@ import {
 import { enableGoBack, disableGoBack } from "../../../store/actions/ui-actions";
 
 const CasesPendingForApprovalNBAMREM = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { Title } = Typography;
   const [filter, setfilter] = useState(1);
   const dispatch = useDispatch();
@@ -188,7 +188,7 @@ const CasesPendingForApprovalNBAMREM = () => {
     await dispatch(ViewREMTeamData(Data));
     await dispatch(enableGoBack());
     console.log("ViewREMTeamData", value, Data);
-    history.push("/NBA/ManagerREM/ViewNonBankingAssets");
+    navigate("/NBA/ManagerREM/ViewNonBankingAssets");
   };
 
   const Edit = async (e, value) => {
@@ -199,7 +199,7 @@ const CasesPendingForApprovalNBAMREM = () => {
     await dispatch(ViewREMTeamData(Data));
     await dispatch(enableGoBack());
     console.log("ViewREMTeamData", value, Data);
-    history.push("/NBA/ManagerREM/EditNonBankingAssets");
+    navigate("/NBA/ManagerREM/EditNonBankingAssets");
   };
 
   const viewApprovalColumn = [

@@ -12,7 +12,7 @@ import { message, Typography, Tooltip } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import AddIcon from "@material-ui/icons/Add";
 import ClearOutlinedIcon from "@material-ui/icons/ClearOutlined";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 import { directorTypeOptions } from "../../../Common/SelectFieldOption/select-field-option";
 import { addWriteOff } from "../../../store/actions/write-off-actions";
 import { GetBorrowerType } from "../../../store/actions/setup-forms-actions";
@@ -32,7 +32,7 @@ const SaveRecord = ({
   });
   const { Title } = Typography;
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   let UserDetails = JSON.parse(localStorage.getItem("UserDetails"));
   const [sectionIndex, setSectionIndex] = useState(null);
   const [saveValue, setsaveValue] = useState(null);
@@ -195,7 +195,7 @@ const SaveRecord = ({
         PreviousPageDetails.AdditionalDetails.AdvanceClassificationID = 1;
       }
       console.log("PreviousPageDetails", PreviousPageDetails);
-      dispatch(addWriteOff(PreviousPageDetails, history, setwofcode, setOpen));
+      dispatch(addWriteOff(PreviousPageDetails, navigate, setwofcode, setOpen));
     } else {
       setOpen({
         ...open,

@@ -21,7 +21,7 @@ import {
   TimeAndDisplayFormat,
 } from "../../../Common/Functions/date-formatter";
 
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router";
 import styles from "../DEBT.module.css";
 
 import { CommaFormter } from "../../../Common/Functions/date-formatter";
@@ -39,7 +39,7 @@ import {
 import { enableGoBack, disableGoBack } from "../../../store/actions/ui-actions";
 
 const CasesInProcessNBADEBT = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { Title } = Typography;
   const [filter, setfilter] = useState(1);
   const dispatch = useDispatch();
@@ -150,7 +150,7 @@ const CasesInProcessNBADEBT = () => {
     await dispatch(ViewBusinessTeamData(Data));
     await dispatch(enableGoBack());
     console.log("ViewBusinessTeamData", value, Data);
-    history.push("/NBA/DataEntryBusinessTeam/ViewNBACase");
+    navigate("/NBA/DataEntryBusinessTeam/ViewNBACase");
   };
 
 
@@ -164,7 +164,7 @@ const CasesInProcessNBADEBT = () => {
     await dispatch(ViewBusinessTeamData(Data));
     await dispatch(enableGoBack());
     console.log("ViewBusinessTeamData", value, Data);
-    history.push("/NBA/DataEntryBusinessTeam/EditNBACase");
+    navigate("/NBA/DataEntryBusinessTeam/EditNBACase");
   };
 
   const viewApprovalColumn = [

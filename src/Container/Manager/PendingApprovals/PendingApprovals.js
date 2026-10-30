@@ -28,7 +28,7 @@ import {
   FilterBar,
   Notification
 } from "../../../Components/Elements";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router";
 import {
   DateDisplayFormat,
   CommaFormter
@@ -39,7 +39,7 @@ import {
   import Restore from "@material-ui/icons/Restore";
   import Search from "@material-ui/icons/Search";
 const PendingApprovals = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [SearchTerm, setSearchTerm] = useState("");
   const Details = JSON.parse(localStorage.getItem("UserDetails"));
   const state = useSelector((state) => state);
@@ -152,7 +152,7 @@ const PendingApprovals = () => {
   const View = (e, value) => {
     localStorage.setItem("wofCustomerMasterID", JSON.stringify(value));
     dispatch(enableGoBack());
-    history.push("/Wof/Manager/ViewWriteOff");
+    navigate("/Wof/Manager/ViewWriteOff");
   };
   const buttonProps = {
     primaryButton: {

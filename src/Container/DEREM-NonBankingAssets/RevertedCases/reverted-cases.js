@@ -21,7 +21,7 @@ import {
   TimeAndDisplayFormat,
 } from "../../../Common/Functions/date-formatter";
 
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 import { CommaFormter } from "../../../Common/Functions/date-formatter";
 import { GetAllPropertyType } from "../../../store/actions/setup-forms-actions";
@@ -38,7 +38,7 @@ import {
 import { enableGoBack, disableGoBack } from "../../../store/actions/ui-actions";
 
 const RevertedCasesNBADEREM  = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { Title } = Typography;
   const [filter, setfilter] = useState(1);
   const dispatch = useDispatch();
@@ -148,7 +148,7 @@ const RevertedCasesNBADEREM  = () => {
     await dispatch(ViewREMTeamData(Data));
     await dispatch(enableGoBack());
     console.log("ViewREMTeamData", value, Data);
-    history.push("/NBA/DataEntryRem/ViewNonBankingAssets");
+    navigate("/NBA/DataEntryRem/ViewNonBankingAssets");
   };
 
   const Edit = async (e, value) => {
@@ -159,7 +159,7 @@ const RevertedCasesNBADEREM  = () => {
     await dispatch(ViewREMTeamData(Data));
     await dispatch(enableGoBack());
     console.log("ViewREMTeamData", value, Data);
-    history.push("/NBA/DataEntryRem/EditNonBankingAssets");
+    navigate("/NBA/DataEntryRem/EditNonBankingAssets");
   };
 
   const viewApprovalColumn = [

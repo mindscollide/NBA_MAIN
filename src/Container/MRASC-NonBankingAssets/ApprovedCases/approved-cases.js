@@ -21,7 +21,7 @@ import {
   TimeAndDisplayFormat,
 } from "../../../Common/Functions/date-formatter";
 
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router";
 import styles from "../MRASC.module.css";
 
 import { CommaFormter } from "../../../Common/Functions/date-formatter";
@@ -39,7 +39,7 @@ import {
 import { enableGoBack, disableGoBack } from "../../../store/actions/ui-actions";
 
 const ApprovedCasesNBAMRASC  = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { Title } = Typography;
   const [filter, setfilter] = useState(1);
   const dispatch = useDispatch();
@@ -149,7 +149,7 @@ const ApprovedCasesNBAMRASC  = () => {
     await dispatch(ViewREMTeamData(Data));
     await dispatch(enableGoBack());
     console.log("ViewREMTeamData", value, Data);
-    history.push("/NBA/ManagerRASC/ViewNonBankingAssets");
+    navigate("/NBA/ManagerRASC/ViewNonBankingAssets");
   };
 
   const Edit = async (e, value) => {
@@ -160,7 +160,7 @@ const ApprovedCasesNBAMRASC  = () => {
     await dispatch(ViewREMTeamData(Data));
     await dispatch(enableGoBack());
     console.log("ViewREMTeamData", value, Data);
-    history.push("/NBA/ManagerRASC/EditNonBankingAssets");
+    navigate("/NBA/ManagerRASC/EditNonBankingAssets");
   };
 
   const viewApprovalColumn = [

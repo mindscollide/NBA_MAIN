@@ -126,7 +126,7 @@ const signupREsponseMessageCleare = () => {
   };
 };
 
-const signIn = (UserData, history) => {
+const signIn = (UserData, navigate) => {
   var min = 10000;
   var max = 90000;
   var id = min + Math.random() * (max - min);
@@ -214,7 +214,7 @@ const signIn = (UserData, history) => {
               localStorage.setItem("child", "2");
             }
             console.log(response);
-            history.push("/NBA");
+            navigate("/NBA");
           } else {
             dispatch(
               signinFail(
@@ -241,9 +241,9 @@ const signIn = (UserData, history) => {
   };
 };
 // Sign Out
-const signOut = (history, message) => {
+const signOut = (navigate, message) => {
   localStorage.clear();
-  history.push("/");
+  navigate("/");
   if (message !== "") {
     return {
       type: actions.SIGN_OUT,
@@ -257,21 +257,21 @@ const signOut = (history, message) => {
 };
 
 // for cleare state
-const clearestate = (history) => {
-  history.push("/");
+const clearestate = (navigate) => {
+  navigate("/");
   return {
     type: actions.CLEARE_STATE_INIT,
   };
 };
-const clearestateBackbutton = (history) => {
-  // history.push("/");
+const clearestateBackbutton = (navigate) => {
+  // navigate("/");
   return {
     type: actions.CLEARE_STATE_BACKBUTTON_INIT,
   };
 };
 // refrest token
 const refreshToken = (props) => {
-  let history = Helper.history;
+  let navigate = Helper.navigate;
   let Token = JSON.parse(localStorage.getItem("token"));
   let RefreshToken = JSON.parse(localStorage.getItem("refreshToken"));
   let Data = {
@@ -308,9 +308,9 @@ const refreshToken = (props) => {
             )
           );
           let message = "Your Session has expired";
-          // history.push("/");
+          // navigate("/");
           console.log("logout");
-          dispatch(signOut(history, message));
+          dispatch(signOut(navigate, message));
         }
         // } else {
         //   dispatch(
@@ -319,7 +319,7 @@ const refreshToken = (props) => {
         //       "Refresh Token Expire Please Login Again"
         //     )
         //   );
-        //   // useHistory.push("/");
+        //   // useNavigate.push("/");
         //   console.log("fails");
         // }
       })
@@ -415,7 +415,7 @@ const validateEmailAndPassword = (email, password) => {
   };
 };
 // SignUp Request
-const signUp = (UserData, history) => {
+const signUp = (UserData, navigate) => {
   console.log("signUp", UserData);
   let Data = {
     LoginID:
@@ -454,7 +454,7 @@ const signUp = (UserData, history) => {
             )
           );
           dispatch(clearestateBackbutton);
-          history.push("/");
+          navigate("/");
         } else {
           console.log("fail", response.data.responseResult.responseMessage);
           await dispatch(

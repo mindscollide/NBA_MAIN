@@ -21,7 +21,7 @@ import {
   TimeAndDisplayFormat,
 } from "../../../Common/Functions/date-formatter";
 
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 import { CommaFormter } from "../../../Common/Functions/date-formatter";
 import { GetAllPropertyType } from "../../../store/actions/setup-forms-actions";
@@ -40,7 +40,7 @@ import {
 import { enableGoBack, disableGoBack } from "../../../store/actions/ui-actions";
 
 const RevertedCasesNBADEBT = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { Title } = Typography;
   const [filter, setfilter] = useState(1);
   const dispatch = useDispatch();
@@ -150,7 +150,7 @@ const RevertedCasesNBADEBT = () => {
     await dispatch(ViewBusinessTeamData(Data));
     await dispatch(enableGoBack());
     console.log("ViewBusinessTeamData", value, Data);
-    history.push("/NBA/DataEntryBusinessTeam/ViewNBACase");
+    navigate("/NBA/DataEntryBusinessTeam/ViewNBACase");
   };
 
   const Edit = async (e, value) => {
@@ -161,7 +161,7 @@ const RevertedCasesNBADEBT = () => {
     await dispatch(ViewBusinessTeamData(Data));
     await dispatch(enableGoBack());
     console.log("ViewBusinessTeamData", value, Data);
-    history.push("/NBA/DataEntryBusinessTeam/EditNBACase");
+    navigate("/NBA/DataEntryBusinessTeam/EditNBACase");
   };
 
   const viewApprovalColumn = [

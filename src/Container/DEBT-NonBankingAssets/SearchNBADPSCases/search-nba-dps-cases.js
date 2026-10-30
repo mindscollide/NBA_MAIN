@@ -33,7 +33,7 @@ import {
   ViewBusinessTeamData,
 } from "../../../store/actions/nonbanking-assets-actions";
 import { GetAllPropertyType } from "../../../store/actions/setup-forms-actions";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router";
 import styles from "../DEBT.module.css";
 import { enableGoBack, disableGoBack } from "../../../store/actions/ui-actions";
 import {
@@ -42,7 +42,7 @@ import {
 } from "../../../Common/Api/apis-config";
 
 const SearchNBADPSCasesDEBT = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { Title } = Typography;
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
@@ -189,7 +189,7 @@ const SearchNBADPSCasesDEBT = () => {
     await dispatch(ViewBusinessTeamData(Data));
     await dispatch(enableGoBack());
     console.log("ViewBusinessTeamData", value, Data);
-    history.push("/NBA/DataEntryBusinessTeam/ViewNBACase");
+    navigate("/NBA/DataEntryBusinessTeam/ViewNBACase");
   };
   const columns = [
     {
