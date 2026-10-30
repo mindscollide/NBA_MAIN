@@ -1,5 +1,4 @@
 import React from "react";
-import { Box } from "@material-ui/core";
 import { Space } from "antd";
 import styles from "../GroupedButtons/grouped.module.css";
 import Button from "../Button/button";
@@ -8,13 +7,7 @@ const GroupedButtons = ({ data }) => {
   console.log("handleDescription a",data.primaryButton.disable)
   return (
     <>
-      <Box
-        display="flex"
-        alignItems="center"
-        // style={{ width: "100%!important" }}
-        className={styles["groupedbtnwidth"]}
-        justifyContent="center"
-      >
+      <div className={styles["groupedbtnwidth"]} style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
         <Space>
           <Button
             applyClass={data.primaryButton.class}
@@ -35,7 +28,7 @@ const GroupedButtons = ({ data }) => {
             disableBtn={data.secondaryButton.disable}
           />
         </Space>
-      </Box>
+      </div>
     </>
   );
 };

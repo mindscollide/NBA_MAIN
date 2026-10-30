@@ -1,0 +1,74 @@
+/* Shared by the antd-based field wrappers (TextField, FormattedInputs,
+   SelectBox) that replaced MUI's outlined TextField / Autocomplete. They keep
+   the old look: square corners, #dee6e6 border, #12B0E8 on focus, and the
+   label sitting on the top border. */
+.wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* The shrunk MUI label: grey chip on the border (index.css used to style
+   .MuiInputLabel-shrink this way). */
+.floatingLabel {
+  position: absolute;
+  top: -9px;
+  left: 10px;
+  z-index: 2;
+  padding: 0 3px;
+  font-size: 0.7rem;
+  line-height: 16px;
+  color: #6e6e6e;
+  background-color: #e9e9e9;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* An empty, unfocused field: the label sits inside it like MUI's. */
+.restingLabel {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  z-index: 2;
+  transform: translateY(-50%);
+  font-size: 0.75rem;
+  color: #b4b4b4;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.required {
+  color: red;
+}
+
+.helper {
+  margin: 3px 14px 0;
+  font-size: 0.75rem;
+  color: #f44336;
+}
+
+.field:global(.ant-input),
+.field:global(.ant-input-affix-wrapper),
+.field :global(.ant-select-selector) {
+  border: 1px solid #dee6e6 !important;
+  border-radius: 0 !important;
+}
+
+.field:global(.ant-input):focus,
+.field:global(.ant-input-focused),
+.field:global(.ant-select-focused) :global(.ant-select-selector) {
+  border-color: #12b0e8 !important;
+  box-shadow: none !important;
+}
+
+/* Disabled fields as index.css styled .MuiInputBase-input.Mui-disabled */
+.field:global(.ant-input[disabled]),
+.field:global(.ant-select-disabled) :global(.ant-select-selector) {
+  background-color: #f3f3f3 !important;
+  font-size: 0.9rem !important;
+  color: black !important;
+}
+
+.error:global(.ant-input),
+.error :global(.ant-select-selector) {
+  border-color: #f44336 !important;
+}

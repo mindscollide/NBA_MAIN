@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 
-import { Grid, Box } from "@material-ui/core";
 
 import { Typography, Radio, Tooltip } from "antd";
 
@@ -38,6 +37,7 @@ import {
 } from "../../../store/actions/setup-forms-actions";
 import { useNavigate } from "react-router";
 import { enableGoBack, disableGoBack } from "../../../store/actions/ui-actions";
+import { Row, Col } from "antd";
 
 const RevertedCasesNBAMREM = () => {
   const navigate = useNavigate();
@@ -571,18 +571,18 @@ const RevertedCasesNBAMREM = () => {
     <>
       <Title level={4}>Reverted Cases</Title>
       <>
-        <Grid container spacing={2}>
-          <Grid item lg={3} md={3} sm={12} xs={12}>
+        <Row gutter={[16, 16]}>
+          <Col xl={6} lg={6} sm={24} xs={24}>
             <FilterBar
               Options={options}
               change={handleFilter}
               placeholder={"Filter by Duration"}
               defaultValue={options[0].title}
             />
-          </Grid>
-          {/* <Grid item lg={5} md={5}></Grid> */}
+          </Col>
+          {/* <Col xl={10} lg={10}></Col> */}
           {/* <div style={{ marginLeft: "295px" }} /> */}
-          <Grid item lg={5} md={5} className="SearchPendingApprovals">
+          <Col xl={10} lg={10} className="SearchPendingApprovals">
             <InputWithBtn
               label="Search"
               fullWidth
@@ -595,8 +595,8 @@ const RevertedCasesNBAMREM = () => {
               onchange={searchHandler}
               value={searchData}
             />
-          </Grid>
-          <Grid item lg={1} md={1} sm={12}>
+          </Col>
+          <Col xl={2} lg={2} sm={24}>
             {/* <div style={{ align: "Right" }} /> */}
             <Button
               text="Reset"
@@ -605,8 +605,8 @@ const RevertedCasesNBAMREM = () => {
               size="small"
               click={resetData}
             />
-          </Grid>
-          <Grid item lg={12} md={12}>
+          </Col>
+          <Col xl={24} lg={24}>
             <Table
               rows={allRejectedCases}
               columns={columns}
@@ -617,8 +617,8 @@ const RevertedCasesNBAMREM = () => {
                 pageSizeOptions: ["5", "10", "20", "30"],
               }}
             />
-          </Grid>
-        </Grid>
+          </Col>
+        </Row>
       </>
       <Modal
         closeModal={handleCancel}
@@ -628,16 +628,8 @@ const RevertedCasesNBAMREM = () => {
       >
         {modal.rejection && (
           <>
-            <Box
-              display="flex"
-              justifyContent="center"
-              // style={{
-              //   paddingBottom: "40px",
-              //   paddingLeft: "20px",
-              //   paddingRight: "20px",
-              // }}
-            >
-              <Grid item lg={12} md={12} sm={12} xs={12}>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Col xl={24} lg={24} sm={24} xs={24}>
                 <SelectBox
                   option={rejectionReason}
                   propertyName={"title"}
@@ -647,18 +639,10 @@ const RevertedCasesNBAMREM = () => {
                   value={rejectionReasonValue}
                   name="SelectRejectionReason"
                 />
-              </Grid>
-            </Box>
-            <Box
-              display="flex"
-              justifyContent="center"
-              // style={{
-              //   paddingBottom: "80px",
-              //   paddingLeft: "20px",
-              //   paddingRight: "20px",
-              // }}
-            >
-              <Grid item lg={12} md={12} sm={12} xs={12}>
+              </Col>
+            </div>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Col xl={24} lg={24} sm={24} xs={24}>
                 <TextField
                   multiline
                   rows={6}
@@ -670,8 +654,8 @@ const RevertedCasesNBAMREM = () => {
                   required
                   textLength={500}
                 />
-              </Grid>
-            </Box>
+              </Col>
+            </div>
             <GroupedButtons data={buttonPropsReject} />
           </>
         )}

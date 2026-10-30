@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Badge, Box } from "@material-ui/core";
 import {
   Paper,
   TextField,
@@ -10,12 +9,12 @@ import {
 import styles from "../style.module.css";
 import { message, Typography, Tooltip } from "antd";
 import { useSelector, useDispatch } from "react-redux";
-import AddIcon from "@material-ui/icons/Add";
-import ClearOutlinedIcon from "@material-ui/icons/ClearOutlined";
 import { useNavigate } from "react-router";
 import { directorTypeOptions } from "../../../Common/SelectFieldOption/select-field-option";
 import { addWriteOff } from "../../../store/actions/write-off-actions";
 import { GetBorrowerType } from "../../../store/actions/setup-forms-actions";
+import { Row, Col } from "antd";
+import { PlusOutlined as AddIcon } from "@ant-design/icons";
 
 const SaveRecord = ({
   setGoToSave,
@@ -293,8 +292,8 @@ const SaveRecord = ({
       <form onSubmit={SaveAll}>
         <Title level={2}>Sponsor / Owner Details</Title>
         <Paper padding="2">
-          <Grid container spacing={2}>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+          <Row gutter={[16, 16]}>
+            <Col xl={6} lg={6} sm={24} xs={24}>
               <TextField
                 label="Misys Customer Code"
                 disable
@@ -303,11 +302,11 @@ const SaveRecord = ({
                 textLength={300}
                 size="large"
               />
-            </Grid>
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            </Col>
+            <Col xl={4} lg={4} sm={24} xs={24}>
               <TextField label="WOF Code" disable value={WofCode} fullWidth />
-            </Grid>
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            </Col>
+            <Col xl={4} lg={4} sm={24} xs={24}>
               <TextField
                 label="Borrower NPL Code"
                 value={InformationSection.NPLCode}
@@ -315,8 +314,8 @@ const SaveRecord = ({
                 textLength={7}
                 disable
               />
-            </Grid>
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            </Col>
+            <Col xl={4} lg={4} sm={24} xs={24}>
               <TextField
                 label="Borrower Name"
                 value={InformationSection.BorrowerName}
@@ -324,8 +323,8 @@ const SaveRecord = ({
                 textLength={300}
                 disable
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+            </Col>
+            <Col xl={6} lg={6} sm={24} xs={24}>
               <TextField
                 label="Borrower Type"
                 value={InformationSection.BorrowerTypeID}
@@ -333,8 +332,8 @@ const SaveRecord = ({
                 textLength={300}
                 disable
               />
-            </Grid>
-          </Grid>
+            </Col>
+          </Row>
         </Paper>
 
         <div className={styles["m-top"]} />
@@ -343,7 +342,7 @@ const SaveRecord = ({
           sponsorOwnerDetail.map((item, ind) => (
             <div key={ind}>
               <Paper padding="2">
-                <Box align="right">
+                <div align="right">
                   <Tooltip title="Delete" color={"Black"}>
                     {ind > 0 && (
                       <i
@@ -354,9 +353,9 @@ const SaveRecord = ({
                       />
                     )}
                   </Tooltip>
-                </Box>
-                <Grid container spacing={2}>
-                  <Grid item lg={3} md={3} sm={12} xs={12}>
+                </div>
+                <Row gutter={[16, 16]}>
+                  <Col xl={6} lg={6} sm={24} xs={24}>
                     <SelectBox
                       size="large"
                       label="Director Type"
@@ -368,8 +367,8 @@ const SaveRecord = ({
                       focus={() => sectionIndexHandler(ind)}
                       required
                     />
-                  </Grid>
-                  <Grid item lg={3} md={3} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={6} lg={6} sm={24} xs={24}>
                     <TextField
                       focus={() => sectionIndexHandler(ind)}
                       size="large"
@@ -381,8 +380,8 @@ const SaveRecord = ({
                       name="DirectorName"
                       required
                     />
-                  </Grid>
-                  <Grid item lg={3} md={3} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={6} lg={6} sm={24} xs={24}>
                     <TextField
                       focus={() => sectionIndexHandler(ind)}
                       size="small"
@@ -397,8 +396,8 @@ const SaveRecord = ({
                       name="CNIC"
                       required
                     />
-                  </Grid>
-                  <Grid item lg={3} md={3} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={6} lg={6} sm={24} xs={24}>
                     <TextField
                       focus={() => sectionIndexHandler(ind)}
                       size="small"
@@ -411,8 +410,8 @@ const SaveRecord = ({
                       value={item.FatherHusband}
                       name="FatherHusband"
                     />
-                  </Grid>
-                  <Grid item lg={12} md={12} sm={12} xs={12} align="center">
+                  </Col>
+                  <Col xl={24} lg={24} sm={24} xs={24} align="center">
                     <div className={styles["m-topp"]} />
                     <TextField
                       focus={() => sectionIndexHandler(ind)}
@@ -425,15 +424,15 @@ const SaveRecord = ({
                       name="Address"
                       required
                     />
-                  </Grid>
-                </Grid>
+                  </Col>
+                </Row>
               </Paper>
 
               <div className={styles["m-bottom"]} />
             </div>
           ))}
         <div className={styles["margin-top"]} />
-        <Grid item md={12} lg={12} sm={12} align="center">
+        <Col lg={24} xl={24} sm={24} align="center">
           <Button
             text="Add Record"
             icon={<AddIcon />}
@@ -442,11 +441,11 @@ const SaveRecord = ({
             click={addNewRecordHandler}
             disableBtn={disable1}
           />
-        </Grid>
+        </Col>
 
         <div className={styles["margin-top"]} />
-        <Grid container spacing={2} justifyContent="center">
-          <Grid item lg={2} md={2} sm={12}>
+        <Row gutter={[16, 16]} justify="center">
+          <Col xl={4} lg={4} sm={24}>
             <Button
               text="Previous"
               icon={<i className="icon-arrow-left icon-size-one"></i>}
@@ -454,9 +453,9 @@ const SaveRecord = ({
               size="large"
               click={() => setGoToSave(!goToSave)}
             />
-          </Grid>
+          </Col>
 
-          <Grid item lg={2} md={2} sm={12}>
+          <Col xl={4} lg={4} sm={24}>
             <Button
               text="Save"
               type="submit"
@@ -465,9 +464,9 @@ const SaveRecord = ({
               size="large"
               click={() => setsaveValue(1)}
             />
-          </Grid>
+          </Col>
 
-          <Grid item lg={4} md={4} sm={12}>
+          <Col xl={8} lg={8} sm={24}>
             <Button
               text="Save & Send For Approval"
               type="submit"
@@ -476,8 +475,8 @@ const SaveRecord = ({
               size="large"
               click={() => setsaveValue(2)}
             />
-          </Grid>
-        </Grid>
+          </Col>
+        </Row>
       </form>
       <Notification
         setOpen={setError}

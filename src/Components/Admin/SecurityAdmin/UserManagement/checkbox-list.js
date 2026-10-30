@@ -1,5 +1,4 @@
 import { Checkbox } from "antd";
-import { Box } from "@material-ui/core";
 import styles from "../checklist.module.css";
 function onChange(checkedValues) {
   console.log("checked = ", checkedValues);
@@ -19,7 +18,7 @@ const CheckBoxesList = () => {
   return (
     <>
       <Checkbox.Group className={styles["checklist"]} onChange={onChange}>
-        <Box display="flex" flexDirection="column" fullWidth>
+        <div style={{ display: "flex", flexDirection: "column" }}>
           <Checkbox value="CaptureWriteOff">
             <span  className={styles["parentCheckBox"]}
             // style={Styles.parentCheckBox}
@@ -31,12 +30,12 @@ const CheckBoxesList = () => {
           <Checkbox value="EditWriteOff" className={styles["childCheckbox"]}
           //  style={Styles.childCheckbox}
            >Edit Write Off</Checkbox>
-        </Box>
+        </div>
       </Checkbox.Group>
 
       <div className={styles["M-top"]} />
       <Checkbox.Group className={styles["width"]} onChange={onChange}>
-        <Box display="flex" flexDirection="column">
+        <div style={{ display: "flex", flexDirection: "column" }}>
           <Checkbox value="Reports">
             <span className={styles["parentCheckBox"]} 
             // style={Styles.parentCheckBox}
@@ -51,11 +50,11 @@ const CheckBoxesList = () => {
           <Checkbox value="Balance Sheet Format"  className={styles["childCheckbox"]}
           // style={Styles.childCheckbox}
           >Balance Sheet Format</Checkbox>
-        </Box>
+        </div>
       </Checkbox.Group>
       <div className={styles["M-top"]} />
       <Checkbox.Group className={styles["width"]} onChange={onChange}>
-        <Box display="flex" flexDirection="column">
+        <div style={{ display: "flex", flexDirection: "column" }}>
           <Checkbox value="Audit rail">
             <span 
             className={styles["parentCheckBox"]}
@@ -76,7 +75,7 @@ const CheckBoxesList = () => {
           >
             Currently Logged in Users
           </Checkbox>
-        </Box>
+        </div>
       </Checkbox.Group>
     </>
   );

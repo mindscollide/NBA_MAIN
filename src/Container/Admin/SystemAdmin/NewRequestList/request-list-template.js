@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Box, Container } from "@material-ui/core";
 import { Typography } from "antd";
 import styles from "../NewRequestList/request.module.css";
 import {
@@ -16,6 +15,7 @@ import {
   Notification,
 } from "../../../../Components/Elements";
 import { ControlOutlined } from "@ant-design/icons";
+import { Row, Col } from "antd";
 
 const RequestListTemplate = ({ data }) => {
   const { item, index } = data;
@@ -69,57 +69,57 @@ const RequestListTemplate = ({ data }) => {
   return (
     <>
       <Paper padding="1" index={index}>
-        <Grid container spacing={1}>
-          <Grid item lg={3} md={3} sm={6} xs={6}>
+        <Row gutter={[8, 8]}>
+          <Col xl={6} lg={6} sm={12} xs={12}>
             <p className={styles["m-0-color"]}>
               First Name
             </p>
-          </Grid>
-          <Grid item lg={3} md={3} sm={6} xs={6}>
+          </Col>
+          <Col xl={6} lg={6} sm={12} xs={12}>
             <span className="mr-1">{item.firstName}</span>
-          </Grid>
-          <Grid item lg={3} md={3} sm={6} xs={6}>
+          </Col>
+          <Col xl={6} lg={6} sm={12} xs={12}>
             <p className={styles["m-0-color"]}>
               Last Name
             </p>
-          </Grid>
-          <Grid item lg={3} md={3} sm={6} xs={6}>
+          </Col>
+          <Col xl={6} lg={6} sm={12} xs={12}>
             <span className="mr-1">{item.lastName}</span>
-          </Grid>
-        </Grid>
-        <Grid container spacing={1}>
-          {/* <Grid item lg={3} md={3} sm={6} xs={6}>
+          </Col>
+        </Row>
+        <Row gutter={[8, 8]}>
+          {/* <Col xl={6} lg={6} sm={12} xs={12}>
             <p className="m-0" style={{ color: "#b27706" }}>
               Employee Number
             </p>
-          </Grid>
-          <Grid item lg={3} md={3} sm={6} xs={6}>
+          </Col>
+          <Col xl={6} lg={6} sm={12} xs={12}>
             <span className="mr-1">{item.personalNumber}</span>
-          </Grid> */}
-          <Grid item lg={3} md={3} sm={6} xs={6}>
+          </Col> */}
+          <Col xl={6} lg={6} sm={12} xs={12}>
             <p className={styles["m-0-color"]}>
               Email
             </p>
-          </Grid>
-          <Grid item lg={3} md={3} sm={6} xs={6}>
+          </Col>
+          <Col xl={6} lg={6} sm={12} xs={12}>
             <span className="mr-1">{item.email}</span>
-          </Grid>
-          <Grid item lg={3} md={3} sm={6} xs={6}>
+          </Col>
+          <Col xl={6} lg={6} sm={12} xs={12}>
             <p className={styles["m-0-color"]}>
               User Name
             </p>
-          </Grid>
-          <Grid item lg={3} md={3} sm={6} xs={6}>
+          </Col>
+          <Col xl={6} lg={6} sm={12} xs={12}>
             <span className="mr-1">{item.loginID}</span>
-          </Grid>
-        </Grid>
-        <Grid container spacing={1}>
-          <Grid item lg={3} md={3} sm={6} xs={6}>
+          </Col>
+        </Row>
+        <Row gutter={[8, 8]}>
+          <Col xl={6} lg={6} sm={12} xs={12}>
             <p className={styles["m-0-color"]}>
               Role
             </p>
-          </Grid>
-          <Grid item lg={3} md={3} sm={6} xs={6}>
+          </Col>
+          <Col xl={6} lg={6} sm={12} xs={12}>
             <span className="mr-1">
               {
                 item.roleID === 4
@@ -137,15 +137,15 @@ const RequestListTemplate = ({ data }) => {
                 : null
                 }
             </span>
-          </Grid>
-        </Grid>
-        <Grid container spacing={1}>
-          <Grid item lg={3} md={3} sm={2} xs={2}>
+          </Col>
+        </Row>
+        <Row gutter={[8, 8]}>
+          <Col xl={6} lg={6} sm={4} xs={4}>
             <p className={styles["m-0-color"]}>
               Type your Comments<span className={styles["aesterick"]}>*</span>
             </p>
-          </Grid>
-          <Grid item lg={9} md={9} sm={10} xs={10}>
+          </Col>
+          <Col xl={18} lg={18} sm={20} xs={20}>
             <TextField
               multiline
               rows={4}
@@ -156,14 +156,14 @@ const RequestListTemplate = ({ data }) => {
               name="Comments"
               required={true}
             />
-          </Grid>
-        </Grid>
+          </Col>
+        </Row>
         <div className={styles["m-top"]} />
-        <Grid container spacing={1}>
-          <Grid item md={4} lg={4} sm={12}></Grid>
-          <Grid item md={8} lg={8} sm={12}>
-            <Box display="flex">
-              <Box width={0.8 / 4}>
+        <Row gutter={[8, 8]}>
+          <Col lg={8} xl={8} sm={24}></Col>
+          <Col lg={16} xl={16} sm={24}>
+            <div style={{ display: "flex" }}>
+              <div style={{ width: 0.8 / 4 }}>
                 <Button
                   applyClass="buttonPrimary3"
                   text="Approve"
@@ -171,9 +171,9 @@ const RequestListTemplate = ({ data }) => {
                   click={() => goToSaveHandler(item, Approved)}
                   disableBtn={btndisplay}
                 />
-              </Box>
+              </div>
               <div className={styles["margin"]} />
-              <Box width={1 / 4}>
+              <div style={{ width: 1 / 4 }}>
                 <Button
                   applyClass="btnBorderStyledRed"
                   text="Reject"
@@ -181,10 +181,10 @@ const RequestListTemplate = ({ data }) => {
                   click={() => goToSaveHandler(item, Rejected)}
                   disableBtn={btndisplay}
                 />
-              </Box>
-            </Box>
-          </Grid>
-        </Grid>
+              </div>
+            </div>
+          </Col>
+        </Row>
       </Paper>
       <div className={styles["m-top"]} />
       <Notification setOpen={setOpen} open={open.flag} message={open.message} />

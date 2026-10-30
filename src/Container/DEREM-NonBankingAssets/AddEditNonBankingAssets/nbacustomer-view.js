@@ -1,15 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import {
-  Grid,
-  Box,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-} from "@material-ui/core";
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import styles from "../DEREM.module.css";
 
-import AddIcon from "@material-ui/icons/Add";
 import { Typography, Radio, Tooltip } from "antd";
 import moment from "moment";
 import {
@@ -38,6 +29,9 @@ import {
   removeDashesFromDate,
 } from "../../../Common/Functions/date-formatter";
 import MultipleCustomerDetails from "../../DEBT-NonBankingAssets/AddEditNonBankingAssets/multiple-customer-details";
+import { Row, Col } from "antd";
+import { Accordion, AccordionSummary, AccordionDetails } from "../../../Components/Elements/Accordion/accordion";
+import { DownOutlined as ExpandMoreIcon } from "@ant-design/icons";
 
 const NBACustomerDetailsVIEW = ({list,saveNewData,setNBACaseCustomerList,NBACaseCustomerList,view}) => {
   const [expanded, setExpanded] = useState(false);
@@ -125,11 +119,11 @@ const NBACustomerDetailsVIEW = ({list,saveNewData,setNBACaseCustomerList,NBACase
 
           {/* {NBACaseCustomerList.length>0?
           <MultipleCustomerDetails/>:null} */}
-          <Grid container spacing={2} className={styles["derempd"]}>
+          <Row gutter={[16, 16]} className={styles["derempd"]}>
             {NBACaseCustomerList.length > 0
               ? NBACaseCustomerList.map((data, index) => {
                   return (
-                    <Grid item lg={12} md={12} sm={12} xs={12}>
+                    <Col xl={24} lg={24} sm={24} xs={24}>
                       <div className={styles["papertop"]} />
                       <MultipleCustomerDetails
                         list={data}
@@ -138,11 +132,11 @@ const NBACustomerDetailsVIEW = ({list,saveNewData,setNBACaseCustomerList,NBACase
                         NBACaseCustomerList={NBACaseCustomerList}
                         view={true}
                       />
-                    </Grid>
+                    </Col>
                   );
                 })
               : null}
-            <Grid item lg={4} md={4} sm={12} xs={12}>
+            <Col xl={8} lg={8} sm={24} xs={24}>
               <TextField
                 size="small"
                 label="Reference #"
@@ -152,8 +146,8 @@ const NBACustomerDetailsVIEW = ({list,saveNewData,setNBACaseCustomerList,NBACase
                 textLength={7}
                 name="NPLCode"
               />
-            </Grid>
-          </Grid>
+            </Col>
+          </Row>
         </Paper>
           </Typography>
         </AccordionDetails>

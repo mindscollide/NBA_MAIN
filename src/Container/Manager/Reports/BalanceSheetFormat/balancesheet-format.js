@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Box, Grid } from "@material-ui/core";
 import styles from "./style.module.css";
 import { Typography, Space, Radio } from "antd";
 import {
@@ -21,6 +20,7 @@ import {
   } from "../../../../store/actions/setup-forms-actions";
 import {DateDisplayFormat,DateSendingFormat,currentToOneYearBackDate,NumberFormater} from '../../../../Common/Functions/date-formatter'
 import { columns } from "./data";
+import { Row, Col } from "antd";
 
 const BalanceSheetFormat = () => {
   const structure = {
@@ -165,11 +165,11 @@ const BalanceSheetFormat = () => {
     <form onSubmit={(e)=>handleSubmit(e,submitType)}>
       <>
         <Paper padding="2">
-          <Grid container spacing={1}>
-            <Grid item lg={9} md={9} sm={12}>
+          <Row gutter={[8, 8]}>
+            <Col xl={18} lg={18} sm={24}>
               <Title level={3}>Balance Sheet Format</Title>
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} align="right">
+            </Col>
+            <Col xl={6} lg={6} sm={24} align="right">
               <Space>
                 <Button
                   type="submit"
@@ -181,11 +181,11 @@ const BalanceSheetFormat = () => {
               </Space>
               <br />
               <br />
-            </Grid>
+            </Col>
             <div className={styles["m-top"]} />
             {/* Row 2 */}
-            <Grid container spacing={1}>
-              <Grid item lg={4} md={4} sm={12}>
+            <Row gutter={[8, 8]}>
+              <Col xl={8} lg={8} sm={24}>
                 <label>
                   <b>Date Of WriteOff</b>
                 </label>
@@ -198,13 +198,13 @@ const BalanceSheetFormat = () => {
                   endvalue={form.DateTO!==null && form.DateFrom!=="" ?DateDisplayFormat(form.DateTO):''}
                   DateRange={true}
                 />
-              </Grid>
-              <Grid item lg={4} md={4} sm={12}>
+              </Col>
+              <Col xl={8} lg={8} sm={24}>
                 <label>
                   <b>Amount</b>
                 </label>
                 <br />
-                <Box display="flex">
+                <div style={{ display: "flex" }}>
                   <FormattedInputs
                     placeholder="From"
                     fullWidth
@@ -223,9 +223,9 @@ const BalanceSheetFormat = () => {
                     value={form.AmountTo}
                     change={ammountFieldHandler}
                   />
-                </Box>
-              </Grid>
-              <Grid item lg={4} md={4} sm={12}>
+                </div>
+              </Col>
+              <Col xl={8} lg={8} sm={24}>
                 <label>
                   <b>MISYS Customer Code</b>
                 </label>
@@ -239,9 +239,9 @@ const BalanceSheetFormat = () => {
                   label={null}
                   size="small"
                 />
-              </Grid>
+              </Col>
               <div className={styles["m-top"]} />
-              <Grid item lg={3} md={3} sm={12}>
+              <Col xl={6} lg={6} sm={24}>
                 <label>
                   <b>Borrower NPL Code</b>
                 </label>
@@ -254,8 +254,8 @@ const BalanceSheetFormat = () => {
                   size="small"
                   fullWidth
                 />
-              </Grid>
-              <Grid item lg={3} md={3} sm={12}>
+              </Col>
+              <Col xl={6} lg={6} sm={24}>
                 <label>
                   <b>CNIC Number</b>
                 </label>
@@ -270,8 +270,8 @@ const BalanceSheetFormat = () => {
                   label={null}
                   size="small"
                 />
-              </Grid>
-              <Grid item lg={3} md={3} sm={12}>
+              </Col>
+              <Col xl={6} lg={6} sm={24}>
                 <label>
                   <b>Name of Sponsor / Owner</b>
                 </label>
@@ -284,8 +284,8 @@ const BalanceSheetFormat = () => {
                   label={null}
                   size="small"
                 />
-              </Grid>
-              <Grid item lg={3} md={3} sm={12}>
+              </Col>
+              <Col xl={6} lg={6} sm={24}>
                 <label>
                   <b>Classification of Advance</b>
                 </label>
@@ -298,11 +298,11 @@ const BalanceSheetFormat = () => {
                   option={setupForms.ClassificationOfAdvances}
                   propertyName={"title"}
                 />
-              </Grid>
-            </Grid>
+              </Col>
+            </Row>
             {/* Row 03 */}
-            <Grid container spacing={1}>
-              <Grid item lg={4} md={4} sm={12} align="left">
+            <Row gutter={[8, 8]}>
+              <Col xl={8} lg={8} sm={24} align="left">
                 <label>
                   <b>Charge Off</b>
                 </label>
@@ -319,8 +319,8 @@ const BalanceSheetFormat = () => {
                     Old Charge-Off
                   </Radio>
                 </Radio.Group>
-              </Grid>
-              <Grid item lg={3} md={3} sm={12}>
+              </Col>
+              <Col xl={6} lg={6} sm={24}>
                 <div className={styles["m-to0p"]} />
                 <Button
                   applyClass="btnMiniPrimary"
@@ -329,16 +329,16 @@ const BalanceSheetFormat = () => {
                   click={()=>setsubmitType(1)}
                   type="submit"
                 />
-              </Grid>
-              <Grid item className={styles["m-to0ppp"]} lg={12} md={12} sm={12}>
+              </Col>
+              <Col xl={24} lg={24} sm={24} className={styles["m-to0ppp"]}>
                 <Table
                   rows={rows}
                   columns={columns}
                   scroll={{ x: "max-content" }}
                 />
-              </Grid>
-            </Grid>
-          </Grid>
+              </Col>
+            </Row>
+          </Row>
         </Paper>
       </>
     </form>

@@ -1,15 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import {
-  Grid,
-  Box,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-} from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import styles from "../DERASC.module.css";
 
-import AddIcon from "@material-ui/icons/Add";
 import { Typography, Radio, Tooltip } from "antd";
 import moment from "moment";
 import {
@@ -38,6 +29,9 @@ import {
   removeDashesFromDate,
 } from "../../../Common/Functions/date-formatter";
 import MultipleBusinessDetails from "../../DEBT-NonBankingAssets/AddEditNonBankingAssets/multiple-business-details";
+import { Row, Col } from "antd";
+import { Accordion, AccordionSummary, AccordionDetails } from "../../../Components/Elements/Accordion/accordion";
+import { DownOutlined as ExpandMoreIcon } from "@ant-design/icons";
 const NBABusinessDetailsVIEW = ({
   list,
   NBACasePropertyModelList,
@@ -123,14 +117,8 @@ const NBABusinessDetailsVIEW = ({
         <AccordionDetails>
           <Typography className={styles["typography-width"]}>
             <Paper padding={2} className={styles["nbaview-paper"]}>
-              <Grid container spacing={2}>
-                <Grid
-                  item
-                  lg={5}
-                  md={5}
-                  sm={12}
-                  className={styles["nbaviewSetlement"]}
-                >
+              <Row gutter={[16, 16]}>
+                <Col xl={10} lg={10} sm={24} className={styles["nbaviewSetlement"]}>
                   <label>
                     <b>Settlement Type</b>
                   </label>
@@ -147,8 +135,8 @@ const NBABusinessDetailsVIEW = ({
                       Full Settlement
                     </Radio>
                   </Radio.Group>
-                </Grid>
-                <Grid item lg={7} md={7} sm={12} xs={12}>
+                </Col>
+                <Col xl={14} lg={14} sm={24} xs={24}>
                   <div className={styles["nbaviewSetlement"]} />
                   <TextField
                     label="Approval Authority"
@@ -161,8 +149,8 @@ const NBABusinessDetailsVIEW = ({
                     // required
                     disable
                   />
-                </Grid>
-              </Grid>
+                </Col>
+              </Row>
 
               <div
                 className={styles["nbaviewBusinesDetails"]}
@@ -173,7 +161,7 @@ const NBABusinessDetailsVIEW = ({
                         console.log("REMCasePropertyModelList", data);
                       }
                       return (
-                        <Grid item lg={12} md={12} sm={12} xs={12}>
+                        <Col xl={24} lg={24} sm={24} xs={24}>
                           <MultipleBusinessDetails
                             list={data}
                             ind={index}
@@ -184,14 +172,14 @@ const NBABusinessDetailsVIEW = ({
                             setupForms={setupForms}
                             view={true}
                           />
-                        </Grid>
+                        </Col>
                       );
                     })
                   : null}
               </div>
 
               <div className={styles["nbaviewBusinesDetails-remarks"]}/>
-              <Grid item lg={12} md={12} sm={12} xs={12}>
+              <Col xl={24} lg={24} sm={24} xs={24}>
                 <TextField
                   name="RemarksBusiness"
                   size="large"
@@ -204,7 +192,7 @@ const NBABusinessDetailsVIEW = ({
                   disable
                   value={saveNewData.RemarksBusiness}
                 />
-              </Grid>
+              </Col>
             </Paper>
           </Typography>
         </AccordionDetails>

@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./styles.module.css";
-import Button from "@material-ui/core/Button";
-import { Box } from "@material-ui/core";
+import { Button } from "antd";
 import TextField from "../InputFields/TextField/text-field";
 
 const InputWithBtn = ({
@@ -30,41 +29,41 @@ const InputWithBtn = ({
   size,
 }) => {
   return (
-    <Box display="flex">
-      <TextField
-        placeholder={placeholder ? placeholder : null}
-        size={size}
-        classpass={classpas}
-        type={type ? type : null}
-        isUpperCase={isUpperCase}
-        disable={disable ? true : false}
-        ref={ref}
-        name={name}
-        value={value}
-        change={onchange}
-        helper={helperText}
-        size={textFieldSize}
-        label={label}
-        fullWidth={fullWidth}
-        error={error && error}
-        textLength={textLength}
-        required={required}
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
+    <div style={{ display: "flex" }}>
+      {/* flex:1 so the input fills all space the Button doesn't need */}
+      <div style={{ flex: 1 }}>
+        <TextField
+          placeholder={placeholder ? placeholder : null}
+          classpass={classpas}
+          type={type ? type : null}
+          isUpperCase={isUpperCase}
+          disable={disable ? true : false}
+          ref={ref}
+          name={name}
+          value={value}
+          change={onchange}
+          helper={helperText}
+          size={textFieldSize}
+          label={label}
+          fullWidth={fullWidth}
+          error={error && error}
+          textLength={textLength}
+          required={required}
+        />
+      </div>
       <Button
         onClick={click}
-        size={btnSize}
+        size="large"
         disabled={disable ? true : false}
-        variant="contained"
-        color="primary"
+        type="primary"
         className={styles[`${applyClass}`]}
-        startIcon={icon && icon}
       >
-        {text}
+        <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+          {icon ? icon : null}
+          {text ? <span>{text}</span> : null}
+        </span>
       </Button>
-    </Box>
+    </div>
   );
 };
 

@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Box } from "@material-ui/core";
 import { Typography } from "antd";
-import AddIcon from "@material-ui/icons/Add";
-import Search from "@material-ui/icons/Search";
-import Edit from "@material-ui/icons/Edit";
-import Restore from "@material-ui/icons/Restore";
 import {
   Button,
   Table,
@@ -23,6 +18,8 @@ import {
   DeleteApprovalRejectionReasons,
   EditApprovalRejectionReasons,
 } from "../../../../../store/actions/setup-forms-actions";
+import { Row, Col } from "antd";
+import { PlusOutlined as AddIcon, EditOutlined as Edit } from "@ant-design/icons";
 
 const RejectionReasons = () => {
   const { Title } = Typography;
@@ -296,8 +293,8 @@ const RejectionReasons = () => {
   return (
     <>
       <Title level={3}>Rejection Reasons</Title>
-      <Grid container spacing={1}>
-        <Grid item lg={9} md={9} sm={12}>
+      <Row gutter={[8, 8]}>
+        <Col xl={18} lg={18} sm={24}>
           <TextField
             fullWidth
             autoComplete="off"
@@ -307,8 +304,8 @@ const RejectionReasons = () => {
             size="small"
             required
           />
-        </Grid>
-        <Grid item lg={3} md={3} sm={12}>
+        </Col>
+        <Col xl={6} lg={6} sm={24}>
           {actions.update ? (
             <Button
               text="Update Rejection Reason"
@@ -328,8 +325,8 @@ const RejectionReasons = () => {
               disableBtn={btnStatus}
             />
           )}
-        </Grid>
-        <Grid className={styles["rejectionreasonTable"]} item lg={12} md={11} sm={12}>
+        </Col>
+        <Col xl={24} lg={22} sm={24} className={styles["rejectionreasonTable"]}>
           <Table
             rows={allApprovalRejectionReasons}
             columns={columns}
@@ -340,33 +337,29 @@ const RejectionReasons = () => {
               pageSizeOptions: ["5", "10", "20", "30"],
             }}
           />
-        </Grid>
-      </Grid>
+        </Col>
+      </Row>
       <Modal closeModal={handleCancel} modalState={isModalVisible} width={700}>
         {/* this data will be pass to modal when Add Brower btn will be clicked */}
         {actions.add && (
           <>
-            <Box
-              className={styles["rejectionReasonAddBox"]}
-            >
+            <div className={styles["rejectionReasonAddBox"]}>
               <Title level={3} align="center">
                 Are you sure you want to add Rejection Reason
               </Title>
-            </Box>
+            </div>
             <GroupedButtons data={addButtonProps} />
           </>
         )}
         {/* this data will be pass to modal when delete icon btn in the table  will be clicked */}
         {actions.delete && (
           <>
-            <Box
-              className={styles["rejectionReasonDelBox"]}
-            >
+            <div className={styles["rejectionReasonDelBox"]}>
               <i className="icon-trash icon-size-two"></i>
               <Title level={3} align="center">
                 Are you sure you want to delete this?
               </Title>
-            </Box>
+            </div>
             <GroupedButtons data={buttonProps} />
           </>
         )}

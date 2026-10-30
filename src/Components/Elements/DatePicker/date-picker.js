@@ -1,6 +1,5 @@
 import React from "react";
 import { DatePicker, Typography } from "antd";
-import { Box } from "@material-ui/core";
 import styles from "./datepicker.module.css";
 import moment from "moment";
 const CustomDatePicker = ({
@@ -24,7 +23,7 @@ const CustomDatePicker = ({
     return value && value > moment().endOf("day");
   };
   return (
-    <Box display="flex" alignItems="center">
+    <div style={{ display: "flex", alignItems: "center" }}>
       <Text>{label}</Text>
       <DatePicker
         disabledDate={DateRange ? disabledDate : false}
@@ -37,7 +36,7 @@ const CustomDatePicker = ({
         width={`${width}`}
         className={styles["textfieldsize"]}
       />
-    </Box>
+    </div>
   );
 };
 export default CustomDatePicker;

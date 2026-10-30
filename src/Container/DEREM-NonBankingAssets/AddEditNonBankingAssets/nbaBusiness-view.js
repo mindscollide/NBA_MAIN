@@ -1,15 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import {
-  Grid,
-  Box,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-} from "@material-ui/core";
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import styles from "../DEREM.module.css";
 
-import AddIcon from "@material-ui/icons/Add";
 import { Typography, Radio, Tooltip } from "antd";
 import moment from "moment";
 import {
@@ -38,6 +29,9 @@ import {
   removeDashesFromDate,
 } from "../../../Common/Functions/date-formatter";
 import MultipleBusinessDetails from "../../DEBT-NonBankingAssets/AddEditNonBankingAssets/multiple-business-details";
+import { Row, Col } from "antd";
+import { Accordion, AccordionSummary, AccordionDetails } from "../../../Components/Elements/Accordion/accordion";
+import { DownOutlined as ExpandMoreIcon } from "@ant-design/icons";
 const NBABusinessDetailsVIEW = ({list,NBACasePropertyModelList,saveNewData,setupForms,
   setNBACasePropertyModelList,view}) => {
   const [expanded, setExpanded] = useState(false);
@@ -117,8 +111,8 @@ console.log("REMCasePropertyModelList",NBACasePropertyModelList)
         <AccordionDetails>
           <Typography className={styles["typography"]}>
           <Paper padding="2" className={styles["paperbckgrnd"]}>
-          <Grid container spacing={2}>
-            <Grid item lg={5} md={5} sm={12} className={styles["topderem"]}>
+          <Row gutter={[16, 16]}>
+            <Col xl={10} lg={10} sm={24} className={styles["topderem"]}>
               <label>
                 <b>Settlement Type</b>
               </label>
@@ -132,8 +126,8 @@ console.log("REMCasePropertyModelList",NBACasePropertyModelList)
                 <Radio disabled value={false}>Partial Settlement</Radio>
                 <Radio disabled value={true}>Full Settlement</Radio>
               </Radio.Group>
-            </Grid>
-            <Grid item lg={7} md={7} sm={12} xs={12}>
+            </Col>
+            <Col xl={14} lg={14} sm={24} xs={24}>
               <div className={styles["topderem"]} />
               <TextField
                 label="Approval Authority"
@@ -146,8 +140,8 @@ console.log("REMCasePropertyModelList",NBACasePropertyModelList)
                 // required
                 disable
               />
-            </Grid>
-          </Grid>
+            </Col>
+          </Row>
 
           <div
             className={styles["deremstyle"]}
@@ -156,7 +150,7 @@ console.log("REMCasePropertyModelList",NBACasePropertyModelList)
               ? NBACasePropertyModelList.map((data, index) => {
                 {console.log("REMCasePropertyModelList",data)}
                   return (
-                    <Grid item lg={12} md={12} sm={12} xs={12}>
+                    <Col xl={24} lg={24} sm={24} xs={24}>
                       <div className={styles["papertop"]} />
                       <MultipleBusinessDetails
                         list={data}
@@ -168,14 +162,14 @@ console.log("REMCasePropertyModelList",NBACasePropertyModelList)
                         setupForms={setupForms}
                         view={true}
                       />
-                    </Grid>
+                    </Col>
                   );
                 })
               : null}
           </div>
 
           <div className={styles["evatop"]} />
-          <Grid item lg={12} md={12} sm={12} xs={12}>
+          <Col xl={24} lg={24} sm={24} xs={24}>
             <TextField
               name="RemarksBusiness"
               size="large"
@@ -187,7 +181,7 @@ console.log("REMCasePropertyModelList",NBACasePropertyModelList)
               disable
               value={saveNewData.RemarksBusiness}
             />
-          </Grid>
+          </Col>
         </Paper>
           </Typography>
         </AccordionDetails>

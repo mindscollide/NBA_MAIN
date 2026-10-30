@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Grid } from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
 import { Typography, Radio } from "antd";
 import moment from "moment";
 
@@ -35,6 +33,7 @@ import {
 import NBABusinessDetailsVIEW from "./nbaBusiness-view";
 import NBACustomerDetailsVIEW from "./nbacustomer-view";
 import NBAREMVIEW from "./nbarsm-view";
+import { Row, Col } from "antd";
 
 const VIEWNBAAssetsDERAM = () => {
   const { Title } = Typography;
@@ -1596,8 +1595,8 @@ const VIEWNBAAssetsDERAM = () => {
         <Title className={styles["RascEditHeading"]} level={3}>
           Non-Banking Assets & Other Assets
         </Title>
-        <Grid container spacing={2}>
-          <Grid item lg={12} md={12} sm={12} xs={12}>
+        <Row gutter={[16, 16]}>
+          <Col xl={24} lg={24} sm={24} xs={24}>
             {NBACaseCustomerList &&
             Object.keys(NBACaseCustomerList).length > 0 ? (
               <NBACustomerDetailsVIEW
@@ -1605,9 +1604,9 @@ const VIEWNBAAssetsDERAM = () => {
                 NBACaseCustomerList={NBACaseCustomerList}
               />
             ) : null}
-          </Grid>
+          </Col>
           <div className={styles["NBABusinessSection"]} />
-          <Grid item lg={12} md={12} sm={12} xs={12}>
+          <Col xl={24} lg={24} sm={24} xs={24}>
             {NBACaseCustomerList &&
             Object.keys(NBACaseCustomerList).length > 0 ? (
               <NBABusinessDetailsVIEW
@@ -1616,9 +1615,9 @@ const VIEWNBAAssetsDERAM = () => {
                 setupForms={setupForms}
               />
             ) : null}
-          </Grid>
+          </Col>
           <div className={styles["NBABusinessSection"]} />
-          <Grid item lg={12} md={12} sm={12} xs={12}>
+          <Col xl={24} lg={24} sm={24} xs={24}>
             {NBACaseCustomerList &&
             Object.keys(NBACaseCustomerList).length > 0 ? (
               <NBAREMVIEW
@@ -1633,19 +1632,15 @@ const VIEWNBAAssetsDERAM = () => {
                 scopevaluationDetailsREM={scopevaluationDetailsREM}
               />
             ) : null}
-          </Grid>
-        </Grid>
+          </Col>
+        </Row>
         <div className={styles["NBARemSection"]} />
         <Paper className={styles["DERASCpaper"]}>
-          <Grid item lg={4} md={4} sm={3} xs={12}>
+          <Col xl={8} lg={8} sm={6} xs={24}>
             <h1 className={styles["RASCh1"]}>RA&SC</h1>
-          </Grid>
-          <Grid
-            container
-            spacing={2}
-            className={styles["provisionalAmountorDatepadding"]}
-          >
-            <Grid item lg={6} md={6} sm={12} xs={12}>
+          </Col>
+          <Row gutter={[16, 16]} className={styles["provisionalAmountorDatepadding"]}>
+            <Col xl={12} lg={12} sm={24} xs={24}>
               <FormattedInputs
                 name="ProvisionalReversalAmount"
                 size="small"
@@ -1664,14 +1659,8 @@ const VIEWNBAAssetsDERAM = () => {
                 fullWidth
                 disable={true}
               />
-            </Grid>
-            <Grid
-              item
-              lg={6}
-              md={6}
-              sm={12}
-              xs={12}
-            >
+            </Col>
+            <Col xl={12} lg={12} sm={24} xs={24}>
               <label>
                 <b className={styles["nbaRSMTitleTransfer"]}>
                   Provisional Reversal Date
@@ -1694,13 +1683,13 @@ const VIEWNBAAssetsDERAM = () => {
                 DateRange
                 width="100%"
               />
-            </Grid>
-          </Grid>
+            </Col>
+          </Row>
         </Paper>
         <div className={styles["NBABusinessSection"]} />
 
         <div />
-        <Grid item lg={12} md={12} sm={12} xs={12}>
+        <Col xl={24} lg={24} sm={24} xs={24}>
           <label>
             <b className={styles["Remarkslabel"]}>
               Remarks <span className={styles["ProvisionalDate-span"]}>*</span>
@@ -1717,7 +1706,7 @@ const VIEWNBAAssetsDERAM = () => {
             value={saveRASNewDataList.RemarksRASC}
             disable={true}
           />
-        </Grid>
+        </Col>
       </form>
       {nonBankingAssets.Loading ? <Loader /> : null}
     </>

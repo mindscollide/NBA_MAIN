@@ -24,7 +24,6 @@ import Upload from './Upload/upload';
 import Loader from './Loader/Loader'
 import {Notification,Message} from './Notifications'
 import {FormattedInputs,NumberFormatCustom} from './FormatedInput/FormatedInput'
-import MDatePicker from './MaterialUiDatePicker/DatePicker.js'
 export {
     ADate,
     ADayMonthCount,
@@ -53,7 +52,6 @@ export {
     Message,
     ConsolidateBox,
     FormattedInputs,
-    NumberFormatCustom,
-    MDatePicker
+    NumberFormatCustom
 }
 

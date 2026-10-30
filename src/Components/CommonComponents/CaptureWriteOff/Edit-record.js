@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Box } from "@material-ui/core";
 import {
   Paper,
   TextField,
@@ -10,12 +9,12 @@ import {
 import { Typography } from "antd";
 import styles from "../style.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import AddIcon from "@material-ui/icons/Add";
 import { GetBorrowerType } from "../../../store/actions/setup-forms-actions";
 import { directorTypeOptions } from "../../../Common/SelectFieldOption/select-field-option";
-import ClearOutlinedIcon from "@material-ui/icons/ClearOutlined";
 import { EditWriteOff } from "../../../store/actions/write-off-actions";
 import { useNavigate } from "react-router";
+import { Row, Col } from "antd";
+import { PlusOutlined as AddIcon } from "@ant-design/icons";
 const EditRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
   const { Title } = Typography;
   const navigate = useNavigate();
@@ -301,10 +300,10 @@ const EditRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
     <>
       <form onSubmit={SaveAll}>
         <div className={styles["m-top"]} />
-        <Grid container spacing={2}></Grid>
+        <Row gutter={[16, 16]}></Row>
         <Paper padding="2">
-          <Grid container spacing={2}>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+          <Row gutter={[16, 16]}>
+            <Col xl={6} lg={6} sm={24} xs={24}>
               <TextField
                 label="Misys Customer Code"
                 disable
@@ -312,16 +311,16 @@ const EditRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
                 fullWidth
                 textLength={300}
               />
-            </Grid>
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            </Col>
+            <Col xl={4} lg={4} sm={24} xs={24}>
               <TextField
                 label="WOF Code"
                 disable
                 value={InformationSection.WOFCode}
                 fullWidth
               />
-            </Grid>
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            </Col>
+            <Col xl={4} lg={4} sm={24} xs={24}>
               <TextField
                 label="Borrower NPL Code"
                 value={InformationSection.NPLCode}
@@ -329,8 +328,8 @@ const EditRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
                 textLength={7}
                 disable
               />
-            </Grid>
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            </Col>
+            <Col xl={4} lg={4} sm={24} xs={24}>
               <TextField
                 label="Borrower Name"
                 value={InformationSection.BorrowerName}
@@ -338,8 +337,8 @@ const EditRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
                 textLength={300}
                 disable
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+            </Col>
+            <Col xl={6} lg={6} sm={24} xs={24}>
               <TextField
                 label="Borrower Type"
                 value={InformationSection.BorrowerTypeID}
@@ -347,8 +346,8 @@ const EditRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
                 textLength={300}
                 disable
               />
-            </Grid>
-          </Grid>
+            </Col>
+          </Row>
         </Paper>
         <Title level={2}>Sponsor / Owner Details</Title>
         <div className={styles["m-top"]} />
@@ -356,7 +355,7 @@ const EditRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
           sponsorOwnerDetail.map((item, ind) => (
             <div key={ind}>
               <Paper padding="2">
-                <Box align="right">
+                <div align="right">
                   {ind > 0 && (
                     <i
                     className={`${"icon-trash icon-size-one pdfRed"} ${styles["Onlycursor"]}`}
@@ -365,9 +364,9 @@ const EditRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
                       onClick={() => removeNewRecordHandler(ind)}
                     />
                   )}
-                </Box>
-                <Grid container spacing={2}>
-                  <Grid item lg={3} md={3} sm={12} xs={12}>
+                </div>
+                <Row gutter={[16, 16]}>
+                  <Col xl={6} lg={6} sm={24} xs={24}>
                     <SelectBox
                       size="small"
                       label="Director Type"
@@ -378,8 +377,8 @@ const EditRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
                       option={directorTypeOptions}
                       focus={() => sectionIndexHandler(ind)}
                     />
-                  </Grid>
-                  <Grid item lg={3} md={3} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={6} lg={6} sm={24} xs={24}>
                     <TextField
                       size="small"
                       label="Name of Proprietor/Director/Partner"
@@ -390,8 +389,8 @@ const EditRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
                       name="DirectorName"
                       focus={() => sectionIndexHandler(ind)}
                     />
-                  </Grid>
-                  <Grid item lg={3} md={3} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={6} lg={6} sm={24} xs={24}>
                     <TextField
                       size="small"
                       label="CNIC"
@@ -404,8 +403,8 @@ const EditRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
                       name="CNIC"
                       focus={() => sectionIndexHandler(ind)}
                     />
-                  </Grid>
-                  <Grid item lg={3} md={3} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={6} lg={6} sm={24} xs={24}>
                     <TextField
                       size="small"
                       label="Father / Husband Name"
@@ -417,8 +416,8 @@ const EditRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
                       name="FatherHusband"
                       focus={() => sectionIndexHandler(ind)}
                     />
-                  </Grid>
-                  <Grid item lg={12} md={12} sm={12} xs={12} align="center">
+                  </Col>
+                  <Col xl={24} lg={24} sm={24} xs={24} align="center">
                     <div className={styles["m-topp "]} />
                     <TextField
                       multiline
@@ -430,15 +429,15 @@ const EditRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
                       name="Address"
                       focus={() => sectionIndexHandler(ind)}
                     />
-                  </Grid>
-                </Grid>
+                  </Col>
+                </Row>
               </Paper>
               <div className={styles["m-bottom"]} />
             </div>
           ))}
 
         <div className={styles["margin-top"]} />
-        <Grid item md={12} lg={12} sm={12} align="center">
+        <Col lg={24} xl={24} sm={24} align="center">
           <Button
             text="Add Record"
             icon={<AddIcon />}
@@ -447,10 +446,10 @@ const EditRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
             click={addNewRecordHandler}
             disableBtn={disable1}
           />
-        </Grid>
+        </Col>
         <div className={styles["margin-top"]} />
-        <Grid container spacing={2} justifyContent="center">
-          <Grid item lg={2} md={2} sm={12}>
+        <Row gutter={[16, 16]} justify="center">
+          <Col xl={4} lg={4} sm={24}>
             <Button
               text="Previous"
               icon={<i className="icon-arrow-left icon-size-one"></i>}
@@ -458,8 +457,8 @@ const EditRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
               size="large"
               click={() => setGoToSave(!goToSave)}
             />
-          </Grid>
-          <Grid item lg={2} md={2} sm={12}>
+          </Col>
+          <Col xl={4} lg={4} sm={24}>
             <Button
               text="Save"
               type="submit"
@@ -468,9 +467,9 @@ const EditRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
               size="large"
               click={() => setsaveValue(1)}
             />
-          </Grid>
+          </Col>
 
-          <Grid item lg={4} md={4} sm={12}>
+          <Col xl={8} lg={8} sm={24}>
             <Button
               text="Save & Send For Approval"
               type="submit"
@@ -479,8 +478,8 @@ const EditRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
               size="large"
               click={() => setsaveValue(2)}
             />
-          </Grid>
-        </Grid>
+          </Col>
+        </Row>
         <Notification
           setOpen={setError}
           open={error}
