@@ -1,0 +1,57 @@
+.divMargin {
+  margin-top: 5% !important;
+}
+
+.m-top {
+  margin-top: 2% !important;
+}
+
+.pendingBox {
+  display: flex !important;
+  justify-content: center !important;
+  padding-bottom: 40px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+.pendingBoxxx2 {
+  display: flex !important;
+  justify-content: center !important;
+  padding-bottom: 80px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+.pendingTop {
+  margin-top: 5% !important;
+}
+
+.pendingToppp {
+  margin-top: 2% !important;
+}
+
+.pendingbOX {
+  padding-bottom: 40px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+.pendingbOXXX {
+  padding-bottom: 80px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+.Viewcursor {
+  color: blue !important;
+  cursor: pointer !important;
+}
+
+.Onlycursor {
+  cursor: pointer !important;
+}
+
+.displaystyle{
+  display: "flex";
+  flex-direction: column;
+}

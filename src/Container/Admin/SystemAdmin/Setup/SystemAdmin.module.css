@@ -1,0 +1,66 @@
+.propertyTypeTable {
+  margin-top: 1%;
+}
+
+.propertyTypeAddBox {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.propertyTypeDelBox {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.propertyTypeUpdateBox {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+/* for approval-reasons */
+
+.approvalreasonTable {
+  margin-top: 1%;
+}
+
+.approvalReasonAddBox {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.approvalReasonDelBox {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+  }
+
+
+  /* for rejection reason */
+  .rejectionreasonTable {
+    margin-top: 1%;
+  }
+
+  .rejectionReasonAddBox {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+  }
+
+  .rejectionReasonDelBox {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+  }
+
+  .Viewcursor{
+    color: blue !important;
+    cursor: pointer !important;
+  }
+  
+  .Onlycursor{
+    cursor: pointer !important;
+  }

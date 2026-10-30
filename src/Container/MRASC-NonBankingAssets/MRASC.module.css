@@ -1,0 +1,32 @@
+.MRASCSearchInputField {
+  margin-left: 295px !important;
+}
+
+.MRASCSearchNbaFonts {
+  font-size: 0.7rem;
+}
+
+.MRASCSearchNbaorResetbtn {
+  margin-top: 22px !important;
+}
+
+.modalApproval {
+  padding-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.modalApprovaldescription {
+  padding-bottom: 80px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.Viewcursor{
+  color: blue !important;
+  cursor: pointer !important;
+}
+
+.Onlycursor{
+  cursor: pointer !important;
+}

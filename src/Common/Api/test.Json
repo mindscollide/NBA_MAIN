@@ -1,0 +1,43 @@
+{
+  "RemarksREM": "qdw",
+  "NBACaseID": 93,
+  "SendForApproval": 1,
+  "NBACasePropertyModelList": [
+    {
+      "NBACasePropertyID": 381,
+      "TitleTransferDate": "20220803",
+      "CurrentUseOfAsset": "",
+      "RevaluatedAmount": -1,
+      "StrategyForDisposal": "",
+      "DisposalOrTransferDateForAsset": "18000101",
+      "IncomeEarnedFromAsset": -1,
+      "DisposalOwnUseStatus": 2,
+      "NumberOfValuationsFull": -1,
+      "AverageForcedSaleValueFull": -1,
+      "AverageMarketValueFull": -1,
+      "NumberOfValuationsDesktop": -1,
+      "AverageForcedSaleValueDesktop": -1,
+      "AverageMarketValueDesktop": -1,
+      "PropertyFullEvaluatorREMList": [],
+      "PropertyDesktopEvaluatorList": []
+    },
+    {
+      "NBACasePropertyID": 382,
+      "TitleTransferDate": "20220811",
+      "CurrentUseOfAsset": "",
+      "RevaluatedAmount": -1,
+      "StrategyForDisposal": "",
+      "DisposalOrTransferDateForAsset": "18000101",
+      "IncomeEarnedFromAsset": -1,
+      "DisposalOwnUseStatus": 2,
+      "NumberOfValuationsFull": -1,
+      "AverageForcedSaleValueFull": -1,
+      "AverageMarketValueFull": -1,
+      "NumberOfValuationsDesktop": -1,
+      "AverageForcedSaleValueDesktop": -1,
+      "AverageMarketValueDesktop": -1,
+      "PropertyFullEvaluatorREMList": [],
+      "PropertyDesktopEvaluatorList": []
+    }
+  ]
+}

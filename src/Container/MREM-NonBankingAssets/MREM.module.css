@@ -1,0 +1,44 @@
+.MremSearchInputField {
+  margin-left: 295px !important;
+}
+
+.approvalModalTitle {
+  padding-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.approvalModalDescription {
+  padding-bottom: 80px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.rejectionModalTitle {
+  padding-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.rejectionModalDescription {
+  padding-bottom: 80px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.SearchInputFont {
+    font-size: 0.7rem;
+}
+
+.SearchBtnorReset {
+    margin-top: 22px ;
+}
+
+.Viewcursor{
+  color: blue !important;
+  cursor: pointer !important;
+}
+
+.Onlycursor{
+  cursor: pointer !important;
+}

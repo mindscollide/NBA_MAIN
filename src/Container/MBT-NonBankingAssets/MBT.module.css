@@ -1,0 +1,32 @@
+.inputSeacrh {
+  margin-left: 295px !important;
+}
+
+.rejectionrevert {
+  padding-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.rejectionTextField {
+  padding-bottom: 80px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.searchNbaorReset {
+    margin-top: 22px;
+}
+
+.seacrhNbalabels {
+    font-size: 0.7rem;
+}
+
+.Viewcursor{
+  color: blue !important;
+  cursor: pointer !important;
+}
+
+.Onlycursor{
+  cursor: pointer !important;
+}
