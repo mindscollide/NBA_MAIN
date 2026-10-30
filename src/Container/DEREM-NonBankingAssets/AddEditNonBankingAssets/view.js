@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Grid } from "@material-ui/core";
 import { useNavigate } from "react-router";
 import { Typography, Radio } from "antd";
 import moment from "moment";
@@ -37,6 +36,7 @@ import {
 } from "../../../store/actions/nonbanking-assets-actions";
 import NBABusinessDetailsVIEW from "./nbaBusiness-view";
 import NBACustomerDetailsVIEW from "./nbacustomer-view";
+import { Row, Col } from "antd";
 const ViewNBAAssetsDEREM = () => {
   const navigate = useNavigate();
   const { Title } = Typography;
@@ -2317,8 +2317,8 @@ const ViewNBAAssetsDEREM = () => {
         <Title className={styles["derembtm"]} level={3}>
           Non-Banking Assets & Other Assets
         </Title>
-        <Grid container spacing={2}>
-          <Grid item lg={12} md={12} sm={12} xs={12}>
+        <Row gutter={[16, 16]}>
+          <Col xl={24} lg={24} sm={24} xs={24}>
             {NBACaseCustomerList &&
             Object.keys(NBACaseCustomerList).length > 0 ? (
               <NBACustomerDetailsVIEW
@@ -2326,9 +2326,9 @@ const ViewNBAAssetsDEREM = () => {
                 NBACaseCustomerList={NBACaseCustomerList}
               />
             ) : null}
-          </Grid>
+          </Col>
           <div className={styles["deremTp"]} />
-          <Grid item lg={12} md={12} sm={12} xs={12}>
+          <Col xl={24} lg={24} sm={24} xs={24}>
             {NBACaseCustomerList &&
             Object.keys(NBACaseCustomerList).length > 0 ? (
               <NBABusinessDetailsVIEW
@@ -2337,26 +2337,19 @@ const ViewNBAAssetsDEREM = () => {
                 setupForms={setupForms}
               />
             ) : null}
-          </Grid>
-        </Grid>
+          </Col>
+        </Row>
         <div className={styles["deremTp"]} />
         <Paper className={styles["derempaper"]}>
-          <Grid
-            item
-            lg={4}
-            md={4}
-            sm={3}
-            xs={12}
-            className={styles["deremb0tt0m"]}
-          >
+          <Col xl={8} lg={8} sm={6} xs={24} className={styles["deremb0tt0m"]}>
             <h1
               className={styles["deremh1"]}
             >
               Real Estate Management
             </h1>
-          </Grid>
-          <Grid container spacing={2}  className={styles["derempd"]}>
-            <Grid item lg={4} md={4} sm={12} xs={12}>
+          </Col>
+          <Row gutter={[16, 16]} className={styles["derempd"]}>
+            <Col xl={8} lg={8} sm={24} xs={24}>
               <div>
                 <div className={styles["deremmmm"]}></div>
                 <SelectBox
@@ -2371,15 +2364,8 @@ const ViewNBAAssetsDEREM = () => {
                   // required
                 />
               </div>
-            </Grid>
-            <Grid
-              item
-              lg={4}
-              md={4}
-              sm={12}
-              xs={12}
-              // style={{ marginTop: "auto" }}
-            >
+            </Col>
+            <Col xl={8} lg={8} sm={24} xs={24}>
               <label>
                 <b className={styles["deremfont"]}>
                   Title Transfer Date 
@@ -2403,8 +2389,8 @@ const ViewNBAAssetsDEREM = () => {
                 width="100%"
                 disable={true}
               />
-            </Grid>
-            <Grid item lg={4} md={4} sm={12} xs={12}>
+            </Col>
+            <Col xl={8} lg={8} sm={24} xs={24}>
               <div className={styles["deremmmm"]}></div>
               <TextField
                 size="small"
@@ -2418,8 +2404,8 @@ const ViewNBAAssetsDEREM = () => {
                 change={realEstateManagementHandler}
                 disable={true}
               />
-            </Grid>
-            <Grid item lg={4} md={4} sm={12} xs={12}>
+            </Col>
+            <Col xl={8} lg={8} sm={24} xs={24}>
               <FormattedInputs
                 name="RevaluatedAmount"
                 size="small"
@@ -2438,8 +2424,8 @@ const ViewNBAAssetsDEREM = () => {
                 // required
                 disable={true}
               />
-            </Grid>
-            <Grid item lg={4} md={4} sm={12} xs={12}>
+            </Col>
+            <Col xl={8} lg={8} sm={24} xs={24}>
               <div className={styles["deremmmm"]}></div>
               <TextField
                 name="StrategyForDisposal"
@@ -2453,8 +2439,8 @@ const ViewNBAAssetsDEREM = () => {
                 // required
                 disable={true}
               />
-            </Grid>
-            <Grid item lg={4} md={4} sm={12} className={styles["topderem"]}>
+            </Col>
+            <Col xl={8} lg={8} sm={24} className={styles["topderem"]}>
               <label>
                 <b>Disposed Off / Own Use</b>
               </label>
@@ -2469,15 +2455,8 @@ const ViewNBAAssetsDEREM = () => {
                 <Radio disabled value={1}>Disposed Off</Radio>
                 <Radio disabled value={2}>Own Use</Radio>
               </Radio.Group>
-            </Grid>
-            <Grid
-              item
-              lg={4}
-              md={4}
-              sm={12}
-              xs={12}
-              // style={{ marginTop: "auto" }}
-            >
+            </Col>
+            <Col xl={8} lg={8} sm={24} xs={24}>
               <label>
                 <b  className={styles["SearchNbaFonts"]}>
                   {disabledDOUS ? "Transfer Out Date" : "Disposal Date"}
@@ -2506,8 +2485,8 @@ const ViewNBAAssetsDEREM = () => {
                 width="100%"
                 // disable={disabledDOUS}
               />
-            </Grid>
-            <Grid item lg={5} md={5} sm={12} xs={12}>
+            </Col>
+            <Col xl={10} lg={10} sm={24} xs={24}>
               <FormattedInputs
                 name="IncomeEarnedFromAsset"
                 size="small"
@@ -2529,21 +2508,21 @@ const ViewNBAAssetsDEREM = () => {
                 // disable={disabledDOUS}
                 disable={true}
               />
-            </Grid>
-            <Grid item lg={12} md={12} sm={12} xs={12}>
+            </Col>
+            <Col xl={24} lg={24} sm={24} xs={24}>
               <div
                className={styles["deremstyle"]}
               >
-                <Grid container spacing={2} className={styles["derempd"]}>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
+                <Row gutter={[16, 16]} className={styles["derempd"]}>
+                  <Col xl={12} lg={12} sm={24} xs={24}>
                     <h1
                       className={styles["deremfullscope"]}
                     >
                       <b>Full Scope Valuation Detail</b>
                     </h1>
-                  </Grid>
+                  </Col>
 
-                  {/* <Grid item lg={6} md={6} sm={12} xs={12} align="Right">
+                  {/* <Col xl={12} lg={12} sm={24} xs={24} align="Right">
                     <Button
                       text={"Add Another Valuation"}
                       icon={<AddIcon />}
@@ -2551,16 +2530,10 @@ const ViewNBAAssetsDEREM = () => {
                       size="large"
                       click={AddAnotherValuationFullScopeValuationDetail}
                     />
-                  </Grid> */}
-                </Grid>
-                <Grid container spacing={2} className={styles["derempd"]}>
-                  <Grid
-                    item
-                     className={styles["evapad"]}
-                    lg={12}
-                    md={12}
-                    sm={12}
-                  >
+                  </Col> */}
+                </Row>
+                <Row gutter={[16, 16]} className={styles["derempd"]}>
+                  <Col xl={24} lg={24} sm={24} className={styles["evapad"]}>
                     <div className={styles["deremscope"]} />
 
                     <Table
@@ -2571,9 +2544,9 @@ const ViewNBAAssetsDEREM = () => {
                       scroll={{ x: "max-content" }}
                       pagination={true}
                     />
-                  </Grid>
+                  </Col>
 
-                  <Grid item lg={4} md={4} sm={12} xs={12}>
+                  <Col xl={8} lg={8} sm={24} xs={24}>
                     <TextField
                       type={"Number"}
                       name="NumberOfValuationBusiness"
@@ -2593,9 +2566,9 @@ const ViewNBAAssetsDEREM = () => {
                       }
                       disable
                     />
-                  </Grid>
+                  </Col>
 
-                  {/* <Grid item lg={4} md={4} sm={12} xs={12}>
+                  {/* <Col xl={8} lg={8} sm={24} xs={24}>
                     <FormattedInputs
                       name="AverageForcedSaleValueBusiness"
                       size="small"
@@ -2614,9 +2587,9 @@ const ViewNBAAssetsDEREM = () => {
                       fullWidth
                       disable
                     />
-                  </Grid>
+                  </Col>
 
-                  <Grid item lg={4} md={4} sm={12} xs={12}>
+                  <Col xl={8} lg={8} sm={24} xs={24}>
                     <FormattedInputs
                       name="AverageMarketValueBusiness"
                       size="small"
@@ -2634,31 +2607,25 @@ const ViewNBAAssetsDEREM = () => {
                       fullWidth
                       disable
                     />
-                  </Grid> */}
-                </Grid>
+                  </Col> */}
+                </Row>
               </div>
               {/* Desktop Valuation Detail */}
               <div
                className={styles["deremstyle"]}
               >
-                <Grid container spacing={2} className={styles["derempd"]}>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
+                <Row gutter={[16, 16]} className={styles["derempd"]}>
+                  <Col xl={12} lg={12} sm={24} xs={24}>
                     <h1
                       className={styles["deremfullscope"]}
                     >
                       <b>Desktop Valuation Detail</b>
                     </h1>
-                  </Grid>
-                </Grid>
+                  </Col>
+                </Row>
 
-                <Grid container spacing={2} className={styles["derempd"]}>
-                  <Grid
-                    item
-                    className={styles["evapad"]}
-                    lg={12}
-                    md={12}
-                    sm={12}
-                  >
+                <Row gutter={[16, 16]} className={styles["derempd"]}>
+                  <Col xl={24} lg={24} sm={24} className={styles["evapad"]}>
                     <div className={styles["deremscope"]} />
 
                     <Table
@@ -2669,9 +2636,9 @@ const ViewNBAAssetsDEREM = () => {
                       scroll={{ x: "max-content" }}
                       pagination={true}
                     />
-                  </Grid>
+                  </Col>
 
-                  <Grid item lg={4} md={4} sm={12} xs={12}>
+                  <Col xl={8} lg={8} sm={24} xs={24}>
                     <TextField
                       type={"Number"}
                       name="NumberOfValuationBusiness"
@@ -2692,9 +2659,9 @@ const ViewNBAAssetsDEREM = () => {
                       label={"Number Of Valuation"}
                       disable
                     />
-                  </Grid>
+                  </Col>
 
-                  {/* <Grid item lg={4} md={4} sm={12} xs={12}>
+                  {/* <Col xl={8} lg={8} sm={24} xs={24}>
                     <FormattedInputs
                       name="AverageForcedSaleValueBusiness"
                       size="small"
@@ -2713,9 +2680,9 @@ const ViewNBAAssetsDEREM = () => {
                       fullWidth
                       disable
                     />
-                  </Grid>
+                  </Col>
 
-                  <Grid item lg={4} md={4} sm={12} xs={12}>
+                  <Col xl={8} lg={8} sm={24} xs={24}>
                     <FormattedInputs
                       name="AverageMarketValueBusiness"
                       size="small"
@@ -2734,16 +2701,16 @@ const ViewNBAAssetsDEREM = () => {
                       fullWidth
                       disable
                     />
-                  </Grid> */}
-                </Grid>
+                  </Col> */}
+                </Row>
               </div>
-            </Grid>
-          </Grid>
+            </Col>
+          </Row>
         </Paper>
         <div className={styles["deremTp"]} />
 
         <div className={styles["evatop"]} />
-        <Grid item lg={12} md={12} sm={12} xs={12}>
+        <Col xl={24} lg={24} sm={24} xs={24}>
         <label>
                     <b className={styles["SearchNbaFonts"]}>
                     Remarks <span className={styles["aesterick"]}>*</span>
@@ -2762,11 +2729,11 @@ const ViewNBAAssetsDEREM = () => {
             // required
             disable={true}
           />
-        </Grid>
+        </Col>
 
         <div className={styles["topderem"]} />
-        {/* <Grid container spacing={2}>
-          <Grid item lg={5} md={5} sm={12} xs={12} align="Right">
+        {/* <Row gutter={[16, 16]}>
+          <Col xl={10} lg={10} sm={24} xs={24} align="Right">
             <Button
               type="Submit"
               applyClass="btnBorderStyledBeach"
@@ -2779,9 +2746,9 @@ const ViewNBAAssetsDEREM = () => {
                 })
               }
             />
-          </Grid>
+          </Col>
 
-          <Grid item lg={7} md={7} sm={12} xs={12} align="Left">
+          <Col xl={14} lg={14} sm={24} xs={24} align="Left">
             <Button
               type="Submit"
               applyClass="btnBorderStyledBeach"
@@ -2794,8 +2761,8 @@ const ViewNBAAssetsDEREM = () => {
                 })
               }
             />
-          </Grid>
-        </Grid> */}
+          </Col>
+        </Row> */}
       </form>
       {nonBankingAssets.Loading ? <Loader /> : null}
     </>

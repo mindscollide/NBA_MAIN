@@ -1,15 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import {
-  Grid,
-  Box,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-} from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import styles from "../DEBT.module.css";
 
-import AddIcon from "@material-ui/icons/Add";
 import { Typography, Radio, Tooltip } from "antd";
 import moment from "moment";
 import {
@@ -37,6 +28,9 @@ import {
   CommaFormter,
   removeDashesFromDate,
 } from "../../../Common/Functions/date-formatter";
+import { Row, Col } from "antd";
+import { Accordion, AccordionSummary, AccordionDetails } from "../../../Components/Elements/Accordion/accordion";
+import { DownOutlined as ExpandMoreIcon } from "@ant-design/icons";
 
 const MultipleCustomerDetails = ({
   list,
@@ -147,7 +141,7 @@ const MultipleCustomerDetails = ({
           <AccordionDetails>
             <Typography className={styles["typographywidth"]}>
               <Paper className={styles["nbaPaper"]}>
-                <Box align="right">
+                <div align="right">
                   <Tooltip title="Delete" color={"Red"}>
                     {/* {ind  && ( */}
                     {view === true ? null : (
@@ -173,9 +167,9 @@ const MultipleCustomerDetails = ({
 
                     {/* )} */}
                   </Tooltip>
-                </Box>
-                <Grid container spacing={2} className={styles["nbaCustomerpadding"]}>
-                  <Grid item lg={4} md={4} sm={12} xs={12}>
+                </div>
+                <Row gutter={[16, 16]} className={styles["nbaCustomerpadding"]}>
+                  <Col xl={8} lg={8} sm={24} xs={24}>
                     <TextField
                       size="small"
                       label="Misys Customer Code"
@@ -201,8 +195,8 @@ const MultipleCustomerDetails = ({
                   disable={true}
                 />
               </div> */}
-                  </Grid>
-                  <Grid item lg={4} md={4} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={8} lg={8} sm={24} xs={24}>
                     <TextField
                       size="small"
                       label="IPartyID"
@@ -212,8 +206,8 @@ const MultipleCustomerDetails = ({
                       name="IPartyID"
                       disable
                     />
-                  </Grid>
-                  <Grid item lg={4} md={4} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={8} lg={8} sm={24} xs={24}>
                     <TextField
                       size="small"
                       label="ECIB Code"
@@ -223,8 +217,8 @@ const MultipleCustomerDetails = ({
                       name="ECIBCode"
                       disable
                     />
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={12} lg={12} sm={24} xs={24}>
                     <TextField
                       name="BorrowerName"
                       size="small"
@@ -234,8 +228,8 @@ const MultipleCustomerDetails = ({
                       textLength={300}
                       disable
                     />
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={12} lg={12} sm={24} xs={24}>
                     <TextField
                       name="AddressOfBorrower"
                       size="small"
@@ -245,14 +239,8 @@ const MultipleCustomerDetails = ({
                       textLength={300}
                       disable
                     />
-                  </Grid>
-                  <Grid
-                    item
-                    className={styles["nbaupdatepading"]}
-                    lg={12}
-                    md={12}
-                    sm={12}
-                  >
+                  </Col>
+                  <Col xl={24} lg={24} sm={24} className={styles["nbaupdatepading"]}>
                     <div className={styles["updateTopmargin"]} />
                     <Table
                       columns={columnCustomerDetail}
@@ -260,8 +248,8 @@ const MultipleCustomerDetails = ({
                       rows={list.NBACaseCustomerAccountList}
                       pagination={true}
                     />
-                  </Grid>
-                </Grid>
+                  </Col>
+                </Row>
               </Paper>
             </Typography>
           </AccordionDetails>
@@ -285,7 +273,7 @@ const MultipleCustomerDetails = ({
           <AccordionDetails>
             <Typography className={styles["typographywidth"]}>
               <Paper pclassName={styles["nbaPaper"]}>
-                <Box align="right">
+                <div align="right">
                   <Tooltip title="Delete" color={"Red"}>
                     {/* {ind  && ( */}
                     {view === true ? null : (
@@ -310,9 +298,9 @@ const MultipleCustomerDetails = ({
 
                     {/* )} */}
                   </Tooltip>
-                </Box>
-                <Grid container spacing={2} className={styles["nbaCustomerpadding"]}>
-                  <Grid item lg={4} md={4} sm={12} xs={12}>
+                </div>
+                <Row gutter={[16, 16]} className={styles["nbaCustomerpadding"]}>
+                  <Col xl={8} lg={8} sm={24} xs={24}>
                     <TextField
                       size="small"
                       label="Misys Customer Code"
@@ -338,8 +326,8 @@ const MultipleCustomerDetails = ({
                   disable={true}
                 />
               </div> */}
-                  </Grid>
-                  <Grid item lg={4} md={4} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={8} lg={8} sm={24} xs={24}>
                     <TextField
                       size="small"
                       label="IPartyID"
@@ -349,8 +337,8 @@ const MultipleCustomerDetails = ({
                       name="IPartyID"
                       disable
                     />
-                  </Grid>
-                  <Grid item lg={4} md={4} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={8} lg={8} sm={24} xs={24}>
                     <TextField
                       size="small"
                       label="ECIB Code"
@@ -360,8 +348,8 @@ const MultipleCustomerDetails = ({
                       name="ECIBCode"
                       disable
                     />
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={12} lg={12} sm={24} xs={24}>
                     <TextField
                       name="BorrowerName"
                       size="small"
@@ -371,8 +359,8 @@ const MultipleCustomerDetails = ({
                       textLength={300}
                       disable
                     />
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={12} lg={12} sm={24} xs={24}>
                     <TextField
                       name="AddressOfBorrower"
                       size="small"
@@ -382,14 +370,8 @@ const MultipleCustomerDetails = ({
                       textLength={300}
                       disable
                     />
-                  </Grid>
-                  <Grid
-                    item
-                   className={styles["nbaupdatepading"]}
-                    lg={12}
-                    md={12}
-                    sm={12}
-                  >
+                  </Col>
+                  <Col xl={24} lg={24} sm={24} className={styles["nbaupdatepading"]}>
                     <div className={styles["updateTopmargin"]} />
                     <Table
                       columns={columnCustomerDetail}
@@ -397,8 +379,8 @@ const MultipleCustomerDetails = ({
                       rows={list.NBACaseCustomerAccountList}
                       pagination={true}
                     />
-                  </Grid>
-                </Grid>
+                  </Col>
+                </Row>
               </Paper>
             </Typography>
           </AccordionDetails>

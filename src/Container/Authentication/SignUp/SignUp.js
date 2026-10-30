@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Container, Box, Grid, Fade } from "@material-ui/core";
 import styles from "./style.module.css";
 import { Input, Typography } from "antd";
 import { UserOutlined } from "@ant-design/icons";
@@ -28,6 +27,8 @@ import {
   validEmailAddress,
 } from "../../../Common/Functions/validations";
 import { validateemail } from "../../../Common/Api/apis-config";
+import { Row, Col } from "antd";
+import MaxWidthContainer from "../../../Components/Elements/MaxWidthContainer/max-width-container";
 
 // import ripple from "../../../assets/images/ripple"
 
@@ -610,12 +611,14 @@ const SignUp = () => {
   console.log("bio", userNameBio);
 
   return (
-    <Container maxWidth="lg">
-      <Box className={styles["loginBox"]}>
-        <Grid container spacing={5}>
-          <Grid item lg={6} md={6} sm={12}></Grid>
-          <Grid item lg={6} md={6} sm={12} align="right">
-            <Box className={styles.loginBody}>
+    <MaxWidthContainer>
+      <div className={styles["loginBox"]}>
+        {/* MUI Grid containers were width:100% (plus the gutter); a Row in this
+              flex box would otherwise shrink to its content. */}
+          <Row gutter={[40, 40]} style={{ width: "calc(100% + 40px)" }}>
+          <Col xl={12} lg={12} sm={24}></Col>
+          <Col xl={12} lg={12} sm={24} align="right">
+            <div className={styles.loginBody}>
               <Title
                 level={3}
                 // style={{ color: "white", textAlign: "center", marginTop: 10 }}
@@ -679,7 +682,7 @@ const SignUp = () => {
                   {credentials.emailAddress.isFail && (
                     <ErrorBar errorText={emailAfterVerifyError} />
                   )}
-                  <Grid align="center" item md={12} lg={12}>
+                  <Col lg={24} xl={24} align="center">
                     <div className={styles["llloginbtnbox"]} />
                     <Button
                       text="Go Back"
@@ -689,11 +692,11 @@ const SignUp = () => {
                       disable={false}
                       click={goback}
                     />
-                  </Grid>
+                  </Col>
                 </>
               ) : (
-                <Grid container align="left" spacing={5}>
-                  <Grid item md={6} lg={6}>
+                <Row gutter={[40, 40]} align="left">
+                  <Col lg={12} xl={12}>
                     <label className={styles.lable}>Email</label>
                     <TextField
                       size="small"
@@ -703,8 +706,8 @@ const SignUp = () => {
                       // value={auth.responseData.email}
                     />
                     {/* <ErrorBar errorText="" /> */}
-                  </Grid>
-                  <Grid item md={6} lg={6}>
+                  </Col>
+                  <Col lg={12} xl={12}>
                     <label className={styles.lable}>Username</label>
                     <TextField
                       size="small"
@@ -722,9 +725,9 @@ const SignUp = () => {
                       // }
                     />
                     {/* <ErrorBar errorText="" /> */}
-                  </Grid>
+                  </Col>
                   <div className={styles["llloginbtnbox"]} />
-                  <Grid item md={6} lg={6}>
+                  <Col lg={12} xl={12}>
                     <label className={styles.lable}>First Name</label>
                     <TextField
                       size="small"
@@ -739,8 +742,8 @@ const SignUp = () => {
                     {bio.firstName.isError && (
                       <ErrorBar errorText={bio.firstName.errorMessage} />
                     )}
-                  </Grid>
-                  <Grid item md={6} lg={6}>
+                  </Col>
+                  <Col lg={12} xl={12}>
                     <label className={styles.lable}>Last Name</label>
                     <TextField
                       size="small"
@@ -754,9 +757,9 @@ const SignUp = () => {
                     {bio.lastName.isError && (
                       <ErrorBar errorText={bio.lastName.errorMessage} />
                     )}
-                  </Grid>
+                  </Col>
                   <div className={styles["llloginbtnbox"]} />
-                  <Grid item md={12} lg={12}>
+                  <Col lg={24} xl={24}>
                     <label className={styles.lable}>Role</label>
                     <Select
                       value={roleValue}
@@ -772,25 +775,25 @@ const SignUp = () => {
                     {auth.pendingError ? (
                       <ErrorBar errorText={auth.ResponseMessage} />
                     ) : null}
-                  </Grid>
-                  <Grid align="center" item md={12} lg={12}>
+                  </Col>
+                  <Col lg={24} xl={24} align="center">
                     <div className={styles["llloginbtnbox"]} />
                     <GroupedButtons data={buttonProps} />
-                  </Grid>
-                </Grid>
+                  </Col>
+                </Row>
               )}
               {/* second step component  */}
               {/* {!credentials.emailAddress.isError &&
               !credentials.password.isError ? ( */}
 
               {/* ) : null} */}
-            </Box>
-          </Grid>
-        </Grid>
-      </Box>
+            </div>
+          </Col>
+        </Row>
+      </div>
       <Notification setOpen={setOpen} open={open.open} message={open.message} />
       {auth.Loading ? <Loader /> : null}
-    </Container>
+    </MaxWidthContainer>
   );
 };
 

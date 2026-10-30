@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-import { Grid, Box } from "@material-ui/core";
 
 import { Typography, Tooltip } from "antd";
 
@@ -45,6 +44,7 @@ import {
 
 import styles from "../MRASC.module.css";
 import { enableGoBack, disableGoBack } from "../../../store/actions/ui-actions";
+import { Row, Col } from "antd";
 
 const CasesPendingForApprovalNBAMRASC = () => {
   const navigate = useNavigate();
@@ -872,18 +872,18 @@ const CasesPendingForApprovalNBAMRASC = () => {
     <>
       <Title level={4}>Cases Pending for Approval</Title>
       <>
-        <Grid container spacing={2}>
-          <Grid item lg={3} md={3} sm={12} xs={12}>
+        <Row gutter={[16, 16]}>
+          <Col xl={6} lg={6} sm={24} xs={24}>
             <FilterBar
               Options={options}
               change={handleFilter}
               placeholder={"Filter by Duration"}
               defaultValue={options[0].title}
             />
-          </Grid>
-          {/* <Grid item lg={5} md={5}></Grid> */}
+          </Col>
+          {/* <Col xl={10} lg={10}></Col> */}
           <div className={styles["MRASCSearchInputField"]} />
-          <Grid item lg={5} md={5} className="SearchPendingApprovals">
+          <Col xl={10} lg={10} className="SearchPendingApprovals">
             <InputWithBtn
               label="Search"
               fullWidth
@@ -896,8 +896,8 @@ const CasesPendingForApprovalNBAMRASC = () => {
               onchange={searchHandler}
               value={searchData}
             />
-          </Grid>
-          <Grid item lg={1} md={1} sm={12}>
+          </Col>
+          <Col xl={2} lg={2} sm={24}>
             <Button
               text="Reset"
               icon={<i className="icon-reset"></i>}
@@ -905,8 +905,8 @@ const CasesPendingForApprovalNBAMRASC = () => {
               size="small"
               click={resetData}
             />
-          </Grid>
-          <Grid item lg={12} md={12}>
+          </Col>
+          <Col xl={24} lg={24}>
             <Table
               rows={allPendingForApprovalData}
               columns={columns}
@@ -917,23 +917,19 @@ const CasesPendingForApprovalNBAMRASC = () => {
                 pageSizeOptions: ["5", "10", "20", "30"],
               }}
             />
-          </Grid>
-        </Grid>
+          </Col>
+        </Row>
       </>
       {/* <Modal closeModal={handleCancel} modalState={isModalVisible} width={700}> */}
       {/* this data will be pass to modal when delete icon btn in the table  will be clicked */}
       {/* {actions.delete && (
           <>
-            <Box
-              display="flex"
-              justifyContent="center"
-              style={{ padding: "40px" }}
-            >
+            <div style={{ display: "flex", justifyContent: "center", ...({ padding: "40px" }) }}>
               <i className="icon-trash icon-size-two"></i>
               <Title level={3} align="center">
                 Are you sure you want to delete this case?
               </Title>
-            </Box>
+            </div>
             <GroupedButtons data={buttonProps} />
           </>
         )}
@@ -952,12 +948,8 @@ const CasesPendingForApprovalNBAMRASC = () => {
       >
         {modal.approval && (
           <>
-            <Box
-              display="flex"
-              justifyContent="center"
-              className={styles["modalApproval"]}
-            >
-              <Grid item lg={12} md={12} sm={12} xs={12}>
+            <div className={styles["modalApproval"]} style={{ display: "flex", justifyContent: "center" }}>
+              <Col xl={24} lg={24} sm={24} xs={24}>
                 <SelectBox
                   option={approvalReason}
                   propertyName={"title"}
@@ -967,14 +959,10 @@ const CasesPendingForApprovalNBAMRASC = () => {
                   value={approvalReasonValue}
                   name="SelectApprovalReason"
                 />
-              </Grid>
-            </Box>
-            <Box
-              display="flex"
-              justifyContent="center"
-              className={styles["modalApprovaldescription"]}
-            >
-              <Grid item lg={12} md={12} sm={12} xs={12}>
+              </Col>
+            </div>
+            <div className={styles["modalApprovaldescription"]} style={{ display: "flex", justifyContent: "center" }}>
+              <Col xl={24} lg={24} sm={24} xs={24}>
                 <TextField
                   multiline
                   rows={6}
@@ -986,19 +974,15 @@ const CasesPendingForApprovalNBAMRASC = () => {
                   required
                   textLength={500}
                 />
-              </Grid>
-            </Box>
+              </Col>
+            </div>
             <GroupedButtons data={buttonPropsApprove} />
           </>
         )}
         {modal.rejection && (
           <>
-            <Box
-              display="flex"
-              justifyContent="center"
-              className={styles["modalApproval"]}
-            >
-              <Grid item lg={12} md={12} sm={12} xs={12}>
+            <div className={styles["modalApproval"]} style={{ display: "flex", justifyContent: "center" }}>
+              <Col xl={24} lg={24} sm={24} xs={24}>
                 <SelectBox
                   option={rejectionReason}
                   propertyName={"title"}
@@ -1008,14 +992,10 @@ const CasesPendingForApprovalNBAMRASC = () => {
                   value={rejectionReasonValue}
                   name="SelectRejectionReason"
                 />
-              </Grid>
-            </Box>
-            <Box
-              display="flex"
-              justifyContent="center"
-              className={styles["modalApprovaldescription"]}
-            >
-              <Grid item lg={12} md={12} sm={12} xs={12}>
+              </Col>
+            </div>
+            <div className={styles["modalApprovaldescription"]} style={{ display: "flex", justifyContent: "center" }}>
+              <Col xl={24} lg={24} sm={24} xs={24}>
                 <TextField
                   multiline
                   rows={6}
@@ -1027,8 +1007,8 @@ const CasesPendingForApprovalNBAMRASC = () => {
                   required
                   textLength={500}
                 />
-              </Grid>
-            </Box>
+              </Col>
+            </div>
             <GroupedButtons data={buttonPropsReject} />
           </>
         )}

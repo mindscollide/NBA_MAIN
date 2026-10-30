@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Box } from "@material-ui/core";
 import { useNavigate } from "react-router";
-import AddIcon from "@material-ui/icons/Add";
 import { Typography, Radio } from "antd";
 import moment from "moment";
 
@@ -45,6 +43,7 @@ import {
 import NBABusinessDetailsVIEW from "./nbaBusiness-view";
 import NBACustomerDetailsVIEW from "./nbacustomer-view";
 import NBAREMVIEW from "./nbarsm-view";
+import { Row, Col } from "antd";
 
 const EditNBAAssetsDERAM = () => {
   const navigate = useNavigate();
@@ -1639,8 +1638,8 @@ const EditNBAAssetsDERAM = () => {
         <Title className={styles["RascEditHeading"]} level={3}>
           Non-Banking Assets & Other Assets
         </Title>
-        <Grid container spacing={2}>
-          <Grid item lg={12} md={12} sm={12} xs={12}>
+        <Row gutter={[16, 16]}>
+          <Col xl={24} lg={24} sm={24} xs={24}>
             {NBACaseCustomerList &&
             Object.keys(NBACaseCustomerList).length > 0 ? (
               <NBACustomerDetailsVIEW
@@ -1648,9 +1647,9 @@ const EditNBAAssetsDERAM = () => {
                 NBACaseCustomerList={NBACaseCustomerList}
               />
             ) : null}
-          </Grid>
+          </Col>
           <div className={styles["NBABusinessSection"]} />
-          <Grid item lg={12} md={12} sm={12} xs={12}>
+          <Col xl={24} lg={24} sm={24} xs={24}>
             {NBACaseCustomerList &&
             Object.keys(NBACaseCustomerList).length > 0 ? (
               <NBABusinessDetailsVIEW
@@ -1659,9 +1658,9 @@ const EditNBAAssetsDERAM = () => {
                 setupForms={setupForms}
               />
             ) : null}
-          </Grid>
+          </Col>
           <div className={styles["NBARemSection"]} />
-          <Grid item lg={12} md={12} sm={12} xs={12}>
+          <Col xl={24} lg={24} sm={24} xs={24}>
             {NBACaseCustomerList &&
             Object.keys(NBACaseCustomerList).length > 0 ? (
               <NBAREMVIEW
@@ -1676,26 +1675,19 @@ const EditNBAAssetsDERAM = () => {
                 scopevaluationDetailsREM={scopevaluationDetailsREM}
               />
             ) : null}
-          </Grid>
-        </Grid>
+          </Col>
+        </Row>
         <div className={styles["RASCheading"]} />
         <Paper className={styles["DERASCpaper"]}>
-          <Grid
-            item
-            lg={4}
-            md={4}
-            sm={3}
-            xs={12}
-            className={styles["DERASCpaperbottom"]}
-          >
+          <Col xl={8} lg={8} sm={6} xs={24} className={styles["DERASCpaperbottom"]}>
             <h1
               className={styles["RASCh1"]}
             >
               RA&SC
             </h1>
-          </Grid>
-          <Grid container spacing={2} className={styles["provisionalAmountorDatepadding"]}>
-            <Grid item lg={6} md={6} sm={12} xs={12}>
+          </Col>
+          <Row gutter={[16, 16]} className={styles["provisionalAmountorDatepadding"]}>
+            <Col xl={12} lg={12} sm={24} xs={24}>
               <FormattedInputs
                 name="ProvisionalReversalAmount"
                 size="small"
@@ -1719,14 +1711,8 @@ const EditNBAAssetsDERAM = () => {
               saveRASNewDataList.ProvisionalReversalAmount === -1 ? (
                 <ErrorBar errorText={"The Field is Empty"} />
               ) : null}
-            </Grid>
-            <Grid
-              item
-              lg={6}
-              md={6}
-              sm={12}
-              xs={12}
-            >
+            </Col>
+            <Col xl={12} lg={12} sm={24} xs={24}>
               <label>
                 <b className={styles["ProvisionalDate"]}>
                   Provisional Reversal Date
@@ -1763,13 +1749,13 @@ const EditNBAAssetsDERAM = () => {
               saveRASNewDataList.ProvisionalReversalDate === "18000101" ? (
                 <ErrorBar errorText={"The Field is Empty"} />
               ) : null}
-            </Grid>
-          </Grid>
+            </Col>
+          </Row>
         </Paper>
 
         {console.log("RemarksRASC", saveRASNewDataList.RemarksRASC)}
         <div className={styles["Remarks"]} />
-        <Grid item lg={12} md={12} sm={12} xs={12}>
+        <Col xl={24} lg={24} sm={24} xs={24}>
           <label>
             <b className={styles["Remarkslabel"]}>
               Remarks <span className={styles["ProvisionalDate-span"]} >*</span>
@@ -1791,11 +1777,11 @@ const EditNBAAssetsDERAM = () => {
           saveRASNewDataList.RemarksRASC === "" ? (
             <ErrorBar errorText={"The Field is Empty"} />
           ) : null}
-        </Grid>
+        </Col>
 
         <div className={styles["submitbtns"]}/>
-        <Grid container spacing={2}>
-          <Grid item lg={5} md={5} sm={12} xs={12} align="Right">
+        <Row gutter={[16, 16]}>
+          <Col xl={10} lg={10} sm={24} xs={24} align="Right">
             <Button
               type="Submit"
               applyClass="btnBorderStyledBeach"
@@ -1808,9 +1794,9 @@ const EditNBAAssetsDERAM = () => {
                 })
               }
             />
-          </Grid>
+          </Col>
 
-          <Grid item lg={7} md={7} sm={12} xs={12} align="Left">
+          <Col xl={14} lg={14} sm={24} xs={24} align="Left">
             <Button
               type="Submit"
               applyClass="btnBorderStyledBeach"
@@ -1823,20 +1809,13 @@ const EditNBAAssetsDERAM = () => {
                 })
               }
             />
-          </Grid>
-        </Grid>
+          </Col>
+        </Row>
       </form>
       {/* <div style={{ marginTop: "2%" }} /> */}
-      {/* <Grid container item lg={12} md={12} sm={12}>
-        <Grid item lg={4} md={4} sm={false} xs={false}></Grid>
-        <Grid
-          item
-          lg={4}
-          md={4}
-          sm={12}
-          xs={12}
-          style={{ marginLeft: "-28px" }}
-        >
+      {/* <Col xl={24} lg={24} sm={24}><Row>
+        <Col xl={8} lg={8}></Col>
+        <Col xl={8} lg={8} sm={24} xs={24} style={{ ...({ marginLeft: "-28px" }) }}>
           <Button
             type="Submit"
             fullWidth={true}
@@ -1846,8 +1825,8 @@ const EditNBAAssetsDERAM = () => {
             click={reverted}
             style={{ width: "433px" }}
           />
-        </Grid>
-      </Grid> */}
+        </Col>
+      </Row></Col> */}
       <Modal
         closeModal={handleCancel}
         modalState={isModalVisible2}
@@ -1855,16 +1834,8 @@ const EditNBAAssetsDERAM = () => {
         modalTitle={<Title level={3}>{"Revert"}</Title>}
       >
         <>
-          <Box
-            // display="flex"
-            // justifyContent="center"
-            // style={{
-            //   paddingBottom: "40px",
-            //   paddingLeft: "20px",
-            //   paddingRight: "20px",
-            // }}
-          >
-            <Grid item lg={12} md={12} sm={12} xs={12}>
+          <div>
+            <Col xl={24} lg={24} sm={24} xs={24}>
               <SelectBox
                 option={rejectionReason}
                 propertyName={"title"}
@@ -1874,18 +1845,10 @@ const EditNBAAssetsDERAM = () => {
                 value={rejectionReasonValue}
                 name="SelectRejectionReason"
               />
-            </Grid>
-          </Box>
-          <Box
-            // display="flex"
-            // justifyContent="center"
-            // style={{
-            //   paddingBottom: "80px",
-            //   paddingLeft: "20px",
-            //   paddingRight: "20px",
-            // }}
-          >
-            <Grid item lg={12} md={12} sm={12} xs={12}>
+            </Col>
+          </div>
+          <div>
+            <Col xl={24} lg={24} sm={24} xs={24}>
               <TextField
                 multiline
                 rows={6}
@@ -1897,8 +1860,8 @@ const EditNBAAssetsDERAM = () => {
                 required
                 textLength={300}
               />
-            </Grid>
-          </Box>
+            </Col>
+          </div>
           <GroupedButtons data={buttonPropsReject} />
         </>
       </Modal>

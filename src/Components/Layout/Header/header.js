@@ -1,13 +1,6 @@
 import React, { useEffect } from "react";
-import { Layout, Typography, Tooltip } from "antd";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Avatar from "@material-ui/core/Avatar";
-import Badge from "@material-ui/core/Badge";
-import IconButton from "@material-ui/core/IconButton";
-import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
+import { Layout, Typography, Tooltip, Badge, Dropdown } from "antd";
+import { BellOutlined } from "@ant-design/icons";
 // import Logout from '@material-ui/core/Logout';
 import UserImage from "../../../assets/images/user.png";
 import Logo from "../../../assets/images/logo.png";
@@ -36,15 +29,6 @@ const Header = ({ Notification, title, UserDetails }) => {
   const { Header } = Layout;
   const Details = JSON.parse(localStorage.getItem("UserDetails"));
   const role = parseInt(JSON.parse(localStorage.getItem("role")));
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
   Helper.navigate = navigate;
   useEffect(() => {
     Helper.navigate = navigate;
@@ -138,44 +122,43 @@ const Header = ({ Notification, title, UserDetails }) => {
         {Notification !== null && Notification === true ? (
           <Tooltip placement="bottom" title="Notification">
             <div className="notify">
-              <IconButton onClick={handleClick}>
-                <Badge
-                  badgeContent={
-                    Details.roleID === 2
-                      ? requestReducer.userRequestCount
-                      : wofApprovals.ApprovalsCount
-                  }
-                  color="secondary"
-                  overlap="circular"
-                >
-                  <NotificationsNoneIcon
-                    fontSize="large"
-                    className="noti-icon"
-                  />
-                </Badge>
-              </IconButton>
-              <Menu
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                onClick={handleClose}
-                // style={{ top: "45px", left: "35px" }}
+              <Dropdown
+                trigger={["click"]}
+                menu={{
+                  items: [
+                    {
+                      key: "newUserRequests",
+                      label: (
+                        <span
+                          onClick={() => {
+                            dispatch(newRequestList(Details.userID));
+                            // localStorage.setItem("parent", "sub1");
+                            // localStorage.setItem("child", "15");
+                            dispatch(makeTabAvtive());
+                            navigate("/NBA/Admin/NewRequestList");
+                          }}
+                        >
+                          <i className="icon-chevron-right color-black icon-s mr-2"></i>
+                          {requestReducer.userRequestCount} New User Requests
+                        </span>
+                      ),
+                    },
+                  ],
+                }}
               >
-                <MenuItem>
-                  <ListItemIcon
-                    onClick={() => {
-                      dispatch(newRequestList(Details.userID));
-                      // localStorage.setItem("parent", "sub1");
-                      // localStorage.setItem("child", "15");
-                      dispatch(makeTabAvtive());
-                      navigate("/NBA/Admin/NewRequestList");
-                    }}
+                <button type="button" className="notify-button">
+                  <Badge
+                    count={
+                      Details.roleID === 2
+                        ? requestReducer.userRequestCount
+                        : wofApprovals.ApprovalsCount
+                    }
+                    color="#f50057"
                   >
-                    <i className="icon-chevron-right color-black icon-s mr-2"></i>
-                    {requestReducer.userRequestCount} New User Requests
-                  </ListItemIcon>
-                </MenuItem>
-              </Menu>
+                    <BellOutlined className="noti-icon" />
+                  </Badge>
+                </button>
+              </Dropdown>
             </div>
           </Tooltip>
         ) : null}

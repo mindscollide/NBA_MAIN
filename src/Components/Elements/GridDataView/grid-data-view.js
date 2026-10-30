@@ -1,7 +1,8 @@
 import React from "react";
-import { Container, Grid } from "@material-ui/core";
 import styles from "../GridDataView/grid.module.css"
 import { Typography } from "antd";
+import { Row, Col } from "antd";
+import MaxWidthContainer from "../MaxWidthContainer/max-width-container";
 
 const GridDataView = () => {
   const { Title, Text } = Typography;
@@ -16,11 +17,11 @@ const GridDataView = () => {
   ];
 
   return (
-    <Container maxWidth="lg">
-      <Grid container>
+    <MaxWidthContainer>
+      <Row>
         {data.map((item, index) => {
           return (
-            <Grid item lg={6} md={6} sm={6}>
+            <Col xl={12} lg={12} sm={12}>
               <Title
                 level={5}
                 className={styles["gridstyle"]}
@@ -28,11 +29,11 @@ const GridDataView = () => {
                 {item.heading}
               </Title>
               <Text>{item.text}</Text>
-            </Grid>
+            </Col>
           );
         })}
-      </Grid>
-    </Container>
+      </Row>
+    </MaxWidthContainer>
   );
 };
 

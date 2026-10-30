@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styles from "./style.module.css";
-import { Box } from "@material-ui/core";
 import { Space, Tooltip } from "antd";
-import Grid from "@material-ui/core/Grid";
 import { Notification } from "../Notifications";
 import {
   NumberFormatCustom,
   FormattedInputs,
 } from "../FormatedInput/FormatedInput";
 import { Table } from "..";
+import { Row, Col } from "antd";
 const FancyBoxSection = ({
   DatePicker,
   AccountDetailsHandler,
@@ -65,17 +64,13 @@ console.log("SectionDetails fancy",SectionDetails)
     }
   }, [state ? state : ""]);
   return (
-    <Grid
-      container
-      spacing={2}
-      className={styles["fancyStyle"]}
-    >
+    <Row gutter={[16, 16]} className={styles["fancyStyle"]}>
       <Notification
         setOpen={setstate}
         open={State.open}
         message={State.message}
       />
-      <Grid item lg={12} md={12} sm={12}>
+      <Col xl={24} lg={24} sm={24}>
         <div className={styles.sectionConsolidated}>
           <div className={styles.box}>
             <div className={styles.boxHeading + " " + isDisable}>
@@ -83,8 +78,8 @@ console.log("SectionDetails fancy",SectionDetails)
             </div>
             <div className={styles.contentbox}>
               {hide?null:
-              <Grid container spacing={2}>
-              <Grid item lg={6} md={6} sm={12} xs={12}>
+              <Row gutter={[16, 16]}>
+              <Col xl={12} lg={12} sm={24} xs={24}>
                 <div className={styles["fancyTop"]} />
                 <DatePicker
                   change={AccountDetailsHandler}
@@ -99,8 +94,8 @@ console.log("SectionDetails fancy",SectionDetails)
                   }
                   placeholder={"Sanction/Last Renewal Date"}
                 />
-              </Grid>
-              <Grid item lg={6} md={6} sm={12} xs={12}>
+              </Col>
+              <Col xl={12} lg={12} sm={24} xs={24}>
                 <FormattedInputs
                   change={calculatorBoxhandler}
                   name="lrAmount"
@@ -110,22 +105,22 @@ console.log("SectionDetails fancy",SectionDetails)
                   numLength={15}
                   value={SectionDetails.lrAmount===0?null:SectionDetails.lrAmount}
                 />
-              </Grid>
-            </Grid>}
+              </Col>
+            </Row>}
               
               <div  className={styles["fancyTopp"]} />
-              <Grid item lg={12} md={12} sm={12} xs={12}>
+              <Col xl={24} lg={24} sm={24} xs={24}>
                 <Table
                   rows={AccountSancationInfo}
                   columns={columns}
                   scroll={{ x: "max-content" }}
                 />
-              </Grid>
+              </Col>
             </div>
           </div>
         </div>
-      </Grid>
-    </Grid>
+      </Col>
+    </Row>
   );
 };
 

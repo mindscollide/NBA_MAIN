@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Box } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
@@ -36,8 +35,8 @@ import {
 import {  
   GetAdvanceClassification,
   } from "../../../store/actions/setup-forms-actions";
-  import Restore from "@material-ui/icons/Restore";
-  import Search from "@material-ui/icons/Search";
+import { Row, Col } from "antd";
+import { HistoryOutlined as Restore, SearchOutlined as Search } from "@ant-design/icons";
 const PendingApprovals = () => {
   const navigate = useNavigate();
   const [SearchTerm, setSearchTerm] = useState("");
@@ -514,17 +513,17 @@ const PendingApprovals = () => {
       {/* >>>>>>>>>>>>>>>>>>>Row 01<<<<<<<<<<<<<<<<<<<<< */}
       <Notification setOpen={setOpen} open={open.open} message={open.message} />
       <Title level={2}>Pending Approvals</Title>
-      <Grid container spacing={2}>
+      <Row gutter={[16, 16]}>
         {/* 1.1 */}
-        <Grid item lg={3} md={3} sm={12} xs={12}>
+        <Col xl={6} lg={6} sm={24} xs={24}>
           <FilterBar
             Options={options}
             change={handleFilter}
             placeholder={"Filter by Duration"}
             defaultValue={options[0].title}
           />
-        </Grid>
-        <Grid item lg={5} md={5} sm={12} xs={12}>
+        </Col>
+        <Col xl={10} lg={10} sm={24} xs={24}>
         <TextField 
           fullWidth 
           label="Search"
@@ -532,8 +531,8 @@ const PendingApprovals = () => {
           value={SearchTerm}
           change={(e)=>setSearchTerm(e.target.value)}
            />
-        </Grid>
-        <Grid item lg={2} md={2} sm={12}>
+        </Col>
+        <Col xl={4} lg={4} sm={24}>
          <Button
           text="Search"
           icon={<Search />}
@@ -541,8 +540,8 @@ const PendingApprovals = () => {
           size="small"
           click={()=>globalSearch(1)}
         />
-        </Grid>
-         <Grid item lg={2} md={2} sm={12}>
+        </Col>
+         <Col xl={4} lg={4} sm={24}>
         <Button
           text="Reset"
           icon={<Restore />}
@@ -550,18 +549,18 @@ const PendingApprovals = () => {
           size="small"
           click={()=>globalSearch(2)}
         />
-        </Grid>
+        </Col>
         <div className={styles["pendingTop"]} />
         {/* Row 04 */}
-        <Grid item className={styles["pendingToppp"]} lg={12} md={12} sm={12}>
+        <Col xl={24} lg={24} sm={24} className={styles["pendingToppp"]}>
           <Table
             id={"table-to-xls"}
             rows={rows}
             columns={columns}
             scroll={{ x: "max-content" }}
           />
-        </Grid>
-      </Grid>
+        </Col>
+      </Row>
 
       <Modal
         closeModal={handleCancel}
@@ -569,12 +568,8 @@ const PendingApprovals = () => {
         width={700}
         modalTitle={<Title level={3}>Accept/Reject</Title>}
       >
-        <Box
-          display="flex"
-          justifyContent="center"
-          className={styles["pendingbOX"]}
-        >
-          <Grid item lg={12} md={12} sm={12} xs={12}>
+        <div className={styles["pendingbOX"]} style={{ display: "flex", justifyContent: "center" }}>
+          <Col xl={24} lg={24} sm={24} xs={24}>
             <SelectBox
               option={reason}
               propertyName={"title"}
@@ -584,14 +579,10 @@ const PendingApprovals = () => {
               value={selectedReason.Reason}
               name="Select Reason"
             />
-          </Grid>
-        </Box>
-        <Box
-          display="flex"
-          justifyContent="center"
-          className={styles["pendingbOXXX"]}
-        >
-          <Grid item lg={12} md={12} sm={12} xs={12}>
+          </Col>
+        </div>
+        <div className={styles["pendingbOXXX"]} style={{ display: "flex", justifyContent: "center" }}>
+          <Col xl={24} lg={24} sm={24} xs={24}>
             <TextField
               multiline
               rows={6}
@@ -601,8 +592,8 @@ const PendingApprovals = () => {
               fullWidth
               required
             />
-          </Grid>
-        </Box>
+          </Col>
+        </div>
         <GroupedButtons data={buttonProps} />
       </Modal>
 

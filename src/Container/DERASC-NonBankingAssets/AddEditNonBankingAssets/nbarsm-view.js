@@ -1,14 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import {
-  Grid,
-  Box,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-} from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-import AddIcon from "@material-ui/icons/Add";
 import { Typography, Radio, Tooltip } from "antd";
 import moment from "moment";
 import {
@@ -38,6 +29,9 @@ import {
   removeDashesFromDate,
 } from "../../../Common/Functions/date-formatter";
 import MultipleCustomerDetails from "../../DEBT-NonBankingAssets/AddEditNonBankingAssets/multiple-customer-details";
+import { Row, Col } from "antd";
+import { Accordion, AccordionSummary, AccordionDetails } from "../../../Components/Elements/Accordion/accordion";
+import { DownOutlined as ExpandMoreIcon, PlusOutlined as AddIcon } from "@ant-design/icons";
 
 const NBAREMVIEW = ({
   list,
@@ -165,8 +159,8 @@ console.log("NBAREMVIEW",expanded,expanded === "panel1")
         <AccordionDetails>
           <Typography className={styles["typography-width"]}>
             <Paper  className={styles["nbaCustomerview-paper"]}>
-              <Grid container spacing={2} className={styles["nbaCustomerview-padding"]}>
-                <Grid item lg={4} md={4} sm={12} xs={12}>
+              <Row gutter={[16, 16]} className={styles["nbaCustomerview-padding"]}>
+                <Col xl={8} lg={8} sm={24} xs={24}>
                   <div>
                     <div className={styles["nbaRSMpropertyAcquired"]}></div>
                     <SelectBox
@@ -180,15 +174,8 @@ console.log("NBAREMVIEW",expanded,expanded === "panel1")
                       size="small"
                     />
                   </div>
-                </Grid>
-                <Grid
-                  item
-                  lg={4}
-                  md={4}
-                  sm={12}
-                  xs={12}
-                  // style={{ marginTop: "auto" }}
-                >
+                </Col>
+                <Col xl={8} lg={8} sm={24} xs={24}>
                   <label>
                     <b className={styles["nbaRSMTitleTransfer"]}>
                       Title Transfer Date
@@ -211,8 +198,8 @@ console.log("NBAREMVIEW",expanded,expanded === "panel1")
                     width="100%"
                     disable={true}
                   />
-                </Grid>
-                <Grid item lg={4} md={4} sm={12} xs={12}>
+                </Col>
+                <Col xl={8} lg={8} sm={24} xs={24}>
                   <div className={styles["nbaRSMpropertyAcquired"]}></div>
                   <TextField
                     size="small"
@@ -225,8 +212,8 @@ console.log("NBAREMVIEW",expanded,expanded === "panel1")
                     // change={realEstateManagementHandler}
                     disable={true}
                   />
-                </Grid>
-                <Grid item lg={4} md={4} sm={12} xs={12}>
+                </Col>
+                <Col xl={8} lg={8} sm={24} xs={24}>
                   <FormattedInputs
                     name="RevaluatedAmount"
                     size="small"
@@ -245,8 +232,8 @@ console.log("NBAREMVIEW",expanded,expanded === "panel1")
                     fullWidth
                     disable={true}
                   />
-                </Grid>
-                <Grid item lg={4} md={4} sm={12} xs={12}>
+                </Col>
+                <Col xl={8} lg={8} sm={24} xs={24}>
                   <div  className={styles["nbaRSMpropertyAcquired"]}></div>
                   <TextField
                     name="StrategyForDisposal"
@@ -258,8 +245,8 @@ console.log("NBAREMVIEW",expanded,expanded === "panel1")
                     value={NBACasePropertyModelList.StrategyForDisposal}
                     disable={true}
                   />
-                </Grid>
-                <Grid item lg={4} md={4} sm={12}  className={styles["nbaRSMpropertyAcquired"]}>
+                </Col>
+                <Col xl={8} lg={8} sm={24} className={styles["nbaRSMpropertyAcquired"]}>
                   <label>
                     <b>Disposed Off / Own Use</b>
                   </label>
@@ -276,14 +263,8 @@ console.log("NBAREMVIEW",expanded,expanded === "panel1")
                       Own Use
                     </Radio>
                   </Radio.Group>
-                </Grid>
-                <Grid
-                  item
-                  lg={4}
-                  md={4}
-                  sm={12}
-                  xs={12}
-                >
+                </Col>
+                <Col xl={8} lg={8} sm={24} xs={24}>
                   <label>
                     <b className={styles["Remarkslabel"]}>
                       {disabledDOUS ? "Transfer Out Date" : "Disposal Date"}
@@ -311,8 +292,8 @@ console.log("NBAREMVIEW",expanded,expanded === "panel1")
                     className={styles["input-field-w100"]}
                     // disable={disabledDOUS}
                   />
-                </Grid>
-                <Grid item lg={5} md={5} sm={12} xs={12}>
+                </Col>
+                <Col xl={10} lg={10} sm={24} xs={24}>
                   <FormattedInputs
                     name="IncomeEarnedFromAsset"
                     size="small"
@@ -331,28 +312,22 @@ console.log("NBAREMVIEW",expanded,expanded === "panel1")
                     fullWidth
                     disable={true}
                   />
-                </Grid>
-                <Grid item lg={12} md={12} sm={12} xs={12}>
+                </Col>
+                <Col xl={24} lg={24} sm={24} xs={24}>
                   <div
                     className={styles["nbaRSMFullScope"]}
                   >
-                    <Grid container spacing={2} className={styles["nbaCustomerview-padding"]}>
-                      <Grid item lg={6} md={6} sm={12} xs={12}>
+                    <Row gutter={[16, 16]} className={styles["nbaCustomerview-padding"]}>
+                      <Col xl={12} lg={12} sm={24} xs={24}>
                         <h1
                           className={styles["nbaRSMFullScope-h1"]}
                         >
                           <b>Full Scope Valuation Detail</b>
                         </h1>
-                      </Grid>
-                    </Grid>
-                    <Grid container spacing={2} className={styles["nbaCustomerview-padding"]}>
-                      <Grid
-                        item
-                        
-                        lg={12}
-                        md={12}
-                        sm={12}
-                      >
+                      </Col>
+                    </Row>
+                    <Row gutter={[16, 16]} className={styles["nbaCustomerview-padding"]}>
+                      <Col xl={24} lg={24} sm={24}>
                         <div className={styles["nbaviewBusinesDetails-remarks"]} />
 
                         <Table
@@ -363,9 +338,9 @@ console.log("NBAREMVIEW",expanded,expanded === "panel1")
                           scroll={{ x: "max-content" }}
                           pagination={true}
                         />
-                      </Grid>
+                      </Col>
 
-                      {/* <Grid item lg={4} md={4} sm={12} xs={12}>
+                      {/* <Col xl={8} lg={8} sm={24} xs={24}>
                     <TextField
                       type={"Number"}
                       name="NumberOfValuationBusiness"
@@ -384,9 +359,9 @@ console.log("NBAREMVIEW",expanded,expanded === "panel1")
                       }
                       disable
                     />
-                  </Grid>
+                  </Col>
 
-                  <Grid item lg={4} md={4} sm={12} xs={12}>
+                  <Col xl={8} lg={8} sm={24} xs={24}>
                     <FormattedInputs
                       name="AverageForcedSaleValueBusiness"
                       size="small"
@@ -405,9 +380,9 @@ console.log("NBAREMVIEW",expanded,expanded === "panel1")
                       fullWidth
                       disable
                     />
-                  </Grid>
+                  </Col>
 
-                  <Grid item lg={4} md={4} sm={12} xs={12}>
+                  <Col xl={8} lg={8} sm={24} xs={24}>
                     <FormattedInputs
                       name="AverageMarketValueBusiness"
                       size="small"
@@ -425,22 +400,22 @@ console.log("NBAREMVIEW",expanded,expanded === "panel1")
                       fullWidth
                       disable
                     />
-                  </Grid> */}
-                    </Grid>
+                  </Col> */}
+                    </Row>
                   </div>
                   {/* Desktop Valuation Detail */}
                   <div
                    className={styles["nbaviewBusinesDetails"]}
                   >
-                    <Grid container spacing={2} className={styles["nbaCustomerview-padding"]}>
-                      <Grid item lg={6} md={6} sm={12} xs={12}>
+                    <Row gutter={[16, 16]} className={styles["nbaCustomerview-padding"]}>
+                      <Col xl={12} lg={12} sm={24} xs={24}>
                         <h1
                           className={styles["nbaRSMFullScope-h1"]}
                         >
                           <b>Desktop Valuation Detail</b>
                         </h1>
-                      </Grid>
-                      {/* <Grid item lg={6} md={6} sm={12} xs={12} align="Right">
+                      </Col>
+                      {/* <Col xl={12} lg={12} sm={24} xs={24} align="Right">
                     <Button
                       text={"Add Another Valuation"}
                       icon={<AddIcon />}
@@ -448,17 +423,11 @@ console.log("NBAREMVIEW",expanded,expanded === "panel1")
                       click={AddAnotherValuationDesktopValuationDetail}
                       size="large"
                     />
-                  </Grid> */}
-                    </Grid>
+                  </Col> */}
+                    </Row>
 
-                    <Grid container spacing={2} className={styles["nbaCustomerview-padding"]}>
-                      <Grid
-                        item
-                        
-                        lg={12}
-                        md={12}
-                        sm={12}
-                      >
+                    <Row gutter={[16, 16]} className={styles["nbaCustomerview-padding"]}>
+                      <Col xl={24} lg={24} sm={24}>
                         <div className={styles["nbaviewBusinesDetails-remarks"]}/>
                         <Table
                           columns={desktopvaluationDetailsREM}
@@ -468,9 +437,9 @@ console.log("NBAREMVIEW",expanded,expanded === "panel1")
                           scroll={{ x: "max-content" }}
                           pagination={true}
                         />
-                      </Grid>
+                      </Col>
 
-                      {/* <Grid item lg={4} md={4} sm={12} xs={12}>
+                      {/* <Col xl={8} lg={8} sm={24} xs={24}>
                     <TextField
                       type={"Number"}
                       name="NumberOfValuationBusiness"
@@ -490,9 +459,9 @@ console.log("NBAREMVIEW",expanded,expanded === "panel1")
                       label={"Number Of Valuation"}
                       disable
                     />
-                  </Grid>
+                  </Col>
 
-                  <Grid item lg={4} md={4} sm={12} xs={12}>
+                  <Col xl={8} lg={8} sm={24} xs={24}>
                     <FormattedInputs
                       name="AverageForcedSaleValueBusiness"
                       size="small"
@@ -511,9 +480,9 @@ console.log("NBAREMVIEW",expanded,expanded === "panel1")
                       fullWidth
                       disable
                     />
-                  </Grid>
+                  </Col>
 
-                  <Grid item lg={4} md={4} sm={12} xs={12}>
+                  <Col xl={8} lg={8} sm={24} xs={24}>
                     <FormattedInputs
                       name="AverageMarketValueBusiness"
                       size="small"
@@ -532,15 +501,15 @@ console.log("NBAREMVIEW",expanded,expanded === "panel1")
                       fullWidth
                       disable
                     />
-                  </Grid> */}
-                    </Grid>
+                  </Col> */}
+                    </Row>
                   </div>
-                </Grid>
-              </Grid>
+                </Col>
+              </Row>
             </Paper>
             <div className={styles["RASCheading"]} />
 
-            <Grid item lg={12} md={12} sm={12} xs={12}>
+            <Col xl={24} lg={24} sm={24} xs={24}>
               <TextField
                 name="Remarks"
                 size="large"
@@ -552,7 +521,7 @@ console.log("NBAREMVIEW",expanded,expanded === "panel1")
                 value={saveNewDataList.RemarksREM}
                 disable={true}
               />
-            </Grid>
+            </Col>
           </Typography>
         </AccordionDetails>
       </Accordion>

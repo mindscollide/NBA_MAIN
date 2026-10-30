@@ -1,16 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import {
-  Grid,
-  Box,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-} from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
 import styles from "../DEBT.module.css";
 
-import AddIcon from "@material-ui/icons/Add";
 import { Typography, Radio, Tooltip } from "antd";
 import moment from "moment";
 import {
@@ -38,6 +28,9 @@ import {
   CommaFormter,
   removeDashesFromDate,
 } from "../../../Common/Functions/date-formatter";
+import { Row, Col } from "antd";
+import { Accordion, AccordionSummary, AccordionDetails } from "../../../Components/Elements/Accordion/accordion";
+import { DownOutlined as ExpandMoreIcon } from "@ant-design/icons";
 
 const MultipleBusinessDetails = ({
   list,
@@ -213,7 +206,7 @@ const MultipleBusinessDetails = ({
         <AccordionDetails>
           <Typography className={styles["typographywidth"]}>
             <Paper padding="2" className={styles["nbabusinessPaper"]}>
-              <Box align="right">
+              <div align="right">
                 <Tooltip title="Delete" color={"Red"}>
                   {/* {ind  && ( */}
                   {view === true ? null : (
@@ -237,19 +230,19 @@ const MultipleBusinessDetails = ({
 
                   {/* )} */}
                 </Tooltip>
-              </Box>
+              </div>
               <div
                 className={styles["nbaProperty"]}
               >
-                <Grid container spacing={2}>
-                  <Grid item lg={12} md={12} sm={12} xs={12}>
+                <Row gutter={[16, 16]}>
+                  <Col xl={24} lg={24} sm={24} xs={24}>
                     <h1
                        className={styles["nbapropetrysection"]}
                     >
                       <b>Property Details Section</b>
                     </h1>
-                  </Grid>
-                  <Grid item lg={5} md={5} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={10} lg={10} sm={24} xs={24}>
                     <SelectBox
                       name="Select Property Type"
                       label="Select Property Type"
@@ -258,8 +251,8 @@ const MultipleBusinessDetails = ({
                       value={propertyTypeName}
                       disable
                     />
-                  </Grid>
-                  <Grid item lg={7} md={7} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={14} lg={14} sm={24} xs={24}>
                     <TextField
                       name="DetailsOfPropertyAcquired"
                       size="small"
@@ -271,15 +264,15 @@ const MultipleBusinessDetails = ({
                       disable
                       label={"Details Of Property Acquired"}
                     />
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={12} lg={12} sm={24} xs={24}>
                     <h2
                      className={styles["nbaAdjustmentsection"]}
                     >
                       <b>Adjustment of DPS Amount</b>
                     </h2>
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={12} lg={12} sm={24} xs={24}>
                     <FormattedInputs
                       name="DPSTransactionAmount"
                       size="small"
@@ -291,8 +284,8 @@ const MultipleBusinessDetails = ({
                       value={list.DPSTransactionAmount}
                       disable
                     />
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={12} lg={12} sm={24} xs={24}>
                     <FormattedInputs
                       name="PrincipalAdjusted"
                       size="small"
@@ -304,15 +297,8 @@ const MultipleBusinessDetails = ({
                       disable
                       textLength={(999, 999, 999, 999, 999, 999, 999)}
                     />
-                  </Grid>
-                  <Grid
-                    item
-                    lg={6}
-                    md={6}
-                    sm={12}
-                    xs={12}
-                    // style={{ marginTop: "auto" }}
-                  >
+                  </Col>
+                  <Col xl={12} lg={12} sm={24} xs={24}>
                     <label>
                       <b className={styles["DEBTSearchNbaFonts"]}>Date Of Acquisition</b>
                     </label>
@@ -330,8 +316,8 @@ const MultipleBusinessDetails = ({
                       // value={list.DateOfAcquisition}
                       disable
                     />
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={12} lg={12} sm={24} xs={24}>
                     <FormattedInputs
                       name="MarkupAdjusted"
                       size="small"
@@ -343,8 +329,8 @@ const MultipleBusinessDetails = ({
                       value={list.MarkupAdjusted}
                       disable
                     />
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={12} lg={12} sm={24} xs={24}>
                     <FormattedInputs
                       name="AcquiredValue"
                       size="small"
@@ -356,8 +342,8 @@ const MultipleBusinessDetails = ({
                       value={list.AcquiredValue}
                       disable
                     />
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={12} lg={12} sm={24} xs={24}>
                     <FormattedInputs
                       name="Charges"
                       size="small"
@@ -368,8 +354,8 @@ const MultipleBusinessDetails = ({
                       value={list.Charges}
                       disable
                     />
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={12} lg={12} sm={24} xs={24}>
                     <FormattedInputs
                       name="AcquisitionCharges"
                       size="small"
@@ -381,8 +367,8 @@ const MultipleBusinessDetails = ({
                       value={list.AcquisitionCharges}
                       disable
                     />
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={12} lg={12} sm={24} xs={24}>
                     <TextField
                       name="TotalAdjustmentPMC"
                       size="small"
@@ -392,8 +378,8 @@ const MultipleBusinessDetails = ({
                       value={CommaFormter(list.TotalAdjustmentPMC)}
                       disable
                     />
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={12} lg={12} sm={24} xs={24}>
                     <TextField
                       name="TotalValueDAA"
                       size="small"
@@ -403,22 +389,16 @@ const MultipleBusinessDetails = ({
                       value={CommaFormter(list.TotalValueDAA)}
                       disable
                     />
-                  </Grid>
-                  <Grid item lg={12} md={12} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={24} lg={24} sm={24} xs={24}>
                     <h1
                       className={styles["nbaAdjustmentsection"]}
                     >
                       <b>Valuation Details</b>
                     </h1>
-                  </Grid>
+                  </Col>
 
-                  <Grid
-                    item
-                    className={styles["nbaupdatepading"]}
-                    lg={12}
-                    md={12}
-                    sm={12}
-                  >
+                  <Col xl={24} lg={24} sm={24} className={styles["nbaupdatepading"]}>
                     <div className={styles["nbaupdatemargin"]} />
                     <Table
                       rows={list.PropertyEvaluatorBusinessList}
@@ -426,9 +406,9 @@ const MultipleBusinessDetails = ({
                       scroll={{ x: "max-content" }}
                       pagination={true}
                     />
-                  </Grid>
+                  </Col>
 
-                  <Grid item lg={4} md={4} sm={12} xs={12}>
+                  <Col xl={8} lg={8} sm={24} xs={24}>
                     <TextField
                       name="NumberOfValuationsBusiness"
                       size="small"
@@ -444,8 +424,8 @@ const MultipleBusinessDetails = ({
                       label={"Number Of Valuation"}
                       disable
                     />
-                  </Grid>
-                  <Grid item lg={4} md={4} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={8} lg={8} sm={24} xs={24}>
                     <TextField
                       name="AverageMarketValueBusiness"
                       size="small"
@@ -461,9 +441,9 @@ const MultipleBusinessDetails = ({
                       }
                       disable
                     />
-                  </Grid>
+                  </Col>
 
-                  <Grid item lg={4} md={4} sm={12} xs={12}>
+                  <Col xl={8} lg={8} sm={24} xs={24}>
                     <TextField
                       name="AverageForcedSaleValueBusiness"
                       size="small"
@@ -479,10 +459,10 @@ const MultipleBusinessDetails = ({
                       }
                       disable
                     />
-                  </Grid>
+                  </Col>
 
                  
-                </Grid>
+                </Row>
               </div>
             </Paper>
           </Typography>
@@ -506,7 +486,7 @@ const MultipleBusinessDetails = ({
         <AccordionDetails>
           <Typography className={styles["typographywidth"]}>
             <Paper padding="2" className={styles["nbabusinessPaper"]}>
-              <Box align="right">
+              <div align="right">
                 <Tooltip title="Delete" color={"Red"}>
                   {/* {ind  && ( */}
                   {view === true ? null : (
@@ -530,19 +510,19 @@ const MultipleBusinessDetails = ({
 
                   {/* )} */}
                 </Tooltip>
-              </Box>
+              </div>
               <div
                 className={styles["nbaProperty"]}
               >
-                <Grid container spacing={2}>
-                  <Grid item lg={12} md={12} sm={12} xs={12}>
+                <Row gutter={[16, 16]}>
+                  <Col xl={24} lg={24} sm={24} xs={24}>
                     <h1
                        className={styles["nbapropetrysection"]}
                     >
                       <b>Property Details Section</b>
                     </h1>
-                  </Grid>
-                  <Grid item lg={5} md={5} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={10} lg={10} sm={24} xs={24}>
                     <SelectBox
                       name="Select Property Type"
                       label="Select Property Type"
@@ -551,8 +531,8 @@ const MultipleBusinessDetails = ({
                       value={propertyTypeName}
                       disable
                     />
-                  </Grid>
-                  <Grid item lg={7} md={7} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={14} lg={14} sm={24} xs={24}>
                     <TextField
                       name="DetailsOfPropertyAcquired"
                       size="small"
@@ -564,15 +544,15 @@ const MultipleBusinessDetails = ({
                       disable
                       label={"Details Of Property Acquired"}
                     />
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={12} lg={12} sm={24} xs={24}>
                     <h2
                       className={styles["nbaAdjustmentsection"]}
                     >
                       <b>Adjustment of DPS Amount</b>
                     </h2>
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={12} lg={12} sm={24} xs={24}>
                     <FormattedInputs
                       name="DPSTransactionAmount"
                       size="small"
@@ -584,8 +564,8 @@ const MultipleBusinessDetails = ({
                       value={list.DPSTransactionAmount}
                       disable
                     />
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={12} lg={12} sm={24} xs={24}>
                     <FormattedInputs
                       name="PrincipalAdjusted"
                       size="small"
@@ -597,15 +577,8 @@ const MultipleBusinessDetails = ({
                       disable
                       textLength={(999, 999, 999, 999, 999, 999, 999)}
                     />
-                  </Grid>
-                  <Grid
-                    item
-                    lg={6}
-                    md={6}
-                    sm={12}
-                    xs={12}
-                    // style={{ marginTop: "auto" }}
-                  >
+                  </Col>
+                  <Col xl={12} lg={12} sm={24} xs={24}>
                     <label>
                       <b className={styles["DEBTSearchNbaFonts"]}>Date Of Acquisition</b>
                     </label>
@@ -623,8 +596,8 @@ const MultipleBusinessDetails = ({
                       // value={list.DateOfAcquisition}
                       disable
                     />
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={12} lg={12} sm={24} xs={24}>
                     <FormattedInputs
                       name="MarkupAdjusted"
                       size="small"
@@ -636,8 +609,8 @@ const MultipleBusinessDetails = ({
                       value={list.MarkupAdjusted}
                       disable
                     />
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={12} lg={12} sm={24} xs={24}>
                     <FormattedInputs
                       name="AcquiredValue"
                       size="small"
@@ -649,8 +622,8 @@ const MultipleBusinessDetails = ({
                       value={list.AcquiredValue}
                       disable
                     />
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={12} lg={12} sm={24} xs={24}>
                     <FormattedInputs
                       name="Charges"
                       size="small"
@@ -661,8 +634,8 @@ const MultipleBusinessDetails = ({
                       value={list.Charges}
                       disable
                     />
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={12} lg={12} sm={24} xs={24}>
                     <FormattedInputs
                       name="AcquisitionCharges"
                       size="small"
@@ -674,8 +647,8 @@ const MultipleBusinessDetails = ({
                       value={list.AcquisitionCharges}
                       disable
                     />
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={12} lg={12} sm={24} xs={24}>
                     <TextField
                       name="TotalAdjustmentPMC"
                       size="small"
@@ -685,8 +658,8 @@ const MultipleBusinessDetails = ({
                       value={CommaFormter(list.TotalAdjustmentPMC)}
                       disable
                     />
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={12} lg={12} sm={24} xs={24}>
                     <TextField
                       name="TotalValueDAA"
                       size="small"
@@ -696,22 +669,16 @@ const MultipleBusinessDetails = ({
                       value={CommaFormter(list.TotalValueDAA)}
                       disable
                     />
-                  </Grid>
-                  <Grid item lg={12} md={12} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={24} lg={24} sm={24} xs={24}>
                     <h1
                       className={styles["nbaAdjustmentsection"]}
                     >
                       <b>Valuation Details</b>
                     </h1>
-                  </Grid>
+                  </Col>
 
-                  <Grid
-                    item
-                    className={styles["nbaupdatepading"]}
-                    lg={12}
-                    md={12}
-                    sm={12}
-                  >
+                  <Col xl={24} lg={24} sm={24} className={styles["nbaupdatepading"]}>
                     <div className={styles["nbaupdatemargin"]} />
                     <Table
                       rows={list.PropertyEvaluatorBusinessList}
@@ -719,9 +686,9 @@ const MultipleBusinessDetails = ({
                       scroll={{ x: "max-content" }}
                       pagination={true}
                     />
-                  </Grid>
+                  </Col>
 
-                  <Grid item lg={4} md={4} sm={12} xs={12}>
+                  <Col xl={8} lg={8} sm={24} xs={24}>
                     <TextField
                       name="NumberOfValuationsBusiness"
                       size="small"
@@ -736,9 +703,9 @@ const MultipleBusinessDetails = ({
                       label={"Number Of Valuation"}
                       disable
                     />
-                  </Grid>
+                  </Col>
 
-                  <Grid item lg={4} md={4} sm={12} xs={12}>
+                  <Col xl={8} lg={8} sm={24} xs={24}>
                     <TextField
                       name="AverageMarketValueBusiness"
                       size="small"
@@ -753,8 +720,8 @@ const MultipleBusinessDetails = ({
                       }
                       disable
                     />
-                  </Grid>
-                  <Grid item lg={4} md={4} sm={12} xs={12}>
+                  </Col>
+                  <Col xl={8} lg={8} sm={24} xs={24}>
                     <TextField
                       name="AverageForcedSaleValueBusiness"
                       size="small"
@@ -769,8 +736,8 @@ const MultipleBusinessDetails = ({
                       }
                       disable
                     />
-                  </Grid>
-                </Grid>
+                  </Col>
+                </Row>
               </div>
             </Paper>
           </Typography>

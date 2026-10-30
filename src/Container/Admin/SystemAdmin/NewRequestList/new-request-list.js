@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Box, Container } from "@material-ui/core";
 import { Typography } from "antd";
 import {
   saveUserRequest,
@@ -16,6 +15,8 @@ import {
 } from "../../../../Components/Elements";
 import RequestListTemplate from "./request-list-template";
 import { ControlOutlined } from "@ant-design/icons";
+import { Row, Col } from "antd";
+import MaxWidthContainer from "../../../../Components/Elements/MaxWidthContainer/max-width-container";
 
 const NewRequestList = () => {
   const { Title, Text } = Typography;
@@ -80,21 +81,21 @@ const NewRequestList = () => {
 
   return (
     <>
-      <Container maxWidth="lg">
+      <MaxWidthContainer>
         {userRequestDetails != null && userRequestDetails.length > 0 ? (
           <>
             <Title level={3}>
               <div className="NotificationTitle">Pending Signup Requests</div>
             </Title>
-            <Grid container spacing={1}>
-              <Grid item lg={12} md={12} sm={12}>
+            <Row gutter={[8, 8]}>
+              <Col xl={24} lg={24} sm={24}>
                 <Title level={5}>
                   <div className="NotificationDescription">
                     Below are the pending Sign Up requests for your approval
                   </div>
                 </Title>
-              </Grid>
-            </Grid>
+              </Col>
+            </Row>
             {userRequestDetails.map((item, index) => (
               <RequestListTemplate
                 data={{
@@ -110,15 +111,15 @@ const NewRequestList = () => {
             <Title level={3}>
               <div className="NotificationTitle">Pending Signup Requests</div>
             </Title>
-            <Grid container spacing={1}>
-              <Grid item lg={12} md={12} sm={12}>
+            <Row gutter={[8, 8]}>
+              <Col xl={24} lg={24} sm={24}>
                 <Title level={5}>
                   <div className="NotificationDescription">
                     You do not have any Pending Signup Request
                   </div>
                 </Title>
-              </Grid>
-            </Grid>
+              </Col>
+            </Row>
           </>
         )}
         <Notification
@@ -127,7 +128,7 @@ const NewRequestList = () => {
           message={open.message}
         />
         {requestReducer.Loading ? <Loader /> : null}
-      </Container>
+      </MaxWidthContainer>
     </>
   );
 };

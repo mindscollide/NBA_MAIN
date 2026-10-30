@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-import { Grid } from "@material-ui/core";
 
 import { Typography, Tooltip } from "antd";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import Search from "@material-ui/icons/Search";
 
 import {
   DateDisplayFormat,
@@ -40,6 +38,8 @@ import {
   getAllRejectedCases,
   searchCustomerMysis,
 } from "../../../Common/Api/apis-config";
+import { Row, Col } from "antd";
+import { SearchOutlined as Search } from "@ant-design/icons";
 
 const SearchNBADPSCasesDEBT = () => {
   const navigate = useNavigate();
@@ -414,8 +414,8 @@ const SearchNBADPSCasesDEBT = () => {
     <>
       <Title level={4}>Search NBA & DPS Cases</Title>
       <>
-        <Grid container spacing={2}>
-          <Grid item lg={3} md={3} sm={12} >
+        <Row gutter={[16, 16]}>
+          <Col xl={6} lg={6} sm={24}>
           <label>
               <b className={styles["DEBTSearchNbaFonts"]}>Misys Code</b>
             </label>
@@ -431,8 +431,8 @@ const SearchNBADPSCasesDEBT = () => {
               textLength={14}
               autoComplete="off"
             />
-          </Grid>
-          <Grid item lg={3} md={3} sm={12} >
+          </Col>
+          <Col xl={6} lg={6} sm={24}>
           <label>
               <b className={styles["DEBTSearchNbaFonts"]}>Reference Number</b>
             </label>
@@ -448,8 +448,8 @@ const SearchNBADPSCasesDEBT = () => {
               textLength={14}
               autoComplete="off"
             />
-          </Grid>
-          <Grid item lg={3} md={3} sm={12}>
+          </Col>
+          <Col xl={6} lg={6} sm={24}>
             <FormattedInputs
               name={"DPSTransactionAmount"}
               value={
@@ -466,8 +466,8 @@ const SearchNBADPSCasesDEBT = () => {
               change={(e) => handleSearch(e)}
               autoComplete="off"
             />
-          </Grid>
-          <Grid item lg={3} md={3} sm={12}>
+          </Col>
+          <Col xl={6} lg={6} sm={24}>
             <label>
               <b className={styles["DEBTSearchNbaFonts"]}>Date of Acquisition</b>
             </label>
@@ -488,9 +488,9 @@ const SearchNBADPSCasesDEBT = () => {
               }
               DateRange={true}
             />
-          </Grid>
-          <Grid item lg={4} md={4} sm={12}></Grid>
-          <Grid item lg={2} md={2} sm={12} align="right">
+          </Col>
+          <Col xl={8} lg={8} sm={24}></Col>
+          <Col xl={4} lg={4} sm={24} align="right">
             <div className={styles["DEBTSearchNbaorResetbtn"]} />
 
             <Button
@@ -500,8 +500,8 @@ const SearchNBADPSCasesDEBT = () => {
               size="small"
               click={handleSearchData}
             />
-          </Grid>
-          <Grid item lg={2} md={2} sm={12}>
+          </Col>
+          <Col xl={4} lg={4} sm={24}>
             <div className={styles["DEBTSearchNbaorResetbtn"]} />
 
             <Button
@@ -511,9 +511,9 @@ const SearchNBADPSCasesDEBT = () => {
               size="small"
               click={resetData}
             />
-          </Grid>
-          <Grid item lg={4} md={4} sm={12}></Grid>
-          <Grid item lg={12} md={12}>
+          </Col>
+          <Col xl={8} lg={8} sm={24}></Col>
+          <Col xl={24} lg={24}>
             <Table
               rows={nonBankingAssets.SearchNBACaseData}
               columns={columns}
@@ -524,8 +524,8 @@ const SearchNBADPSCasesDEBT = () => {
                 pageSizeOptions: ["5", "10", "20", "30"],
               }}
             />
-          </Grid>
-        </Grid>
+          </Col>
+        </Row>
       </>
       <Notification setOpen={setOpen} open={open.flag} message={open.message} />
       {nonBankingAssets.Loading ? <Loader /> : null}

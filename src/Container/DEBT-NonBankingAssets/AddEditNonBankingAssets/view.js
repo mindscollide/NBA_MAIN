@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Grid } from "@material-ui/core";
 import { Typography, Radio } from "antd";
 import MultipleBusinessDetails from "./multiple-business-details";
 import moment from "moment";
@@ -20,6 +19,7 @@ import { GetAllPropertyType } from "../../../store/actions/setup-forms-actions";
 import { removeDashesFromDate } from "../../../Common/Functions/date-formatter";
 import MultipleCustomerDetails from "./multiple-customer-details";
 import styles from "../DEBT.module.css";
+import { Col, Row } from "antd";
 
 const ViewNBAAssetsDEBT = () => {
   const { Title } = Typography;
@@ -815,28 +815,21 @@ const ViewNBAAssetsDEBT = () => {
       </Title>
 
       <Paper className={styles["nbaPaper"]}>
-        <Grid
-          item
-          lg={4}
-          md={4}
-          sm={3}
-          xs={12}
-          className={styles["nbapaperbtm"]}
-        >
+        <Col xl={8} lg={8} sm={6} xs={24} className={styles["nbapaperbtm"]}>
           <h1
            className={styles["nbaCustomerSection"]}
           >
             Customer Details Section
           </h1>
-        </Grid>
+        </Col>
 
         {/* {NBACaseCustomerList.length>0?
           <MultipleCustomerDetails/>:null} */}
-        <Grid container spacing={2} className={styles["nbaCustomerpadding"]}>
+        <Row gutter={[16, 16]} className={styles["nbaCustomerpadding"]}>
           {NBACaseCustomerList.length > 0
             ? NBACaseCustomerList.map((data, index) => {
                 return (
-                  <Grid item lg={12} md={12} sm={12} xs={12}>
+                  <Col xl={24} lg={24} sm={24} xs={24}>
                     <div className={styles["landforceslae"]}/>
                     <MultipleCustomerDetails
                       list={data}
@@ -847,11 +840,11 @@ const ViewNBAAssetsDEBT = () => {
                       collaps={true}
                       editView={true}
                     />
-                  </Grid>
+                  </Col>
                 );
               })
             : null}
-          <Grid item lg={4} md={4} sm={12} xs={12}>
+          <Col xl={8} lg={8} sm={24} xs={24}>
             <TextField
               size="small"
               label="Reference #"
@@ -861,29 +854,22 @@ const ViewNBAAssetsDEBT = () => {
               textLength={7}
               name="NPLCode"
             />
-          </Grid>
-        </Grid>
+          </Col>
+        </Row>
       </Paper>
       <div className={styles["nbabusiness"]} />
       <Paper padding="2" className={styles["nbabusinessPaper"]}>
-        <Grid
-          item
-          lg={4}
-          md={4}
-          sm={3}
-          xs={12}
-          className={styles["nbapaperbtm"]}
-        >
+        <Col xl={8} lg={8} sm={6} xs={24} className={styles["nbapaperbtm"]}>
           <h1
            className={styles["nbabusinessSection"]}
           >
             Business Details Section
           </h1>
-        </Grid>
+        </Col>
 
         {/* <MultipleCustomerDetails/> */}
-        <Grid container spacing={2}>
-          <Grid item lg={5} md={5} sm={12} className={styles["nbabusinessTop"]}>
+        <Row gutter={[16, 16]}>
+          <Col xl={10} lg={10} sm={24} className={styles["nbabusinessTop"]}>
             <label>
               <b>Settlement Type</b>
             </label>
@@ -901,8 +887,8 @@ const ViewNBAAssetsDEBT = () => {
                 Full Settlement
               </Radio>
             </Radio.Group>
-          </Grid>
-          <Grid item lg={7} md={7} sm={12} xs={12}>
+          </Col>
+          <Col xl={14} lg={14} sm={24} xs={24}>
             <label>
               <b className={styles["DEBTSearchNbaFonts"]}>
                 Approval Authority
@@ -923,8 +909,8 @@ const ViewNBAAssetsDEBT = () => {
               // required
               disable
             />
-          </Grid>
-        </Grid>
+          </Col>
+        </Row>
 
         <div
           className={styles["nbaProperty"]}
@@ -932,7 +918,7 @@ const ViewNBAAssetsDEBT = () => {
           {NBACasePropertyModelList.length > 0
             ? NBACasePropertyModelList.map((data, index) => {
                 return (
-                  <Grid item lg={12} md={12} sm={12} xs={12}>
+                  <Col xl={24} lg={24} sm={24} xs={24}>
                     <div className={styles["landforceslae"]} />
                     <MultipleBusinessDetails
                       list={data}
@@ -944,14 +930,14 @@ const ViewNBAAssetsDEBT = () => {
                       collaps={true}
                       editView={true}
                     />
-                  </Grid>
+                  </Col>
                 );
               })
             : null}
         </div>
 
         <div className={styles["updateTopmargin"]} />
-        <Grid item lg={12} md={12} sm={12} xs={12}>
+        <Col xl={24} lg={24} sm={24} xs={24}>
           <label>
             <b className={styles["DEBTSearchNbaFonts"]}>
               Remarks
@@ -973,7 +959,7 @@ const ViewNBAAssetsDEBT = () => {
             value={saveNewData.RemarksBusiness}
             change={custDatatMainHandler}
           />
-        </Grid>
+        </Col>
       </Paper>
 
       {/* </form> */}

@@ -1,6 +1,5 @@
 import React from "react";
 import { DatePicker, Space, Typography } from "antd";
-import { Box } from "@material-ui/core";
 import moment from "moment";
 import styles from "../StartToEndDate/startdate.module.css"
 const StartToEndDate = ({ label, width, size, change, DateRange ,startvalue,endvalue}) => {
@@ -20,7 +19,7 @@ const StartToEndDate = ({ label, width, size, change, DateRange ,startvalue,endv
     return value && value > moment().endOf("day");
   };
   return (
-    <Box display="flex" alignItems="center">
+    <div style={{ display: "flex", alignItems: "center" }}>
       {label ? <Text className={styles["label"]}>{label}</Text> : null}
       <RangePicker
         disabledDate={DateRange ? disabledDate : false}
@@ -30,7 +29,7 @@ const StartToEndDate = ({ label, width, size, change, DateRange ,startvalue,endv
         size={size}
         // style={{ width: `${width}`, marginLeft: "5px" }}
       />
-    </Box>
+    </div>
   );
 };
 

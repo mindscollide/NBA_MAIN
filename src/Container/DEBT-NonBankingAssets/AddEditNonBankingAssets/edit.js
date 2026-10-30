@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Grid } from "@material-ui/core";
 
-import AddIcon from "@material-ui/icons/Add";
 
 import { Typography, Radio } from "antd";
 
@@ -44,6 +42,8 @@ import {
 } from "../../../Common/Functions/date-formatter";
 
 import MultipleCustomerDetails from "./multiple-customer-details";
+import { Col, Row } from "antd";
+import { PlusOutlined as AddIcon } from "@ant-design/icons";
 
 const EditNBAAssetsDEBT = () => {
   const { Title } = Typography;
@@ -9374,28 +9374,21 @@ const EditNBAAssetsDEBT = () => {
         </Title>
 
         <Paper className={styles["nbaPaper"]}>
-          <Grid
-            item
-            lg={4}
-            md={4}
-            sm={3}
-            xs={12}
-            className={styles["nbapaperbtm"]}
-          >
+          <Col xl={8} lg={8} sm={6} xs={24} className={styles["nbapaperbtm"]}>
             <h1
              className={styles["nbaCustomerSection"]}
             >
               Customer Details Section
             </h1>
-          </Grid>
+          </Col>
 
           {/* {NBACaseCustomerList.length>0?
           <MultipleCustomerDetails/>:null} */}
-          <Grid container spacing={2} className={styles["nbaCustomerpadding"]}>
+          <Row gutter={[16, 16]} className={styles["nbaCustomerpadding"]}>
             {NBACaseCustomerList.length > 0
               ? NBACaseCustomerList.map((data, index) => {
                   return (
-                    <Grid item lg={12} md={12} sm={12} xs={12}>
+                    <Col xl={24} lg={24} sm={24} xs={24}>
                       <div className={styles["landforceslae"]} />
                       <MultipleCustomerDetails
                         list={data}
@@ -9410,14 +9403,14 @@ const EditNBAAssetsDEBT = () => {
                         setCustomer1DetailsField={setCustomer1DetailsField}
                         setEditCustomerView={setEditCustomerView}
                       />
-                    </Grid>
+                    </Col>
                   );
                 })
               : console.log(
                   "NBACaseCustomerList",
                   NBACasePropertyModelList.length
                 )}
-            <Grid item lg={4} md={4} sm={12} xs={12}>
+            <Col xl={8} lg={8} sm={24} xs={24}>
               <div>
                 <InputWithBtn
                   isUpperCase={true}
@@ -9443,8 +9436,8 @@ const EditNBAAssetsDEBT = () => {
                   <ErrorBar errorText={"The Field is Empty"} />
                 ) : null}
               </div>
-            </Grid>
-            <Grid item lg={4} md={4} sm={12} xs={12}>
+            </Col>
+            <Col xl={8} lg={8} sm={24} xs={24}>
               <TextField
                 size="small"
                 label="IPartyID"
@@ -9459,8 +9452,8 @@ const EditNBAAssetsDEBT = () => {
                 name="IPartyID"
                 disable
               />
-            </Grid>
-            <Grid item lg={4} md={4} sm={12} xs={12}>
+            </Col>
+            <Col xl={8} lg={8} sm={24} xs={24}>
               <TextField
                 size="small"
                 label="ECIB Code"
@@ -9471,8 +9464,8 @@ const EditNBAAssetsDEBT = () => {
                 name="ECIBCode"
                 disable
               />
-            </Grid>
-            <Grid item lg={6} md={6} sm={12} xs={12}>
+            </Col>
+            <Col xl={12} lg={12} sm={24} xs={24}>
               <TextField
                 name="BorrowerName"
                 size="small"
@@ -9483,8 +9476,8 @@ const EditNBAAssetsDEBT = () => {
                 disable
                 required={customerDetailsField}
               />
-            </Grid>
-            <Grid item lg={6} md={6} sm={12} xs={12}>
+            </Col>
+            <Col xl={12} lg={12} sm={24} xs={24}>
               <TextField
                 name="AddressOfBorrower"
                 size="small"
@@ -9495,16 +9488,8 @@ const EditNBAAssetsDEBT = () => {
                 disable
                 required={customerDetailsField}
               />
-            </Grid>
-            <Grid
-              item
-              // style={{
-              //   padding: "-1%",
-              // }}
-              lg={12}
-              md={12}
-              sm={12}
-            >
+            </Col>
+            <Col xl={24} lg={24} sm={24}>
               <div className={styles["nbaCustomertablle"]} />
 
               <Table
@@ -9514,7 +9499,7 @@ const EditNBAAssetsDEBT = () => {
                 pagination={true}
               />
               <div className={styles["nbaCustomertablle"]} />
-              <Grid item lg={12} md={12} sm={12} xs={12} align="center">
+              <Col xl={24} lg={24} sm={24} xs={24} align="center">
                 {/* for update or add butto of customer sec */}
                 {NBACaseCustomerListButton ? (
                   <Button
@@ -9533,9 +9518,9 @@ const EditNBAAssetsDEBT = () => {
                     click={AddAnotherCustomerDetails}
                   />
                 )}
-              </Grid>
-            </Grid>
-            <Grid item lg={4} md={4} sm={12} xs={12}>
+              </Col>
+            </Col>
+            <Col xl={8} lg={8} sm={24} xs={24}>
               <TextField
                 size="small"
                 label="Reference #"
@@ -9545,29 +9530,22 @@ const EditNBAAssetsDEBT = () => {
                 textLength={7}
                 name="NPLCode"
               />
-            </Grid>
-          </Grid>
+            </Col>
+          </Row>
         </Paper>
         <div className={styles["nbabusiness"]} />
         <Paper padding="2" className={styles["nbabusinessPaper"]}>
-          <Grid
-            item
-            lg={4}
-            md={4}
-            sm={3}
-            xs={12}
-            className={styles["nbapaperbtm"]}
-          >
+          <Col xl={8} lg={8} sm={6} xs={24} className={styles["nbapaperbtm"]}>
             <h1
               className={styles["nbabusinessSection"]}
             >
               Business Details Section
             </h1>
-          </Grid>
+          </Col>
 
           {/* <MultipleCustomerDetails/> */}
-          <Grid container spacing={2}>
-            <Grid item lg={5} md={5} sm={12} className={styles["nbabusinessTop"]}>
+          <Row gutter={[16, 16]}>
+            <Col xl={10} lg={10} sm={24} className={styles["nbabusinessTop"]}>
               <label>
                 <b>Settlement Type</b>
               </label>
@@ -9581,8 +9559,8 @@ const EditNBAAssetsDEBT = () => {
                 <Radio value={false}>Partial Settlement</Radio>
                 <Radio value={true}>Full Settlement</Radio>
               </Radio.Group>
-            </Grid>
-            <Grid item lg={7} md={7} sm={12} xs={12}>
+            </Col>
+            <Col xl={14} lg={14} sm={24} xs={24}>
               <label>
                 <b className={styles["DEBTSearchNbaFonts"]}>
                   Approval Authority
@@ -9607,8 +9585,8 @@ const EditNBAAssetsDEBT = () => {
               saveNewData.ApprovalAuthority === "" ? (
                 <ErrorBar errorText={"The Field is Empty"} />
               ) : null}
-            </Grid>
-          </Grid>
+            </Col>
+          </Row>
 
           <div
              className={styles["nbaProperty"]}
@@ -9616,7 +9594,7 @@ const EditNBAAssetsDEBT = () => {
             {NBACasePropertyModelList.length > 0
               ? NBACasePropertyModelList.map((data, index) => {
                   return (
-                    <Grid item lg={12} md={12} sm={12} xs={12}>
+                    <Col xl={24} lg={24} sm={24} xs={24}>
                       <div className={styles["nbaCustomertablle"]} />
                       <MultipleBusinessDetails
                         list={data}
@@ -9634,22 +9612,22 @@ const EditNBAAssetsDEBT = () => {
                         setCustomerAdjustmentField={setCustomerAdjustmentField}
                         setCustomerField={setCustomerField}
                       />
-                    </Grid>
+                    </Col>
                   );
                 })
               : console.log(
                   "businessDetailSection",
                   NBACasePropertyModelList.length
                 )}
-            <Grid container spacing={2}>
-              <Grid item lg={12} md={12} sm={12} xs={12}>
+            <Row gutter={[16, 16]}>
+              <Col xl={24} lg={24} sm={24} xs={24}>
                 <h1
                    className={styles["nbapropetrysection"]}
                 >
                   <b>Property Details Section</b>
                 </h1>
-              </Grid>
-              <Grid item lg={5} md={5} sm={12} xs={12}>
+              </Col>
+              <Col xl={10} lg={10} sm={24} xs={24}>
                 <label>
                   <b className={styles["DEBTSearchNbaFonts"]}>
                     Select Property Type
@@ -9672,8 +9650,8 @@ const EditNBAAssetsDEBT = () => {
                 {businessTextFields === true && propertyTypeName === "" ? (
                   <ErrorBar errorText={"The Field is Empty"} />
                 ) : null}
-              </Grid>
-              <Grid item lg={7} md={7} sm={12} xs={12}>
+              </Col>
+              <Col xl={14} lg={14} sm={24} xs={24}>
                 <label>
                   <b className={styles["DEBTSearchNbaFonts"]}>
                     Details Of Property Acquired
@@ -9698,15 +9676,15 @@ const EditNBAAssetsDEBT = () => {
                 businessDetailSection.PropertyAcquiredDetails === "" ? (
                   <ErrorBar errorText={"The Field is Empty"} />
                 ) : null}
-              </Grid>
-              <Grid item lg={6} md={6} sm={12} xs={12}>
+              </Col>
+              <Col xl={12} lg={12} sm={24} xs={24}>
                 <h2
                   className={styles["nbaAdjustmentsection"]}
                 >
                   <b>Adjustment of DPS Amount</b>
                 </h2>
-              </Grid>
-              <Grid item lg={6} md={6} sm={12} xs={12}>
+              </Col>
+              <Col xl={12} lg={12} sm={24} xs={24}>
                 <label>
                   <b className={styles["DEBTSearchNbaFonts"]}>
                     DPS Transaction Amount
@@ -9738,16 +9716,9 @@ const EditNBAAssetsDEBT = () => {
                 businessDetailSection.DPSTransactionAmount === -1 ? (
                   <ErrorBar errorText={"The Field is Empty"} />
                 ) : null}
-              </Grid>
-              <Grid item lg={6} md={6} sm={12} xs={12}>
-                <Grid
-                  item
-                  lg={12}
-                  md={12}
-                  sm={12}
-                  xs={12}
-                  className={styles["nbacharges"]}
-                >
+              </Col>
+              <Col xl={12} lg={12} sm={24} xs={24}>
+                <Col xl={24} lg={24} sm={24} xs={24} className={styles["nbacharges"]}>
                   <label>
                     <b lassName={styles["DEBTSearchNbaFonts"]}>
                       Principal Adjusted
@@ -9779,15 +9750,8 @@ const EditNBAAssetsDEBT = () => {
                   businessDetailSection.PrincipalAdjusted === -1 ? (
                     <ErrorBar errorText={"The Field is Empty"} />
                   ) : null}
-                </Grid>
-                <Grid
-                  item
-                  lg={12}
-                  md={12}
-                  sm={12}
-                  xs={12}
-                  className={styles["nbacharges"]}
-                >
+                </Col>
+                <Col xl={24} lg={24} sm={24} xs={24} className={styles["nbacharges"]}>
                   <label>
                     <b className={styles["DEBTSearchNbaFonts"]}>
                       Markup Adjusted
@@ -9817,15 +9781,8 @@ const EditNBAAssetsDEBT = () => {
                   businessDetailSection.MarkupAdjusted === -1 ? (
                     <ErrorBar errorText={"The Field is Empty"} />
                   ) : null}
-                </Grid>
-                <Grid
-                  item
-                  lg={12}
-                  md={12}
-                  sm={12}
-                  xs={12}
-                  className={styles["nbacharges"]}
-                >
+                </Col>
+                <Col xl={24} lg={24} sm={24} xs={24} className={styles["nbacharges"]}>
                   <label>
                     <b className={styles["DEBTSearchNbaFonts"]}>
                       Charges
@@ -9855,15 +9812,8 @@ const EditNBAAssetsDEBT = () => {
                   businessDetailSection.Charges === -1 ? (
                     <ErrorBar errorText={"The Field is Empty"} />
                   ) : null}
-                </Grid>
-                <Grid
-                  item
-                  lg={12}
-                  md={12}
-                  sm={12}
-                  xs={12}
-                  className={styles["nbacharges"]}
-                >
+                </Col>
+                <Col xl={24} lg={24} sm={24} xs={24} className={styles["nbacharges"]}>
                   <FormattedInputs
                     name="TotalAdjustmentPMC"
                     size="small"
@@ -9881,17 +9831,10 @@ const EditNBAAssetsDEBT = () => {
                     }
                     disable
                   />
-                </Grid>
-              </Grid>
-              <Grid item lg={6} md={6} sm={12} xs={12}>
-                <Grid
-                  item
-                  lg={12}
-                  md={12}
-                  sm={12}
-                  xs={12}
-                  className={styles["nbaDate"]}
-                >
+                </Col>
+              </Col>
+              <Col xl={12} lg={12} sm={24} xs={24}>
+                <Col xl={24} lg={24} sm={24} xs={24} className={styles["nbaDate"]}>
                   <label>
                     <b className={styles["nbaDateAcq"]}>
                       Date Of Acquisition
@@ -9921,15 +9864,8 @@ const EditNBAAssetsDEBT = () => {
                   businessDetailSection.DateOfAcquisition === "18000101" ? (
                     <ErrorBar errorText={"The Field is Empty"} />
                   ) : null}
-                </Grid>
-                <Grid
-                  item
-                  lg={12}
-                  md={12}
-                  sm={12}
-                  xs={12}
-                  className={styles["nbacharges"]}
-                >
+                </Col>
+                <Col xl={24} lg={24} sm={24} xs={24} className={styles["nbacharges"]}>
                   <label>
                     <b className={styles["DEBTSearchNbaFonts"]}>
                       Acquired Value
@@ -9959,15 +9895,8 @@ const EditNBAAssetsDEBT = () => {
                   businessDetailSection.AcquiredValue === -1 ? (
                     <ErrorBar errorText={"The Field is Empty"} />
                   ) : null}
-                </Grid>
-                <Grid
-                  item
-                  lg={12}
-                  md={12}
-                  sm={12}
-                  xs={12}
-                  className={styles["nbacharges"]}
-                >
+                </Col>
+                <Col xl={24} lg={24} sm={24} xs={24} className={styles["nbacharges"]}>
                   <label>
                     <b className={styles["DEBTSearchNbaFonts"]}>
                       Acquisition Charges
@@ -9999,15 +9928,8 @@ const EditNBAAssetsDEBT = () => {
                   businessDetailSection.AcquisitionCharges === -1 ? (
                     <ErrorBar errorText={"The Field is Empty"} />
                   ) : null}
-                </Grid>
-                <Grid
-                  item
-                  lg={12}
-                  md={12}
-                  sm={12}
-                  xs={12}
-                  className={styles["nbacharges"]}
-                >
+                </Col>
+                <Col xl={24} lg={24} sm={24} xs={24} className={styles["nbacharges"]}>
                   <FormattedInputs
                     name="TotalValueDAA"
                     size="small"
@@ -10023,25 +9945,18 @@ const EditNBAAssetsDEBT = () => {
                     fullWidth
                     disable
                   />
-                </Grid>
-              </Grid>
-              <Grid item lg={12} md={12} sm={12} xs={12}>
+                </Col>
+              </Col>
+              <Col xl={24} lg={24} sm={24} xs={24}>
                 <h1
                    className={styles["nbaAdjustmentsection"]}
                 >
                   <b>Valuation Details</b>
                 </h1>
-              </Grid>
+              </Col>
 
-              <Grid item lg={6} md={6} sm={12} xs={12}>
-                <Grid
-                  item
-                  lg={12}
-                  md={12}
-                  sm={12}
-                  xs={12}
-                  className={styles["nbacharges"]}
-                >
+              <Col xl={12} lg={12} sm={24} xs={24}>
+                <Col xl={24} lg={24} sm={24} xs={24} className={styles["nbacharges"]}>
                   {/* <div style={{ marginTop: "20px" }} /> */}
 
                   <label>
@@ -10068,15 +9983,8 @@ const EditNBAAssetsDEBT = () => {
                   valuationDetails.EvaluatorName === "" ? (
                     <ErrorBar errorText={"The Field is Empty"} />
                   ) : null}
-                </Grid>
-                <Grid
-                  item
-                  lg={12}
-                  md={12}
-                  sm={12}
-                  xs={12}
-                  className={styles["nbacharges"]}
-                >
+                </Col>
+                <Col xl={24} lg={24} sm={24} xs={24} className={styles["nbacharges"]}>
                   <label>
                     <b className={styles["DEBTSearchNbaFonts"]}>
                       Land-Market Value
@@ -10106,15 +10014,8 @@ const EditNBAAssetsDEBT = () => {
                   valuationDetails.LandMarketValue === -1 ? (
                     <ErrorBar errorText={"The Field is Empty"} />
                   ) : null}
-                </Grid>
-                <Grid
-                  item
-                  lg={12}
-                  md={12}
-                  sm={12}
-                  xs={12}
-                  className={styles["nbacharges"]}
-                >
+                </Col>
+                <Col xl={24} lg={24} sm={24} xs={24} className={styles["nbacharges"]}>
                   <label>
                     <b className={styles["DEBTSearchNbaFonts"]}>
                       Building-Market Value
@@ -10144,15 +10045,8 @@ const EditNBAAssetsDEBT = () => {
                   valuationDetails.BuildingMarketValue === -1 ? (
                     <ErrorBar errorText={"The Field is Empty"} />
                   ) : null}
-                </Grid>
-                <Grid
-                  item
-                  lg={12}
-                  md={12}
-                  sm={12}
-                  xs={12}
-                  className={styles["nbacharges"]}
-                >
+                </Col>
+                <Col xl={24} lg={24} sm={24} xs={24} className={styles["nbacharges"]}>
                   <FormattedInputs
                     name="TotalMarketValue"
                     size="small"
@@ -10168,19 +10062,11 @@ const EditNBAAssetsDEBT = () => {
                     label={"Total-Market Value"}
                     disable
                   />
-                </Grid>
-              </Grid>
+                </Col>
+              </Col>
 
-              <Grid item lg={6} md={6} sm={12} xs={12}>
-                <Grid
-                  item
-                  lg={12}
-                  md={12}
-                  sm={12}
-                  xs={12}
-                  // style={{ marginTop: "20px" } }
-                  className={styles["nbaDate"]}
-                >
+              <Col xl={12} lg={12} sm={24} xs={24}>
+                <Col xl={24} lg={24} sm={24} xs={24} className={styles["nbaDate"]}>
                   <label>
                     <b className={styles["nbaDateAcq"]}>
                       Date Of Valuation
@@ -10208,15 +10094,8 @@ const EditNBAAssetsDEBT = () => {
                   valuationDetails.DateOfValuation === "18000101" ? (
                     <ErrorBar errorText={"The Field is Empty"} />
                   ) : null}
-                </Grid>
-                <Grid
-                  item
-                  lg={12}
-                  md={12}
-                  sm={12}
-                  xs={12}
-                  className={styles["landforceslae"]}
-                >
+                </Col>
+                <Col xl={24} lg={24} sm={24} xs={24} className={styles["landforceslae"]}>
                   <label>
                     <b className={styles["DEBTSearchNbaFonts"]}>
                       Land-Forced Sale Value
@@ -10246,15 +10125,8 @@ const EditNBAAssetsDEBT = () => {
                   valuationDetails.LandForcedSaleValue === -1 ? (
                     <ErrorBar errorText={"The Field is Empty"} />
                   ) : null}
-                </Grid>
-                <Grid
-                  item
-                  lg={12}
-                  md={12}
-                  sm={12}
-                  xs={12}
-                  className={styles["buildingforsale"]}
-                >
+                </Col>
+                <Col xl={24} lg={24} sm={24} xs={24} className={styles["buildingforsale"]}>
                   <label>
                     <b className={styles["DEBTSearchNbaFonts"]}>
                       Building-Forced Sale Value
@@ -10286,15 +10158,8 @@ const EditNBAAssetsDEBT = () => {
                   valuationDetails.BuildingForcedSaleValue === -1 ? (
                     <ErrorBar errorText={"The Field is Empty"} />
                   ) : null}
-                </Grid>
-                <Grid
-                  item
-                  lg={12}
-                  md={12}
-                  sm={12}
-                  xs={12}
-                  className={styles["totalForcesale"]}
-                >
+                </Col>
+                <Col xl={24} lg={24} sm={24} xs={24} className={styles["totalForcesale"]}>
                   <FormattedInputs
                     name="TotalForcedSaleValue"
                     size="small"
@@ -10310,10 +10175,10 @@ const EditNBAAssetsDEBT = () => {
                     label={"Total-Forced Sale Value"}
                     disable
                   />
-                </Grid>
-              </Grid>
+                </Col>
+              </Col>
 
-              {/* <Grid item lg={6} md={6} sm={12} xs={12}>
+              {/* <Col xl={12} lg={12} sm={24} xs={24}>
                 <div style={{ marginTop: "20px" }} />
 
                 <label>
@@ -10340,15 +10205,8 @@ const EditNBAAssetsDEBT = () => {
                 valuationDetails.EvaluatorName === "" ? (
                   <ErrorBar errorText={"The Field is Empty"} />
                 ) : null}
-              </Grid>
-              <Grid
-                item
-                lg={6}
-                md={6}
-                sm={12}
-                xs={12}
-                style={{ marginTop: "auto" }}
-              >
+              </Col>
+              <Col xl={12} lg={12} sm={24} xs={24} style={{ ...({ marginTop: "auto" }) }}>
                 <label>
                   <b style={{ fontSize: "0.7rem" }}>
                     Date Of Valuation
@@ -10376,8 +10234,8 @@ const EditNBAAssetsDEBT = () => {
                 valuationDetails.DateOfValuation === "18000101" ? (
                   <ErrorBar errorText={"The Field is Empty"} />
                 ) : null}
-              </Grid>
-              <Grid item lg={6} md={6} sm={12} xs={12}>
+              </Col>
+              <Col xl={12} lg={12} sm={24} xs={24}>
                 <FormattedInputs
                   name="LandMarketValue"
                   size="small"
@@ -10399,9 +10257,9 @@ const EditNBAAssetsDEBT = () => {
                 valuationDetails.LandMarketValue === -1 ? (
                   <ErrorBar errorText={"The Field is Empty"} />
                 ) : null}
-              </Grid>
+              </Col>
 
-              <Grid item lg={6} md={6} sm={12} xs={12}>
+              <Col xl={12} lg={12} sm={24} xs={24}>
                 <FormattedInputs
                   name="LandForcedSaleValue"
                   size="small"
@@ -10423,9 +10281,9 @@ const EditNBAAssetsDEBT = () => {
                 valuationDetails.LandForcedSaleValue === -1 ? (
                   <ErrorBar errorText={"The Field is Empty"} />
                 ) : null}
-              </Grid>
+              </Col>
 
-              <Grid item lg={6} md={6} sm={12} xs={12}>
+              <Col xl={12} lg={12} sm={24} xs={24}>
                 <FormattedInputs
                   name="BuildingMarketValue"
                   size="small"
@@ -10447,9 +10305,9 @@ const EditNBAAssetsDEBT = () => {
                 valuationDetails.BuildingMarketValue === -1 ? (
                   <ErrorBar errorText={"The Field is Empty"} />
                 ) : null}
-              </Grid>
+              </Col>
               
-              <Grid item lg={6} md={6} sm={12} xs={12}>
+              <Col xl={12} lg={12} sm={24} xs={24}>
                 <FormattedInputs
                   name="BuildingForcedSaleValue"
                   size="small"
@@ -10471,9 +10329,9 @@ const EditNBAAssetsDEBT = () => {
                 valuationDetails.BuildingForcedSaleValue === -1 ? (
                   <ErrorBar errorText={"The Field is Empty"} />
                 ) : null}
-              </Grid>
+              </Col>
 
-              <Grid item lg={6} md={6} sm={12} xs={12}>
+              <Col xl={12} lg={12} sm={24} xs={24}>
                 <FormattedInputs
                   name="TotalMarketValue"
                   size="small"
@@ -10489,9 +10347,9 @@ const EditNBAAssetsDEBT = () => {
                   label={"Total-Market Value"}
                   disable
                 />
-              </Grid>               
+              </Col>               
 
-              <Grid item lg={6} md={6} sm={12} xs={12}>
+              <Col xl={12} lg={12} sm={24} xs={24}>
                 <FormattedInputs
                   name="TotalForcedSaleValue"
                   size="small"
@@ -10507,10 +10365,10 @@ const EditNBAAssetsDEBT = () => {
                   label={"Total-Forced Sale Value"}
                   disable
                 />
-              </Grid> */}
+              </Col> */}
 
               <div className={styles["nbaUpdate"]}  />
-              <Grid item lg={12} md={12} sm={12} xs={12} align="center">
+              <Col xl={24} lg={24} sm={24} xs={24} align="center">
                 {NBACaseValuationListButton ? (
                   <Button
                     text={"Update Data"}
@@ -10535,14 +10393,8 @@ const EditNBAAssetsDEBT = () => {
                   size="large"
                   click={AddAnotherValuation}
                 /> */}
-              </Grid>
-              <Grid
-                item
-                className={styles["nbaupdatepading"]}
-                lg={12}
-                md={12}
-                sm={12}
-              >
+              </Col>
+              <Col xl={24} lg={24} sm={24} className={styles["nbaupdatepading"]}>
                 <div className={styles["nbaupdatemargin"]}/>
                 <Table
                   rows={businessDetailSection.PropertyEvaluatorBusinessList}
@@ -10550,9 +10402,9 @@ const EditNBAAssetsDEBT = () => {
                   scroll={{ x: "max-content" }}
                   pagination={true}
                 />
-              </Grid>
+              </Col>
 
-              <Grid item lg={4} md={4} sm={12} xs={12}>
+              <Col xl={8} lg={8} sm={24} xs={24}>
                 <TextField
                   type={"Number"}
                   name="NumberOfValuationsBusiness"
@@ -10571,8 +10423,8 @@ const EditNBAAssetsDEBT = () => {
                   }
                   disable
                 />
-              </Grid>
-              <Grid item lg={4} md={4} sm={12} xs={12}>
+              </Col>
+              <Col xl={8} lg={8} sm={24} xs={24}>
                 <TextField
                   name="AverageMarketValueBusiness"
                   size="small"
@@ -10590,9 +10442,9 @@ const EditNBAAssetsDEBT = () => {
                   }
                   disable
                 />
-              </Grid>
+              </Col>
 
-              <Grid item lg={4} md={4} sm={12} xs={12}>
+              <Col xl={8} lg={8} sm={24} xs={24}>
                 <TextField
                   name="AverageForcedSaleValueBusiness"
                   size="small"
@@ -10611,10 +10463,10 @@ const EditNBAAssetsDEBT = () => {
                   }
                   disable
                 />
-              </Grid>
+              </Col>
 
               <div className={styles["updateTopmargin"]}/>
-              <Grid item lg={12} md={12} sm={12} xs={12} align="center">
+              <Col xl={24} lg={24} sm={24} xs={24} align="center">
                 {/* for update or add butto of Business sec */}
                 {NBACaseBusinessListButton ? (
                   <Button
@@ -10633,12 +10485,12 @@ const EditNBAAssetsDEBT = () => {
                     click={AddAnotherProperty}
                   />
                 )}
-              </Grid>
-            </Grid>
+              </Col>
+            </Row>
           </div>
 
           <div className={styles["updateTopmargin"]} />
-          <Grid item lg={12} md={12} sm={12} xs={12}>
+          <Col xl={24} lg={24} sm={24} xs={24}>
             <label>
               <b className={styles["DEBTSearchNbaFonts"]}>
                 Remarks
@@ -10660,12 +10512,12 @@ const EditNBAAssetsDEBT = () => {
             {remarksApproval === true && saveNewData.RemarksBusiness === "" ? (
               <ErrorBar errorText={"The Field is Empty"} />
             ) : null}
-          </Grid>
+          </Col>
         </Paper>
 
         <div className={styles["nbabusinessTop"]} />
-        <Grid container spacing={2}>
-          <Grid item lg={5} md={5} sm={12} xs={12} align="Right">
+        <Row gutter={[16, 16]}>
+          <Col xl={10} lg={10} sm={24} xs={24} align="Right">
             <Button
               type="Submit"
               applyClass="btnBorderStyledBeach"
@@ -10675,9 +10527,9 @@ const EditNBAAssetsDEBT = () => {
                 setSaveNewData({ ...saveNewData, ["SendForApproval"]: 1 })
               }
             />
-          </Grid>
+          </Col>
 
-          <Grid item lg={7} md={7} sm={12} xs={12} align="Left">
+          <Col xl={14} lg={14} sm={24} xs={24} align="Left">
             <Button
               type="Submit"
               applyClass="btnBorderStyledBeach"
@@ -10687,8 +10539,8 @@ const EditNBAAssetsDEBT = () => {
                 setSaveNewData({ ...saveNewData, ["SendForApproval"]: 2 })
               }
             />
-          </Grid>
-        </Grid>
+          </Col>
+        </Row>
       </form>
       <Notification setOpen={setOpen} open={open.flag} message={open.message} />
       {nonBankingAssets.Loading ? <Loader /> : null}
