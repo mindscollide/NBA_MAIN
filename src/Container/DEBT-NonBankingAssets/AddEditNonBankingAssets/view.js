@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Typography, Radio } from "antd";
 import MultipleBusinessDetails from "./multiple-business-details";
-import moment from "moment";
+import dayjs from "dayjs";
 import {
   SaveBusinessTeamData,
   ViewBusinessTeamData,
@@ -25,7 +25,7 @@ const ViewNBAAssetsDEBT = () => {
   const { Title } = Typography;
   const dispatch = useDispatch();
 
-  const date = moment().format("YYYY-MM-DD");
+  const date = dayjs().format("YYYY-MM-DD");
 
   const state = useSelector((state) => state);
   const { setupForms, nonBankingAssets } = state;

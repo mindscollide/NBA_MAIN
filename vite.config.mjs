@@ -46,16 +46,8 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       less: {
-        // antd 4 theme variables (moved here from craco.config.js).
-        modifyVars: {
-          "@primary-color": "#04908b",
-          "@body-background": "#f6f6f6",
-          "@font-family": "'Open Sans', sans-serif",
-          "@table-row-hover-bg": "#eaf4f4",
-          "@table-padding-vertical": "5px",
-          "@table-padding-horizontal": "5px",
-          "@table-border-color": "#dee6e6",
-        },
+        // antd's theme is in src/theme.js now (antd v6 has no Less);
+        // App.less is still Less.
         javascriptEnabled: true,
       },
     },

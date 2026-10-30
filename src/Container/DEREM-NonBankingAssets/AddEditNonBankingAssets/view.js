@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { Typography, Radio } from "antd";
-import moment from "moment";
+import dayjs from "dayjs";
 import styles from "../DEREM.module.css";
 
 
@@ -42,7 +42,7 @@ const ViewNBAAssetsDEREM = () => {
   const { Title } = Typography;
   const dispatch = useDispatch();
 
-  const date = moment().format("YYYY-MM-DD");
+  const date = dayjs().format("YYYY-MM-DD");
   const state = useSelector((state) => state);
   const { setupForms, nonBankingAssets } = state;
   // for notification

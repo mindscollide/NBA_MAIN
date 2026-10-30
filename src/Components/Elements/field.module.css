@@ -46,29 +46,35 @@
   color: #f44336;
 }
 
+/* antd v6 Select: the .ant-select root is the box (no .ant-select-selector).
+   White, unlike the grey App.less gives other antd Selects. */
+.wrapper .field:global(.ant-select) {
+  background-color: #fff !important;
+}
+
 .field:global(.ant-input),
 .field:global(.ant-input-affix-wrapper),
-.field :global(.ant-select-selector) {
+.field:global(.ant-select) {
   border: 1px solid #dee6e6 !important;
   border-radius: 0 !important;
 }
 
 .field:global(.ant-input):focus,
-.field:global(.ant-input-focused),
-.field:global(.ant-select-focused) :global(.ant-select-selector) {
+.field:global(.ant-input-affix-wrapper):focus-within,
+.field:global(.ant-select):focus-within {
   border-color: #12b0e8 !important;
   box-shadow: none !important;
 }
 
 /* Disabled fields as index.css styled .MuiInputBase-input.Mui-disabled */
 .field:global(.ant-input[disabled]),
-.field:global(.ant-select-disabled) :global(.ant-select-selector) {
+.wrapper .field:global(.ant-select-disabled) {
   background-color: #f3f3f3 !important;
   font-size: 0.9rem !important;
   color: black !important;
 }
 
 .error:global(.ant-input),
-.error :global(.ant-select-selector) {
+.error:global(.ant-select) {
   border-color: #f44336 !important;
 }

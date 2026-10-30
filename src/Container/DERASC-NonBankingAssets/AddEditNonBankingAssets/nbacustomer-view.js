@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 
 import { Typography, Radio, Tooltip } from "antd";
 import styles from "../DERASC.module.css";
-import moment from "moment";
+import dayjs from "dayjs";
 import {
   Paper,
   InputWithBtn,
