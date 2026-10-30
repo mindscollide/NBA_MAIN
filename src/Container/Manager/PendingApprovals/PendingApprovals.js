@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
 import {
   getApprovals,
