@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Grid, Box } from "@material-ui/core";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router";
 import AddIcon from "@material-ui/icons/Add";
 import { Typography, Radio } from "antd";
 import moment from "moment";
@@ -47,7 +47,7 @@ import NBACustomerDetailsVIEW from "./nbacustomer-view";
 import NBAREMVIEW from "./nbarsm-view";
 
 const EditNBAAssetsDERAM = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { Title } = Typography;
   const dispatch = useDispatch();
 
@@ -201,7 +201,7 @@ const EditNBAAssetsDERAM = () => {
     console.log("rejectDispute", rejectDispute);
     setIsModalVisible2(false);
     await dispatch(RevertCase(rejectDispute, false));
-    history.push("/NBA/DataEntryRaSc/CasesInProcess");
+    navigate("/NBA/DataEntryRaSc/CasesInProcess");
     setRejectDispute({
       NBACaseID: 0,
       Comments: "",

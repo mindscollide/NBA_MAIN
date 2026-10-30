@@ -15,10 +15,10 @@ import { GetBorrowerType } from "../../../store/actions/setup-forms-actions";
 import { directorTypeOptions } from "../../../Common/SelectFieldOption/select-field-option";
 import ClearOutlinedIcon from "@material-ui/icons/ClearOutlined";
 import { EditWriteOff } from "../../../store/actions/write-off-actions";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 const EditRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
   const { Title } = Typography;
-  const history = useHistory();
+  const navigate = useNavigate();
   const state = useSelector((state) => state);
   const { setupForms } = state;
   const [open, setOpen] = useState({
@@ -185,7 +185,7 @@ const EditRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
         PreviousPageDetails.AdditionalDetails.AdvanceClassificationID = 1;
       }
       console.log("ViewWriteOff",PreviousPageDetails);
-      dispatch(EditWriteOff(PreviousPageDetails, history, setOpen));
+      dispatch(EditWriteOff(PreviousPageDetails, navigate, setOpen));
     } else {
       setOpen({
         ...open,

@@ -30,11 +30,11 @@ import {
   SearchNBACase,
   ViewREMTeamData,
 } from "../../../store/actions/nonbanking-assets-actions";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { enableGoBack, disableGoBack } from "../../../store/actions/ui-actions";
 
 const SearchNBADPSCasesREM = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { Title } = Typography;
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
@@ -205,7 +205,7 @@ const SearchNBADPSCasesREM = () => {
     await dispatch(ViewREMTeamData(Data));
     await dispatch(enableGoBack());
     console.log("ViewREMTeamData", value, Data);
-    history.push("/NBA/DataEntryRem/ViewNonBankingAssets");
+    navigate("/NBA/DataEntryRem/ViewNonBankingAssets");
   };
   // for Edit
   const Edit = async (e, value) => {
@@ -216,7 +216,7 @@ const SearchNBADPSCasesREM = () => {
     await dispatch(ViewREMTeamData(Data));
     await dispatch(enableGoBack());
     console.log("ViewREMTeamData", value, Data);
-    history.push("/NBA/DataEntryRem/EditNonBankingAssets");
+    navigate("/NBA/DataEntryRem/EditNonBankingAssets");
   };
   const columns = [
     {

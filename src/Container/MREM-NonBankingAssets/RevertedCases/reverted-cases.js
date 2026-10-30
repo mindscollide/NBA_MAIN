@@ -36,11 +36,11 @@ import {
   GetAllApprovalRejectionReasons,
   GetAllPropertyType,
 } from "../../../store/actions/setup-forms-actions";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { enableGoBack, disableGoBack } from "../../../store/actions/ui-actions";
 
 const RevertedCasesNBAMREM = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { Title } = Typography;
   const [filter, setfilter] = useState(1);
   const dispatch = useDispatch();
@@ -212,7 +212,7 @@ const RevertedCasesNBAMREM = () => {
     await dispatch(ViewREMTeamData(Data));
     await dispatch(enableGoBack());
     console.log("ViewREMTeamData", value, Data);
-    history.push("/NBA/ManagerREM/ViewNonBankingAssets");
+    navigate("/NBA/ManagerREM/ViewNonBankingAssets");
   };
   const columns = [
     {

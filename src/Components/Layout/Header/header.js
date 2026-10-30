@@ -23,12 +23,12 @@ import {
 } from "../../../store/actions/request-actions";
 import Helper from "../../../Common/Functions/history_logout";
 import "./header.css";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { disableGoBack } from "../../../store/actions/ui-actions";
 import { makeTabAvtive } from "../../../store/actions/ui-actions";
 const Header = ({ Notification, title, UserDetails }) => {
   console.log(Notification);
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
   const { wofApprovals, requestReducer, ui } = state;
@@ -45,9 +45,9 @@ const Header = ({ Notification, title, UserDetails }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  Helper.history = history;
+  Helper.navigate = navigate;
   useEffect(() => {
-    Helper.history = history;
+    Helper.navigate = navigate;
   }, []);
   const openUserRequest = () => {
     console.log(Details.userID);
@@ -87,7 +87,7 @@ const Header = ({ Notification, title, UserDetails }) => {
       if (value == "true") {
         console.log("ali12345", value == "true", 3);
         if (newTabCount2 - 1 == 0) {
-          dispatch(signOut(history));
+          dispatch(signOut(navigate));
           window.localStorage.isMySessionActive = "false";
         } else {
           window.localStorage.isMySessionActive = "false";
@@ -168,7 +168,7 @@ const Header = ({ Notification, title, UserDetails }) => {
                       // localStorage.setItem("parent", "sub1");
                       // localStorage.setItem("child", "15");
                       dispatch(makeTabAvtive());
-                      history.push("/NBA/Admin/NewRequestList");
+                      navigate("/NBA/Admin/NewRequestList");
                     }}
                   >
                     <i className="icon-chevron-right color-black icon-s mr-2"></i>
@@ -182,7 +182,7 @@ const Header = ({ Notification, title, UserDetails }) => {
         {/* {/ its logout button /} */}
         <Tooltip placement="bottom" title="Logout">
           <div className="logout-icon-section">
-            <div onClick={() => dispatch(signOut(history))}>
+            <div onClick={() => dispatch(signOut(navigate))}>
               <div className="logout-icon">
                 <i className="icon-login icon-size-one "></i>
               </div>

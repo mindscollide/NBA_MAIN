@@ -9,7 +9,7 @@ import {
   Loader,
   Notification,
 } from "../../../Components/Elements";
-import { useHistory, useRouteMatch, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import ErrorBar from "./ErrorBar/error-bar";
 import {
@@ -42,7 +42,7 @@ const SignUp = () => {
   const [btnDisable, setbtnDisable] = useState(false);
   const [emailAfterVerify, setEmailAfterVerify] = useState();
   const [emailAfterVerifyError, setEmailAfterVerifyError] = useState("");
-  const history = useHistory();
+  const navigate = useNavigate();
   const [open, setOpen] = useState({
     open: false,
     message: "",
@@ -177,16 +177,16 @@ const SignUp = () => {
       },
     });
     if (btnDisable === true) {
-      history.push();
+      // (was an argument-less navigate(), which did nothing)
       gobackHandler();
     } else {
-      history.push("/");
-      dispatch(clearestate(history));
+      navigate("/");
+      dispatch(clearestate(navigate));
     }
   };
   const gobackHandler = () => {
-    history.push("/");
-    dispatch(clearestate(history));
+    navigate("/");
+    dispatch(clearestate(navigate));
   };
   useEffect(() => {
     console.log(auth.ResponseMessage);
@@ -344,7 +344,7 @@ const SignUp = () => {
         isSuccess: false,
       },
     });
-    dispatch(clearestateBackbutton(history));
+    dispatch(clearestateBackbutton(navigate));
   };
   // to set body backgound
   useEffect(() => {
@@ -482,7 +482,7 @@ const SignUp = () => {
           }
         });
         setBio({ ...copyState });
-        dispatch(signUp(copyState, history));
+        dispatch(signUp(copyState, navigate));
         break;
       default:
         break;

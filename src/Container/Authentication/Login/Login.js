@@ -4,7 +4,7 @@ import styles from "./style.module.css";
 import { Input, Typography } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { Button, Loader, Notification } from "../../../Components/Elements";
-import { useHistory, useRouteMatch, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import {
   signIn,
@@ -18,8 +18,8 @@ const Login = () => {
   const dispatch = useDispatch();
   const { auth, ui } = state;
   const { Title } = Typography;
-  const history = useHistory();
-  Helper.history = history;
+  const navigate = useNavigate();
+  Helper.navigate = navigate;
   const [credentials, setCredentials] = useState({
     UserName: "",
     Password: "",
@@ -49,7 +49,7 @@ const Login = () => {
   const validateHandler = (e) => {
     e.preventDefault();
     if (credentials.UserName != "" && credentials.Password != "") {
-      dispatch(signIn(credentials, history));
+      dispatch(signIn(credentials, navigate));
     } else {
       setOpen({
         ...open,
@@ -59,11 +59,9 @@ const Login = () => {
     }
   };
 
-  const route = useRouteMatch();
-  const path = route.path;
 
   useEffect(() => {
-    Helper.history = history;
+    Helper.navigate = navigate;
     document.body.className = "login-page";
     return () => {
       document.body.className = "";

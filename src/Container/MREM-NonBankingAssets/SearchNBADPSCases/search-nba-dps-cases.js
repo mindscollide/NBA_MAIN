@@ -30,12 +30,12 @@ import {
   ViewREMTeamData,
 } from "../../../store/actions/nonbanking-assets-actions";
 import { GetAllPropertyType } from "../../../store/actions/setup-forms-actions";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { enableGoBack, disableGoBack } from "../../../store/actions/ui-actions";
 import styles from "../MREM.module.css";
 
 const SearchNBADPSCasesMREM = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { Title } = Typography;
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
@@ -205,7 +205,7 @@ const SearchNBADPSCasesMREM = () => {
     await dispatch(ViewREMTeamData(Data));
     await dispatch(enableGoBack());
     console.log("ViewREMTeamData", value, Data);
-    history.push("/NBA/ManagerREM/ViewNonBankingAssets");
+    navigate("/NBA/ManagerREM/ViewNonBankingAssets");
   };
   const columns = [
     {

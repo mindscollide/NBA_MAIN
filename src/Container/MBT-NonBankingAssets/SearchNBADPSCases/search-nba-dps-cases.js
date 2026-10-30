@@ -32,11 +32,11 @@ import {
   ViewBusinessTeamData,
 } from "../../../store/actions/nonbanking-assets-actions";
 import { GetAllPropertyType } from "../../../store/actions/setup-forms-actions";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { enableGoBack, disableGoBack } from "../../../store/actions/ui-actions";
 
 const SearchNBADPSCasesMBT = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { Title } = Typography;
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
@@ -207,7 +207,7 @@ const SearchNBADPSCasesMBT = () => {
     await dispatch(ViewBusinessTeamData(Data));
     await dispatch(enableGoBack());
     console.log("ViewBusinessTeamData", value, Data);
-    history.push("/NBA/ManagerBusinessTeam/ViewNBACase");
+    navigate("/NBA/ManagerBusinessTeam/ViewNBACase");
   };
   const columns = [
     {
