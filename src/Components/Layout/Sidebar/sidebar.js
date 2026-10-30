@@ -7,7 +7,6 @@ import {makeTabDisable} from "../../../store/actions/ui-actions";
 import { useLocation } from "react-router"
 const Sidebar = ({ Links, ui }) => {
 
-  const { SubMenu } = Menu;
   const { Sider } = Layout;
   const dispatch = useDispatch();
   // Sidebar renders inside Dashboard under App's "/NBA/*" route, so the base path
@@ -81,35 +80,31 @@ const Sidebar = ({ Links, ui }) => {
           localStorage.setItem("child", e.keyPath[0]);
         }}
         className={styles["sidebarW"]}
-      >
-        {Links.length > 0
-          ? Links.map((item, index) => {
-              return (
-                <SubMenu
-                  key={`sub${index + 1}`}
-                  icon={<i className={`${item.icon}`}></i>}
-                  title={`${item.menuName}`}
-                  className={styles.menuMainItem}
-                >
-                  {item
-                    ? item.subMenu.map((nestedItem, nestedIndex) => {
-                        return (
-                          <Menu.Item key={nestedItem.key}>
-                            <Link
-                              to={`${path}${nestedItem.link}`}
-                              className={styles.noLinkStyles}
-                            >
-                              {nestedItem.name}
-                            </Link>
-                          </Menu.Item>
-                        );
-                      })
-                    : null}
-                </SubMenu>
-              );
-            })
-          : null}
-      </Menu>
+        // antd v5+ menu items (was <SubMenu>/<Menu.Item> children)
+        items={
+          Links.length > 0
+            ? Links.map((item, index) => ({
+                key: `sub${index + 1}`,
+                icon: <i className={`${item.icon}`}></i>,
+                label: `${item.menuName}`,
+                className: styles.menuMainItem,
+                children: item
+                  ? item.subMenu.map((nestedItem) => ({
+                      key: nestedItem.key,
+                      label: (
+                        <Link
+                          to={`${path}${nestedItem.link}`}
+                          className={styles.noLinkStyles}
+                        >
+                          {nestedItem.name}
+                        </Link>
+                      ),
+                    }))
+                  : null,
+              }))
+            : []
+        }
+      />
     </Sider>
   );
 };
