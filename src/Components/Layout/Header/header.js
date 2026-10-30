@@ -7,10 +7,6 @@ import Logo from "../../../assets/images/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../../store/actions/auth-actions";
 import {
-  getApprovalCount,
-  getApprovals,
-} from "../../../store/actions/wof-approvals-actions";
-import {
   newRequestList,
   newRequestListCount,
 } from "../../../store/actions/request-actions";
@@ -37,14 +33,6 @@ const Header = ({ Notification, title, UserDetails }) => {
     console.log(Details.userID);
     dispatch(newRequestList(Details.userID));
   };
-  useEffect(() => {
-    console.log("DetailsDetails", wofApprovals.ApprovalsCount);
-    if (Details.userID === 2) {
-      dispatch(getApprovalCount(Details.userID));
-    } else if (Details.roleID === 3) {
-      dispatch(getApprovalCount(Details.userID));
-    }
-  }, []);
   useEffect(() => {
     // define increment counter part
     const tabsOpen = localStorage.getItem("tabsOpen");
