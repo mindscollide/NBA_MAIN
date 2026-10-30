@@ -15,7 +15,6 @@ import SelectWithSearch from './InputFields/SelectWithSearch/select-with-search'
 import TextField from './InputFields/TextField/text-field';
 import InputWithBtn from './InputWithBtn/input-with-btn';
 import Modal from './Modal/modal';
-import MultiStep from './MultiStep/multi-step';
 import Paper from './Paper/paper';
 import Radio from './Radio/radio';
 import StartToEndDate from './StartToEndDate/start-to-end-date';
@@ -43,7 +42,6 @@ export {
     TextField,
     InputWithBtn,
     Modal,
-    MultiStep,
     Paper,
     Radio,
     StartToEndDate,
