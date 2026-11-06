@@ -11,7 +11,7 @@
 }
 
 .aesterick {
-  color: red !important;
+  color: #FC4343 !important;
 }
 
 .deremfont {
@@ -37,14 +37,14 @@
 }
 
 .deremh1 {
+  /* section title: teal heading at the top of its section card */
   font-size: 17px !important;
-  margin-top: -14px !important;
-  margin-left: 30px !important;
   font-weight: 600 !important;
-  background-color: #dfe8e8 !important;
-  color: rgb(33, 112, 109) !important;
-  text-align: center !important;
-  width: 260px !important;
+  margin: 4px 0 4px 0 !important;
+  background-color: transparent !important;
+  color: #035F5C !important;
+  text-align: left !important;
+  width: auto !important;
 }
 
 .derempd {
@@ -61,7 +61,10 @@
 
 .deremstyle {
   margin-top: 10px !important;
-  background-color: #f2f1f0 !important;
+  /* block inside a section card: white card with a green outline */
+  background-color: #FFFFFF !important;
+  border: 1px solid #8EB974 !important;
+  border-radius: 12px !important;
   padding: 20px !important;
 }
 
@@ -69,7 +72,7 @@
   font-size: 18px !important;
   margin-top: 15px !important;
   margin-left: 5px !important;
-  color: #000000 !important;
+  color: #035F5C !important;
   width: 100% !important;
 }
 .evaluatehieght{
@@ -126,7 +129,7 @@
 }
 
 .Viewcursor{
-  color: blue !important;
+  color: #035F5C !important;
   cursor: pointer !important;
 }
 

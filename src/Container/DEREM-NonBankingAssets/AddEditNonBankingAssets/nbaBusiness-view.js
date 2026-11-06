@@ -110,7 +110,7 @@ console.log("REMCasePropertyModelList",NBACasePropertyModelList)
         </AccordionSummary>
         <AccordionDetails>
           <Typography className={styles["typography"]}>
-          <Paper padding="2" className={styles["paperbckgrnd"]}>
+          <Paper section padding="2" className={styles["paperbckgrnd"]}>
           <Row gutter={[16, 16]}>
             <Col xl={10} lg={10} sm={24} className={styles["topderem"]}>
               <label>

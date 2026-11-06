@@ -814,7 +814,7 @@ const ViewNBAAssetsDEBT = () => {
         Non-Banking Assets & Other Assets
       </Title>
 
-      <Paper className={styles["nbaPaper"]}>
+      <Paper section className={styles["nbaPaper"]}>
         <Col xl={8} lg={8} sm={6} xs={24} className={styles["nbapaperbtm"]}>
           <h1
            className={styles["nbaCustomerSection"]}
@@ -858,7 +858,7 @@ const ViewNBAAssetsDEBT = () => {
         </Row>
       </Paper>
       <div className={styles["nbabusiness"]} />
-      <Paper padding="2" className={styles["nbabusinessPaper"]}>
+      <Paper section padding="2" className={styles["nbabusinessPaper"]}>
         <Col xl={8} lg={8} sm={6} xs={24} className={styles["nbapaperbtm"]}>
           <h1
            className={styles["nbabusinessSection"]}

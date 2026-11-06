@@ -222,7 +222,7 @@ const CompleteReports = () => {
   return (
     <form onSubmit={(e) => handleSubmit(e, submitType)}>
       <>
-        <Paper padding="2">
+        <Paper page padding="2">
           <Row gutter={[8, 8]}>
             {/* Row 01 */}
             <Col xl={18} lg={18} sm={24}>

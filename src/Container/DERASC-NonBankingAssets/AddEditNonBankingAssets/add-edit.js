@@ -1678,7 +1678,7 @@ const EditNBAAssetsDERAM = () => {
           </Col>
         </Row>
         <div className={styles["RASCheading"]} />
-        <Paper className={styles["DERASCpaper"]}>
+        <Paper section className={styles["DERASCpaper"]}>
           <Col xl={8} lg={8} sm={6} xs={24} className={styles["DERASCpaperbottom"]}>
             <h1
               className={styles["RASCh1"]}

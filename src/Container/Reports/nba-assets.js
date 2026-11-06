@@ -251,7 +251,7 @@ const NBAAssetsReports = () => {
             }
             textLength={(999, 999, 999, 999, 999, 999, 999)}
             size="small"
-            label={"Total Acquisition Value From"}
+            Label={"Total Acquisition Value From"}
             fullWidth
             change={(e) => handleSearch(e)}
             autoComplete="off"
@@ -267,7 +267,7 @@ const NBAAssetsReports = () => {
             }
             textLength={(999, 999, 999, 999, 999, 999, 999)}
             size="small"
-            label={"Total Acquisition Value To"}
+            Label={"Total Acquisition Value To"}
             fullWidth
             change={(e) => handleSearch(e)}
             autoComplete="off"

@@ -2340,7 +2340,7 @@ const ViewNBAAssetsDEREM = () => {
           </Col>
         </Row>
         <div className={styles["deremTp"]} />
-        <Paper className={styles["derempaper"]}>
+        <Paper section className={styles["derempaper"]}>
           <Col xl={8} lg={8} sm={6} xs={24} className={styles["deremb0tt0m"]}>
             <h1
               className={styles["deremh1"]}

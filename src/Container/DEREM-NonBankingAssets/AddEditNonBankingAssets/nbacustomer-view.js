@@ -114,7 +114,7 @@ const NBACustomerDetailsVIEW = ({list,saveNewData,setNBACaseCustomerList,NBACase
         </AccordionSummary>
         <AccordionDetails>
           <Typography className={styles["typography"]}>
-          <Paper className={styles["derempaper"]}>
+          <Paper section className={styles["derempaper"]}>
           
 
           {/* {NBACaseCustomerList.length>0?

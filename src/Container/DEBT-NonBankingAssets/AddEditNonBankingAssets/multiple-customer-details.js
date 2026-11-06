@@ -140,7 +140,7 @@ const MultipleCustomerDetails = ({
           </AccordionSummary>
           <AccordionDetails>
             <Typography className={styles["typographywidth"]}>
-              <Paper className={styles["nbaPaper"]}>
+              <Paper section className={styles["nbaPaper"]}>
                 <div align="right">
                   <Tooltip title="Delete" color={"Red"}>
                     {/* {ind  && ( */}
@@ -272,7 +272,7 @@ const MultipleCustomerDetails = ({
           </AccordionSummary>
           <AccordionDetails>
             <Typography className={styles["typographywidth"]}>
-              <Paper pclassName={styles["nbaPaper"]}>
+              <Paper section pclassName={styles["nbaPaper"]}>
                 <div align="right">
                   <Tooltip title="Delete" color={"Red"}>
                     {/* {ind  && ( */}

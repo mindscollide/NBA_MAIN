@@ -116,7 +116,7 @@ const NBABusinessDetailsVIEW = ({
         </AccordionSummary>
         <AccordionDetails>
           <Typography className={styles["typography-width"]}>
-            <Paper padding={2} className={styles["nbaview-paper"]}>
+            <Paper section padding={2} className={styles["nbaview-paper"]}>
               <Row gutter={[16, 16]}>
                 <Col xl={10} lg={10} sm={24} className={styles["nbaviewSetlement"]}>
                   <label>

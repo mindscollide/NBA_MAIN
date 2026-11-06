@@ -89,7 +89,7 @@ const RequestListTemplate = ({ data }) => {
         </Row>
         <Row gutter={[8, 8]}>
           {/* <Col xl={6} lg={6} sm={12} xs={12}>
-            <p className="m-0" style={{ color: "#b27706" }}>
+            <p className="m-0" style={{ color: "#035F5C" }}>
               Employee Number
             </p>
           </Col>

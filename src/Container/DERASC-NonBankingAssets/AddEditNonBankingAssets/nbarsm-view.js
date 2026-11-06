@@ -158,7 +158,7 @@ console.log("NBAREMVIEW",expanded,expanded === "panel1")
         </AccordionSummary>
         <AccordionDetails>
           <Typography className={styles["typography-width"]}>
-            <Paper  className={styles["nbaCustomerview-paper"]}>
+            <Paper section  className={styles["nbaCustomerview-paper"]}>
               <Row gutter={[16, 16]} className={styles["nbaCustomerview-padding"]}>
                 <Col xl={8} lg={8} sm={24} xs={24}>
                   <div>
