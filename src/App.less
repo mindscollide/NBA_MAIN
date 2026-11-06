@@ -1,143 +1,417 @@
 // antd v6 is CSS-in-JS: no antd.less import. Theme tokens live in
-// src/theme.js (ConfigProvider) and base styles come from antd/dist/reset.css
-// (src/index.js). antd wraps its own selectors in :where(), so plain
-// selectors here now beat antd's at equal specificity.
-// @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap");
-// @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap");
-// all global styles are witten here
+// src/theme.js (ConfigProvider), base styles come from antd/dist/reset.css
+// (imported in src/index.js). antd wraps its own selectors in :where(), so the
+// plain selectors below already win; !important is kept where antd sets inline
+// styles or where a rule must beat a token.
+//
+// NBA palette (background / text), see theme.js:
+//   Primary #035F5C / #FFFFFF   Secondary #8EB974 / #000000
+//   Hover   #CCDDC5 / #000000   Card      #E4EDE1 / #000000
+//   Page    #F4FFF0 / #000000   Danger    #FC4343 / #FFFFFF
+//   Neutral #6D6D6D / #FFFFFF   Muted     #F0F0F0 / #0C0C0C
 
-// global css for side bar
-.ant-menu-root.ant-menu-vertical,
-.ant-menu-root.ant-menu-vertical-left,
-.ant-menu-root.ant-menu-vertical-right,
-.ant-menu-root.ant-menu-inline {
-  background-color: #025f5c;
-  color: #80b1af;
+// ---------------------------------------------------------------------------
+// Scrollbars everywhere (sidebar, main card, tables, dropdowns, ...): one slim
+// 6px style, and the thumb only shows while the pointer is over that box. The
+// width is always reserved, so nothing shifts when it appears.
+// Chrome/Edge use the ::-webkit-scrollbar rules; they're ignored on any element
+// that sets scrollbar-width/scrollbar-color, so those are for Firefox only —
+// never set either property outside the @supports block below.
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
-// .ant-menu-submenu-title:hover {
-//   background-color: #04908b;
-//   color: whitesmoke !important;
-// }
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 3px;
+}
+
+*:hover::-webkit-scrollbar-thumb {
+  background-color: #8EB974;
+}
+
+*:hover::-webkit-scrollbar-thumb:hover {
+  background-color: #035F5C;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+  }
+
+  *:hover {
+    scrollbar-color: #8EB974 transparent;
+  }
+}
+
+// antd hardcodes its own fonts in a few places (page root fallback, the
+// required-field asterisk, pagination ellipsis/arrows) — keep Open Sans everywhere
+html,
+.ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before,
+.ant-pagination-prev,
+.ant-pagination-next,
+.ant-pagination-jump-prev .ant-pagination-item-container .ant-pagination-item-ellipsis,
+.ant-pagination-jump-next .ant-pagination-item-container .ant-pagination-item-ellipsis {
+  font-family: "Open Sans", sans-serif !important;
+}
+
+// ---------------------------------------------------------------------------
+// Fields: text inputs, date/time/range pickers and selects share one style —
+// green border, 8px corners, dark-teal border on hover/focus, no shadow.
+// (Radius 8 also comes from the theme's borderRadius token.)
+.ant-picker,
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-select {
+  border: 1px solid #8EB974 !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+}
+
+// When an Input has a prefix/suffix (e.g. Login's user icon), antd wraps the
+// real <input> in .ant-input-affix-wrapper and the inner <input> keeps the
+// .ant-input class too — the wrapper draws the border, the input has none, or
+// it renders as a box inside a box.
+.ant-input-affix-wrapper .ant-input {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+// Select: in antd v6 the visible box is the .ant-select root itself
+.ant-select {
+  background-color: #FFFFFF !important;
+}
+
+.ant-picker:hover,
+.ant-input:hover,
+.ant-input-affix-wrapper:hover,
+.ant-select:hover,
+.ant-picker.ant-picker-focused,
+.ant-input:focus,
+.ant-input-focused,
+.ant-input-affix-wrapper:focus,
+.ant-input-affix-wrapper-focused,
+.ant-select.ant-select-focused {
+  border-color: #035F5C !important;
+  box-shadow: none !important;
+}
+
+// Disabled / read-only fields: Muted pair
+.ant-input[disabled],
+.ant-input-disabled,
+.ant-input-affix-wrapper-disabled,
+.ant-picker-disabled,
+.ant-select-disabled {
+  background-color: #F0F0F0 !important;
+  color: #0C0C0C !important;
+  border-color: #8EB974 !important;
+}
+
+.ant-picker-input > input[disabled],
+.ant-select-disabled .ant-select-selection-item {
+  color: #0C0C0C !important;
+}
+
+// the open options list matches the rounded field; the chosen option is Hover green
+.ant-select-dropdown {
+  border-radius: 8px !important;
+}
+
+.ant-select-dropdown .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background-color: #CCDDC5 !important;
+  color: #000000 !important;
+}
+
+// Multi-select (MultipleSelectCheckmarks etc.) collapses its selection into one
+// line with an ellipsis instead of wrapping and growing taller than 40px.
+// (v6 names: .ant-select-content / .ant-select-content-item.)
+.ant-select-multiple .ant-select-content {
+  flex-wrap: nowrap !important;
+  overflow: hidden !important;
+}
+
+.ant-select-content-item {
+  overflow: hidden !important;
+  max-width: 100%;
+}
+
+.ant-select-content-item .ant-select-selection-item {
+  overflow: hidden !important;
+  max-width: 100%;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.ant-picker-time-panel-column::after {
+  display: none !important;
+}
+
+// ---------------------------------------------------------------------------
+// Buttons. The shared Button element's look comes from button.module.css; these
+// cover every antd Button: disabled ones use the Neutral pair, and large
+// buttons keep the 40px height the app's layouts were built around (antd v5+
+// sizes buttons with a fixed height that the module classes' height:100% would
+// otherwise collapse).
+.ant-btn:disabled,
+.ant-btn[disabled] {
+  background-color: #6D6D6D !important;
+  border-color: #6D6D6D !important;
+  color: #FFFFFF !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}
+
+.ant-btn.ant-btn-lg {
+  min-height: 40px;
+}
+
+// ---------------------------------------------------------------------------
+// Notification Elements wrapper: a raised (3D) dark-teal card that flips in,
+// wraps the whole message, and shows antd's time-left bar along the bottom.
+// (The class name is historical.)
+.app-teal-notification.ant-notification-notice {
+  position: relative;
+  width: 380px;
+  padding: 14px 44px 18px 16px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #035F5C;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -3px 0 rgba(0, 0, 0, 0.15),
+    0 14px 28px rgba(3, 95, 92, 0.35),
+    0 4px 10px rgba(0, 0, 0, 0.12);
+  transform-origin: top center;
+  animation: notificationFlipIn 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.25);
+  // antd v6 puts notices in a column flexbox whose height it measures; as a
+  // shrinkable flex item the card collapsed to its padding and clipped the
+  // message, so it keeps its natural height instead
+  flex-shrink: 0;
+  height: auto !important;
+}
+
+// no fixed heights anywhere: long messages wrap in full
+.app-teal-notification .ant-notification-notice-title {
+  margin: 0 0 0 46px !important;
+  padding-right: 0 !important;
+  color: #FFFFFF !important;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.app-teal-notification .ant-notification-notice-description {
+  display: none;
+}
+
+.app-teal-notification .ant-notification-notice-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  margin: 0;
+  line-height: 1;
+  transform: translateY(-50%);
+}
+
+.app-notification-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  color: #FFFFFF;
+  font-size: 17px;
+}
+
+.app-teal-notification .ant-notification-notice-close {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+  color: #FFFFFF !important;
+  opacity: 0.85;
+}
+
+.app-teal-notification .ant-notification-notice-close:hover {
+  opacity: 1;
+  background: transparent !important;
+}
+
+// time-left bar (antd's showProgress; pauses while hovered)
+.app-teal-notification .ant-notification-notice-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  margin: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #8EB974;
+  accent-color: #8EB974;
+}
+
+.app-teal-notification .ant-notification-notice-progress::-webkit-progress-bar {
+  background: transparent;
+}
+
+.app-teal-notification .ant-notification-notice-progress::-webkit-progress-value {
+  background: #8EB974;
+}
+
+.app-teal-notification .ant-notification-notice-progress::-moz-progress-bar {
+  background: #8EB974;
+}
+
+@keyframes notificationFlipIn {
+  0% {
+    opacity: 0;
+    transform: perspective(700px) rotateX(-80deg) translateY(-24px) scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(700px) rotateX(0) translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-teal-notification.ant-notification-notice {
+    animation: none;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Login / Sign Up (they put this class on <body>): the page itself never scrolls
+body.login-page {
+  overflow: hidden !important;
+}
+
+// ---------------------------------------------------------------------------
+// Sidebar: the card look lives in Sidebar/sidebar.module.css; these only keep
+// antd's own menu decorations out of the way.
 .ant-menu-submenu-arrow {
   display: none;
 }
 
-.ant-menu-sub.ant-menu-inline {
-  background-color: #025f5c;
-  color: whitesmoke !important;
-}
-.ant-menu-item-selected {
-  background-color: #43b78f !important;
-  color: #fff;
-  border-right: none !important;
-}
-// global css for sidebar ends here
-.ant-table-thead > tr * {
-  background-color: #e7ecec !important;
-  color: #b27706 !important;
-  font-weight: bold !important;
-}
-
-.ant-table-row {
-  background-color: #f6f6f6 !important;
-}
-.ant-layout {
-  background-color: #f6f6f6;
-}
-.ant-scrolling-effect {
-  width: 100% !important;
-}
-// antd v6 has no .ant-select-selector: the .ant-select root is the box.
-.ant-select {
-  background-color: #5d6a6a !important;
-}
-
-.ant-menu-submenu-title {
-  color: #80b1af !important;
-  background-color: inherit !important;
-}
-
-.ant-menu-item-active > .ant-menu-title-content > a:hover {
-  color: white !important;
-}
-.ant-menu-item-active > .ant-menu-title-content:hover {
-  color: inherit !important;
-}
 .ant-menu-inline .ant-menu-item::after {
   border-right: none !important;
 }
-.ant-menu-item:active,
-.ant-menu-submenu-title:active {
-  background: none !important;
+
+.ant-menu-title-content {
+  white-space: normal !important;
+  flex: auto !important;
 }
-.ant-menu-item-only-child:hover {
-  color: #fff !important;
+
+.ant-layout-sider.ant-layout-sider-dark {
+  position: relative;
+  min-width: 0;
+  min-height: auto;
+  background: #F4FFF0 !important;
+  transition: all 0.2s;
 }
-// antd v6: the suffix icon (was .ant-select-arrow) sits in the select's own
-// flex row, so v4's absolute positioning is no longer needed.
+
+.ant-layout {
+  background-color: #F4FFF0;
+}
+
+.ant-scrolling-effect {
+  width: 100% !important;
+}
+
+// ---------------------------------------------------------------------------
+// Tables: Secondary header with rounded top corners and no column separators,
+// striped rows (Table element, table.css), Hover-green row hover, no grid lines.
+// Header/hover colours also come from theme.js Table tokens.
+.ant-table-thead > tr > th,
+.ant-table-thead > tr > td {
+  background-color: #8EB974 !important;
+  color: #000000 !important;
+  font-weight: 500 !important;
+}
+
+// no column separators: bordered tables draw them as each cell's right border,
+// non-bordered ones as a ::before line
+.ant-table-thead > tr > th:not(:last-child) {
+  border-right-color: transparent !important;
+}
+
+.ant-table-thead > tr > th::before {
+  display: none !important;
+}
+
+// no grid lines; the table is transparent so the rounded header corners show
+// the card behind
+.ant-table {
+  background: transparent !important;
+}
+
+.ant-table-thead > tr > th,
+.ant-table-tbody > tr > td {
+  border-bottom: none !important;
+}
+
+.ant-table-container table > thead > tr:first-child > th:first-child {
+  border-top-left-radius: 10px !important;
+}
+
+.ant-table-container table > thead > tr:first-child > th:last-child {
+  border-top-right-radius: 10px !important;
+}
+
+.ant-table-tbody > tr > td {
+  color: #000000;
+}
+
+// the whole table is a rounded card: a thin Secondary outline (no inner grid
+// lines) with all four corners rounded; the rows and header are clipped to it
+.ant-table-wrapper .ant-table {
+  border: 1px solid #8EB974;
+  border-radius: 10px !important;
+  overflow: hidden;
+}
+
+.ant-table-wrapper .ant-table-container {
+  border-radius: 9px !important;
+}
+
+.ant-table-tbody > tr.ant-table-row:hover > td {
+  background-color: #CCDDC5 !important;
+}
+
+// ---------------------------------------------------------------------------
+// Form sections (Paper with the `section` prop): see Paper/paper.js. Sections
+// sit 20px apart wherever they're stacked.
+.form-section + .form-section {
+  margin-top: 20px;
+}
+
+:focus-visible {
+  outline: none !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+// The duration filter (Elements/FilterBar) shows a list icon as its suffix;
+// in antd v6 the suffix sits in the select's own flex row.
 .ant-select-suffix {
   display: inline-flex;
   align-items: center;
   font-style: normal;
   line-height: 0;
   text-transform: none;
-  font-size: 12px;
 }
-.ant-layout-sider.ant-layout-sider-dark {
-  position: relative;
-  min-width: 0;
-  min-height: auto;
-  background: #025f5c !important;
-  transition: all 0.2s;
-}
-
-// .ant-menu-title-content{
-//   word-break: break-word;
-//   overflow: hidden;
-//   text-overflow: ellipsis;
-//   display: -webkit-box;
-//   line-height: 16px; /* fallback */
-//   max-height: 32px; /* fallback */
-//   -webkit-line-clamp: 2; /* number of lines to show */
-//   -webkit-box-orient: vertical;
-// }
-.MuiButtonBase-root.Mui-disabled {
-  cursor: default !important;
-  pointer-events: none !important;
-  filter: grayscale(100%) !important;
-  opacity: 0.5 !important;
-}
-.ant-menu-title-content {
-  white-space: nowrap !important;
-  overflow: initial !important;
-  text-overflow: initial !important;
-  flex: none !important;
-  display: block !important;
-}
-span.MuiButton-startIcon.MuiButton-iconSizeMedium {
-  margin: 0 !important;
-}
-
-//Accordian Style
-.MuiAccordion-rounded:last-child {
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  background-color: #dfe8e8;
-}
-
-.MuiAccordion-root:before {
-background-color: none !important;
-}
-
-.MuiAccordionSummary-content article.ant-typography {
-  color: #21706d;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.MuiAccordion-root .MuiAccordionSummary-root .MuiAccordionSummary-expandIcon .MuiSvgIcon-root {
- color: #21706d;	
-}
-
-
-//GRID HEIGHT ERROR
