@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "@material-ui/core";
+import { Button } from "antd";
 import styles from "./button.module.css";
 
 const CustomButton = ({
@@ -20,17 +20,23 @@ const CustomButton = ({
     <>
       <Button
         // style={style}
-        fullWidth={fullWidth}
-        type={type}
-        size={size}
-        startIcon={icon ? icon : null}
-        className={styles[applyClass] + " " + styles[disableClass]}
+        block={fullWidth}
+        // antd's `type` is the visual variant (primary/dashed/...), so the
+        // native button type that callers pass ("submit") goes to htmlType.
+        htmlType={type}
+        size={size === "large" ? "large" : "middle"}
+        className={`${styles.muiButton} ${size === "small" ? styles.muiSmall : size === "large" ? styles.muiLarge : ""} ${styles[applyClass]} ${styles[disableClass]}`}
         disabled={disableBtn}
         onClick={click}
-        endIcon={endIcon ? endIcon : null}
         align={align}
       >
-        {text}
+        {/* One flex row spaces both antd icons and the plain
+            <i className="icon-..."> font icons this app passes in. */}
+        <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+          {icon ? icon : null}
+          {text ? <span>{text}</span> : null}
+          {endIcon ? endIcon : null}
+        </span>
       </Button>
     </>
   );

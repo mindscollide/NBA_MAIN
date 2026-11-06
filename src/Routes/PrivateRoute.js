@@ -1,49 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Route, Redirect } from "react-router-dom";
-import { useSelector } from "react-redux";
+import React from "react";
+import { Navigate } from "react-router";
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
-  const state = useSelector((state) => state);
-  const { setupForms } = state;
-  const [statePath, setStatePath] = useState([]);
+// Guards everything under App's "/NBA/*" route. Only checks that a token
+// exists; the role/route check that was commented out here under react-router
+// v5 is not enabled yet.
+const PrivateRoute = ({ children }) => {
   const token = JSON.parse(localStorage.getItem("token"));
-  const [flag, setFlag] = useState(true);
-
-  // useEffect(() => {
-  //   let FormData = setupForms.routingData.response
-  //   if (FormData !== undefined) {
-  //     let count = FormData.length
-  //     let a = []
-  //     FormData.map(data => {
-  //       for (let i = 0; i < count; i++) {
-  //         if ("/NBA/" + data.path === rest.location.pathname) {
-  //           setFlag(true)
-  //           a.push(true);
-  //         } else {
-  //           a.push(false);
-  //         }
-  //       }
-  //     })
-
-  //     const found = a.find(element => element === true);
-  //     if (found === true) {
-  //       setFlag(true)
-  //     } else {
-  //       setFlag(false)
-  //     }
-  //   }
-  // }, [rest])
-
-  return (
-
-    <Route
-      {...rest}
-      render={(props) => {
-        return !token ? <Redirect to="/404" /> : flag ? <Component {...props} /> : <Redirect to="/404" />;
-
-      }}
-    />
-  )
-
+  return token ? children : <Navigate to="/404" replace />;
 };
 export default PrivateRoute;

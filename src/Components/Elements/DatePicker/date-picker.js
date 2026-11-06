@@ -1,8 +1,7 @@
 import React from "react";
 import { DatePicker, Typography } from "antd";
-import { Box } from "@material-ui/core";
 import styles from "./datepicker.module.css";
-import moment from "moment";
+import dayjs from "dayjs";
 const CustomDatePicker = ({
   label,
   width,
@@ -21,23 +20,23 @@ const CustomDatePicker = ({
   }
 
   const disabledDate = (value) => {
-    return value && value > moment().endOf("day");
+    return value && value > dayjs().endOf("day");
   };
   return (
-    <Box display="flex" alignItems="center">
+    <div style={{ display: "flex", alignItems: "center" }}>
       <Text>{label}</Text>
       <DatePicker
         disabledDate={DateRange ? disabledDate : false}
         disabled={disable}
         format={dateFormat}
-        value={value ? moment(value, dateFormat) : null}
+        value={value ? dayjs(value, dateFormat) : null}
         placeholder={placeholder}
         onChange={onChange}
         size={size}
         width={`${width}`}
         className={styles["textfieldsize"]}
       />
-    </Box>
+    </div>
   );
 };
 export default CustomDatePicker;

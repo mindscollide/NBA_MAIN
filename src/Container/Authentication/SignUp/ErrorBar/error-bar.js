@@ -1,17 +1,13 @@
 import React from "react";
 import styles from "./error.module.css";
-import Fade from "@material-ui/core/Fade";
-import Typography from "@material-ui/core/Typography";
+// Fades in over 1s, as MUI's <Fade in timeout={1000}> did; the text keeps
+// MUI's caption typography (0.75rem, block).
 const ErrorBar = ({ errorText }) => {
   return (
-    <Fade in timeout={1000}>
-      <div className={styles.error}>
-        {" "}
-        <Typography variant="caption" display="block">
-          {errorText}
-        </Typography>
-      </div>
-    </Fade>
+    <div className={`${styles.error} ${styles.fadeIn}`}>
+      {" "}
+      <span className={styles.caption}>{errorText}</span>
+    </div>
   );
 };
 

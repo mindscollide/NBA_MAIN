@@ -1,10 +1,11 @@
-// this is our base url or machine api
-const baseURL = "http://192.168.18.241";
+// this is our base url or machine api: VITE_API_BASE_URL from .env
+// (see .env.example); the local backend (Services/run-local.ps1) by default
+const baseURL = import.meta.env.VITE_API_BASE_URL || "http://localhost";
 // this is our service URLs
 const authenticationServiceURL = ":9020/ERM_Auth";
-const findCustomerFromMisysServiceURL = ":9012/WOF_Search";
-const findCustomerAccountDetailsFromMisysServiceURL = ":9012/WOF_Search";
-const WriteOffServiceURL = ":9013/WOF_Persist";
+const findCustomerFromMisysServiceURL = ":9025/NBA_CustomerSearch"; // was WOF_Search :9012
+const findCustomerAccountDetailsFromMisysServiceURL = ":9025/NBA_CustomerSearch"; // WOF only, NBA has no FindAccountDetails
+const WriteOffServiceURL = ":9023/NBA_Persist"; // was WOF_Persist :9013 (only dead WOF code uses it)
 const ApprovalsServiceURL = ":9022/NBA_Approval";
 const reportsURL = ":9024/NBA_Reports";
 const SetupFormsUrl = ":9021/NBA_Admin";

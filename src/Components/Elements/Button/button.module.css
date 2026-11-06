@@ -360,3 +360,24 @@
   font-weight: 600 !important;
   width: 433px !important;
 } */
+/* MUI v4 Button defaults this app's buttons were built on; the classes
+   above still override them with !important where they set a value. */
+.muiButton:global(.ant-btn) {
+  height: auto;
+  min-width: 64px;
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+}
+.muiSmall:global(.ant-btn) {
+  padding: 4px 10px;
+  font-size: 0.8125rem;
+}
+.muiLarge:global(.ant-btn) {
+  padding: 8px 22px;
+  font-size: 0.9375rem;
+}

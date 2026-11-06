@@ -1,10 +1,9 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Container, Box, Grid } from "@material-ui/core";
 import styles from "./style.module.css";
 import { Input, Typography } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { Button, Loader, Notification } from "../../../Components/Elements";
-import { useHistory, useRouteMatch, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import {
   signIn,
@@ -12,14 +11,16 @@ import {
 } from "../../../store/actions/auth-actions";
 import Helper from "../../../Common/Functions/history_logout";
 import { clearestateBackbutton } from "./../../../store/actions/auth-actions";
+import { Row, Col } from "antd";
+import MaxWidthContainer from "../../../Components/Elements/MaxWidthContainer/max-width-container";
 const Login = () => {
   const state = useSelector((state) => state);
   const UserIDInput = useRef(null);
   const dispatch = useDispatch();
   const { auth, ui } = state;
   const { Title } = Typography;
-  const history = useHistory();
-  Helper.history = history;
+  const navigate = useNavigate();
+  Helper.navigate = navigate;
   const [credentials, setCredentials] = useState({
     UserName: "",
     Password: "",
@@ -49,7 +50,7 @@ const Login = () => {
   const validateHandler = (e) => {
     e.preventDefault();
     if (credentials.UserName != "" && credentials.Password != "") {
-      dispatch(signIn(credentials, history));
+      dispatch(signIn(credentials, navigate));
     } else {
       setOpen({
         ...open,
@@ -59,11 +60,9 @@ const Login = () => {
     }
   };
 
-  const route = useRouteMatch();
-  const path = route.path;
 
   useEffect(() => {
-    Helper.history = history;
+    Helper.navigate = navigate;
     document.body.className = "login-page";
     return () => {
       document.body.className = "";
@@ -137,13 +136,15 @@ const Login = () => {
   const [readOnly, setReadOnly] = useState(true);
 
   return (
-    <Container maxWidth="lg">
+    <MaxWidthContainer>
       <form onSubmit={(e) => validateHandler(e)} autoComplete="disabled">
-        <Box className={styles["loginBox"]}>
-          <Grid container spacing={5}>
-            <Grid item lg={6} md={6} sm={12}></Grid>
-            <Grid item lg={6} md={6} sm={12} align="right">
-              <Box className={styles.loginBody}>
+        <div className={styles["loginBox"]}>
+          {/* MUI Grid containers were width:100% (plus the gutter); a Row in this
+              flex box would otherwise shrink to its content. */}
+          <Row gutter={[40, 40]} style={{ width: "calc(100% + 40px)" }}>
+            <Col xl={12} lg={12} sm={24}></Col>
+            <Col xl={12} lg={12} sm={24} align="right">
+              <div className={styles.loginBody}>
                 <Title
                   level={3}
                   className={styles["loginTitle"]}
@@ -191,19 +192,15 @@ const Login = () => {
                 />
 
                 {!auth.isLoggedIn && auth.ResponseMessage !== "" ? (
-                  <Box align="center">
+                  <div align="center">
                     <div className={styles.error + " " + styles.fade}>
                       {auth.ResponseMessage}
                     </div>
-                  </Box>
+                  </div>
                 ) : null}
 
                 <div className={styles["loginbtnbox"]} />
-                <Box
-                  align="center"
-                  display="flex"
-                  justifyContent="space-evenly"
-                >
+                <div align="center" style={{ display: "flex", justifyContent: "space-evenly" }}>
                   <Button
                     applyClass="btnBorderStyled"
                     text="Login"
@@ -216,15 +213,15 @@ const Login = () => {
                       text="SIGN UP"
                     />
                   </Link>
-                </Box>
-              </Box>
-            </Grid>
-          </Grid>
-        </Box>
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </div>
       </form>
       <Notification setOpen={setOpen} open={open.open} message={open.message} />
       {auth.Loading ? <Loader /> : null}
-    </Container>
+    </MaxWidthContainer>
   );
 };
 

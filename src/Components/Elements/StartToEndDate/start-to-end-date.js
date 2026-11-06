@@ -1,7 +1,6 @@
 import React from "react";
 import { DatePicker, Space, Typography } from "antd";
-import { Box } from "@material-ui/core";
-import moment from "moment";
+import dayjs from "dayjs";
 import styles from "../StartToEndDate/startdate.module.css"
 const StartToEndDate = ({ label, width, size, change, DateRange ,startvalue,endvalue}) => {
   const { Text } = Typography;
@@ -17,20 +16,20 @@ const StartToEndDate = ({ label, width, size, change, DateRange ,startvalue,endv
   };
   const disabledDate = (value) => {
     // Can not select future dates
-    return value && value > moment().endOf("day");
+    return value && value > dayjs().endOf("day");
   };
   return (
-    <Box display="flex" alignItems="center">
+    <div style={{ display: "flex", alignItems: "center" }}>
       {label ? <Text className={styles["label"]}>{label}</Text> : null}
       <RangePicker
         disabledDate={DateRange ? disabledDate : false}
         onChange={picker}
-        value={startvalue && endvalue?[moment(startvalue, dateFormat), moment(endvalue, dateFormat)]:null}
+        value={startvalue && endvalue?[dayjs(startvalue, dateFormat), dayjs(endvalue, dateFormat)]:null}
         format={dateFormat}
         size={size}
         // style={{ width: `${width}`, marginLeft: "5px" }}
       />
-    </Box>
+    </div>
   );
 };
 
