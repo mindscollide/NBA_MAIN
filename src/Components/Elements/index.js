@@ -24,6 +24,8 @@ import Upload from './Upload/upload';
 import Loader from './Loader/Loader'
 import {Notification,Message} from './Notifications'
 import {FormattedInputs,NumberFormatCustom} from './FormatedInput/FormatedInput'
+import MaxWidthContainer from './MaxWidthContainer/max-width-container'
+import AuthLayout from './AuthLayout/AuthLayout'
 export {
     ADate,
     ADayMonthCount,
@@ -52,6 +54,8 @@ export {
     Message,
     ConsolidateBox,
     FormattedInputs,
-    NumberFormatCustom
+    NumberFormatCustom,
+    MaxWidthContainer,
+    AuthLayout
 }
 
