@@ -1,6 +1,6 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "Non-Banking Assets & Debt Property Swap",
+    "short_name": "NBA",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -13,7 +13,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#ffffff",
+    "theme_color": "#8EB974",
     "background_color": "#ffffff",
     "display": "standalone"
 }

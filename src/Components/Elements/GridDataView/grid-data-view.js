@@ -1,7 +1,5 @@
 import React from "react";
-import styles from "../GridDataView/grid.module.css"
-import { Typography } from "antd";
-import { Row, Col } from "antd";
+import { Typography, Row, Col } from "antd";
 import MaxWidthContainer from "../MaxWidthContainer/max-width-container";
 
 const GridDataView = () => {
@@ -21,10 +19,14 @@ const GridDataView = () => {
       <Row>
         {data.map((item, index) => {
           return (
-            <Col xl={12} lg={12} sm={12}>
+            <Col lg={12} md={12} sm={12}>
               <Title
                 level={5}
-                className={styles["gridstyle"]}
+                style={{
+                  fontWeight: "bold",
+                  color: "#035F5C",
+                  fontSize: "16px",
+                }}
               >
                 {item.heading}
               </Title>

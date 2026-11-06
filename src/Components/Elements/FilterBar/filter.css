@@ -1,8 +1,9 @@
-.Iconstyle{
-    color: white !important;
+/* Duration filter: white rounded select (App.less) with a teal list icon */
+.Iconstyle {
+    color: #035F5C !important;
+    font-size: 16px;
 }
 
-.FieldStyle{
-    color: white !important;
+.FieldStyle {
     width: 240px !important;
 }

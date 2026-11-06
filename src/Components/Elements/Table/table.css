@@ -3,6 +3,11 @@
   pointer-events: none;
 }
 
+/* striped rows: White / Card (#E4EDE1) */
 .rowColor {
-  background-color: white !important;
+  background-color: #FFFFFF !important;
+}
+
+.rowColor.rowColorAlt {
+  background-color: #E4EDE1 !important;
 }

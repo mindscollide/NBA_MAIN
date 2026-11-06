@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./style.module.css";
-import { Input, Typography } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+import { Input, Row, Col } from "antd";
 import {
   Button,
   InputWithBtn,
   Loader,
   Notification,
+  AuthLayout,
 } from "../../../Components/Elements";
-import { useNavigate, Link } from "react-router";
+import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import ErrorBar from "./ErrorBar/error-bar";
 import {
@@ -17,6 +17,7 @@ import {
   signUp,
   clearestate,
   clearestateBackbutton,
+  roleList,
 } from "./../../../store/actions/auth-actions";
 
 import TextField from "../../../Components/Elements/InputFields/TextField/text-field";
@@ -27,19 +28,18 @@ import {
   validEmailAddress,
 } from "../../../Common/Functions/validations";
 import { validateemail } from "../../../Common/Api/apis-config";
-import { Row, Col } from "antd";
-import MaxWidthContainer from "../../../Components/Elements/MaxWidthContainer/max-width-container";
 
 // import ripple from "../../../assets/images/ripple"
 
 const SignUp = () => {
   // to be use when get the api
-  const state = useSelector((state) => state);
+  const auth = useSelector((state) => state.auth);
+  const ui = useSelector((state) => state.ui);
   const [finishStatus, setfinishStatus] = useState(false);
   const dispatch = useDispatch();
-  const { auth, ui } = state;
   const [fields, setFields] = useState(false);
-  const { Title } = Typography;
+  // AuthLayout hands back its animated "switch to Login" function here
+  const switchToLogin = useRef(null);
   const [btnDisable, setbtnDisable] = useState(false);
   const [emailAfterVerify, setEmailAfterVerify] = useState();
   const [emailAfterVerifyError, setEmailAfterVerifyError] = useState("");
@@ -177,17 +177,16 @@ const SignUp = () => {
         isSuccess: false,
       },
     });
-    if (btnDisable === true) {
-      // (was an argument-less navigate(), which did nothing)
-      gobackHandler();
+    gobackHandler();
+  };
+  const gobackHandler = () => {
+    if (switchToLogin.current) {
+      // animated switch; AuthLayout's onSwitch clears the sign-up state
+      switchToLogin.current();
     } else {
       navigate("/");
       dispatch(clearestate(navigate));
     }
-  };
-  const gobackHandler = () => {
-    navigate("/");
-    dispatch(clearestate(navigate));
   };
   useEffect(() => {
     console.log(auth.ResponseMessage);
@@ -225,6 +224,7 @@ const SignUp = () => {
         for (let i = 0; i < numChars.length; i++) {
           showText += "•";
         }
+        console.log("passwordpasswordpassword", showText, fieldValue);
         setCredentialsp({
           ...credentialsp,
           ["fakePassword"]: showText,
@@ -269,7 +269,6 @@ const SignUp = () => {
         return null;
     }
   };
-
   const roleHandler = (e, val) => {
     setRoleValue(val);
     roles.map((data) => {
@@ -347,6 +346,16 @@ const SignUp = () => {
     });
     dispatch(clearestateBackbutton(navigate));
   };
+  useEffect(() => {
+    // console.log("auth.roelList", auth.roelList);
+    if (auth.roelList.length > 0) {
+      // console.log("auth.roelList", auth.roelList);
+
+      setRoles(auth.roelList);
+    } else {
+      setRoles([]);
+    }
+  }, [auth.roelList]);
   // to set body backgound
   useEffect(() => {
     gobackBrowserHandler();
@@ -539,25 +548,18 @@ const SignUp = () => {
       },
     });
   }, [auth.responseData.email]);
-  useEffect(() => {
-    if (auth.roelList.length > 0) {
-      setRoles(auth.roelList);
-    } else {
-      setRoles([]);
-    }
-    console.log("auth.roelList", auth.roelList);
-  }, [auth.roelList]);
   // set roles
   useEffect(() => {
+    // console.log("auth.roelList", auth.roelList);
     if (roles) {
+      // console.log("auth.roelList", auth.roelList);
       setRolesName(
         roles.map((role, i) => {
           return role.roleName;
         })
       );
     }
-  }, []);
-
+  }, [roles]);
   // set verify email password
   const verifyEmailPassword = (email, password) => {
     console.log("done", email, password);
@@ -606,194 +608,153 @@ const SignUp = () => {
     setFields(true);
   };
   useEffect(() => {}, [auth.isFail, auth.isError]);
-
-  let userNameBio = bio.userName.content;
-  console.log("bio", userNameBio);
-
   return (
-    <MaxWidthContainer>
-      <div className={styles["loginBox"]}>
-        {/* MUI Grid containers were width:100% (plus the gutter); a Row in this
-              flex box would otherwise shrink to its content. */}
-          <Row gutter={[40, 40]} style={{ width: "calc(100% + 40px)" }}>
-          <Col xl={12} lg={12} sm={24}></Col>
-          <Col xl={12} lg={12} sm={24} align="right">
-            <div className={styles.loginBody}>
-              <Title
-                level={3}
-                // style={{ color: "white", textAlign: "center", marginTop: 10 }}
-                className={styles["loginTitle"]}
-              >
-                Sign Up Request
-              </Title>
-              <div className={styles["M-Top"]} />
-              {/* first step code */}
-              {auth.isError ? (
-                <>
-                  <Input
-                    onChange={setFieldsHandler}
-                    placeholder="Enter Email Address"
-                    size="large"
-                    fullWidth
-                    name="emailAddress"
-                    autoComplete="off"
-                    autocomplete={false}
-                    autoFocus
-                  />
-                  <div className={styles["loginbtnbox"]} />
-                  <InputWithBtn
-                    // autoComplete="off"
-                    placeholder="Enter Password"
-                    onchange={setFieldsHandler}
-                    // value={credentials.password.content}
-                    // value={credentialsp.fakePassword}
-                    autoComplete="off"
-                    style={{
-                      webkitTextSecurity: "disc",
-                    }}
-                    type="text"
-                    size="medium"
-                    // type="password"
-                    name="password"
-                    fullWidth
-                    textFieldSize="small"
-                    click={() =>
-                      verifyEmailPassword(
-                        credentials.emailAddress.content,
-                        credentials.password.content
-                      )
-                    }
-                    applyClass="next"
-                    classpas="disc"
-                    icon={
-                      credentials.password.isError === false ? (
-                        <i className="icon-check  icon-size-one"></i>
-                      ) : (
-                        <i className="icon-arrow-right icon-size-one"></i>
-                      )
-                    }
-                  />
-                  {/* </>
-                  )} */}
-                  {/* ErrorBar of Email */}
-                  {credentials.password.isFail && (
-                    <ErrorBar errorText="This is a error" />
-                  )}
-                  {credentials.emailAddress.isFail && (
-                    <ErrorBar errorText={emailAfterVerifyError} />
-                  )}
-                  <Col lg={24} xl={24} align="center">
-                    <div className={styles["llloginbtnbox"]} />
-                    <Button
-                      text="Go Back"
-                      icon={null}
-                      endIcon=""
-                      applyClass="btnBorderStyledRedSignup"
-                      disable={false}
-                      click={goback}
-                    />
-                  </Col>
-                </>
-              ) : (
-                <Row gutter={[40, 40]} align="left">
-                  <Col lg={12} xl={12}>
-                    <label className={styles.lable}>Email</label>
-                    <TextField
-                      size="small"
-                      placeholder="Enter Email"
-                      disable
-                      value={bio.email.content}
-                      // value={auth.responseData.email}
-                    />
-                    {/* <ErrorBar errorText="" /> */}
-                  </Col>
-                  <Col lg={12} xl={12}>
-                    <label className={styles.lable}>Username</label>
-                    <TextField
-                      size="small"
-                      placeholder="Enter User Name"
-                      disable
-                      value={bio.userName.content}
-                      // value={
-                      //   bio.userName.content === null ||
-                      //   bio.userName.content === "" ||
-                      //   bio.userName.content === undefined
-                      //     ? null
-                      //     : bio.userName.content.search("@") != -1
-                      //     ? bio.userName.content.split("@")[0]
-                      //     : bio.userName.content
-                      // }
-                    />
-                    {/* <ErrorBar errorText="" /> */}
-                  </Col>
-                  <div className={styles["llloginbtnbox"]} />
-                  <Col lg={12} xl={12}>
-                    <label className={styles.lable}>First Name</label>
-                    <TextField
-                      size="small"
-                      placeholder="Enter First Name"
-                      name="firstName"
-                      change={setFieldsHandler}
-                      value={bio.firstName.content}
-                      // value={auth.responseData.firstName}
-                      required={true}
-                    />
-
-                    {bio.firstName.isError && (
-                      <ErrorBar errorText={bio.firstName.errorMessage} />
-                    )}
-                  </Col>
-                  <Col lg={12} xl={12}>
-                    <label className={styles.lable}>Last Name</label>
-                    <TextField
-                      size="small"
-                      placeholder="Enter Last Name"
-                      name="lastName"
-                      change={setFieldsHandler}
-                      value={bio.lastName.content}
-                      required={true}
-                      // value={auth.responseData.lastName}
-                    />
-                    {bio.lastName.isError && (
-                      <ErrorBar errorText={bio.lastName.errorMessage} />
-                    )}
-                  </Col>
-                  <div className={styles["llloginbtnbox"]} />
-                  <Col lg={24} xl={24}>
-                    <label className={styles.lable}>Role</label>
-                    <Select
-                      value={roleValue}
-                      option={rolesName}
-                      placeholder="Select"
-                      name="roles"
-                      change={roleHandler}
-                      required={true}
-                    />
-                    {bio.roles.isError && (
-                      <ErrorBar errorText={bio.roles.errorMessage} />
-                    )}
-                    {auth.pendingError ? (
-                      <ErrorBar errorText={auth.ResponseMessage} />
-                    ) : null}
-                  </Col>
-                  <Col lg={24} xl={24} align="center">
-                    <div className={styles["llloginbtnbox"]} />
-                    <GroupedButtons data={buttonProps} />
-                  </Col>
-                </Row>
+    <>
+      <AuthLayout
+        mode="signup"
+        onSwitch={() => dispatch(clearestate(navigate))}
+        switchRef={switchToLogin}
+      >
+        <div className={styles.signupForm}>
+          <h1 className={styles.formTitle}>Create Account</h1>
+          <p className={styles.formSubtitle}>
+            Send a signup request with your LDAP ID
+          </p>
+          {/* first step code */}
+          {auth.isError ? (
+            <>
+              <div className={styles.ldapField}>
+                <Input
+                  onChange={setFieldsHandler}
+                  placeholder="Enter LDAP ID"
+                  size="large"
+                  name="emailAddress"
+                  autoComplete="off"
+                  autoFocus
+                />
+                <span className={styles.ldapIcon}>
+                  <i className="icon-user icon-size-one"></i>
+                </span>
+              </div>
+              <InputWithBtn
+                placeholder="Enter Password"
+                onchange={setFieldsHandler}
+                autoComplete="off"
+                type="text"
+                name="password"
+                fullWidth
+                textFieldSize="small"
+                click={() =>
+                  verifyEmailPassword(
+                    credentials.emailAddress.content,
+                    credentials.password.content
+                  )
+                }
+                applyClass="next"
+                classpas="disc"
+                icon={
+                  credentials.password.isError === false ? (
+                    <i className="icon-check  icon-size-one"></i>
+                  ) : (
+                    <i className="icon-arrow-right icon-size-one"></i>
+                  )
+                }
+              />
+              {/* ErrorBar of Email */}
+              {credentials.password.isFail && (
+                <ErrorBar errorText="This is a error" />
               )}
-              {/* second step component  */}
-              {/* {!credentials.emailAddress.isError &&
-              !credentials.password.isError ? ( */}
-
-              {/* ) : null} */}
-            </div>
-          </Col>
-        </Row>
-      </div>
+              {credentials.emailAddress.isFail && (
+                <ErrorBar errorText={emailAfterVerifyError} />
+              )}
+              <div className={styles.goBack}>
+                <Button
+                  text="Go Back"
+                  icon={null}
+                  endIcon=""
+                  applyClass="btnSecondarySolidReset"
+                  disable={false}
+                  click={goback}
+                />
+              </div>
+            </>
+          ) : (
+            <>
+              <Row gutter={[10, 14]}>
+                <Col md={12} lg={12} span={24}>
+                  <label className={styles.lableNotRequired}>Email</label>
+                  <TextField
+                    size="small"
+                    placeholder="Enter Email"
+                    disable
+                    value={bio.email.content}
+                  />
+                </Col>
+                <Col md={12} lg={12} span={24}>
+                  <label className={styles.lableNotRequired}>Username</label>
+                  <TextField
+                    size="small"
+                    placeholder="Enter User Name"
+                    disable
+                    value={bio.userName.content}
+                  />
+                </Col>
+                <Col md={12} lg={12} span={24}>
+                  <label className={styles.lable}>First Name</label>
+                  <TextField
+                    size="small"
+                    placeholder="Enter First Name"
+                    name="firstName"
+                    change={setFieldsHandler}
+                    value={bio.firstName.content}
+                    required={true}
+                  />
+                  {bio.firstName.isError && (
+                    <ErrorBar errorText={bio.firstName.errorMessage} />
+                  )}
+                </Col>
+                <Col md={12} lg={12} span={24}>
+                  <label className={styles.lable}>Last Name</label>
+                  <TextField
+                    size="small"
+                    placeholder="Enter Last Name"
+                    name="lastName"
+                    change={setFieldsHandler}
+                    value={bio.lastName.content}
+                    required={true}
+                  />
+                  {bio.lastName.isError && (
+                    <ErrorBar errorText={bio.lastName.errorMessage} />
+                  )}
+                </Col>
+                <Col md={24} lg={24} span={24}>
+                  <label className={styles.lable}>Role</label>
+                  <Select
+                    value={roleValue}
+                    option={rolesName}
+                    placeholder="Select"
+                    name="roles"
+                    change={roleHandler}
+                    required={true}
+                  />
+                  {bio.roles.isError && (
+                    <ErrorBar errorText={bio.roles.errorMessage} />
+                  )}
+                  {auth.pendingError ? (
+                    <ErrorBar errorText={auth.ResponseMessage} />
+                  ) : null}
+                </Col>
+              </Row>
+              <div className={styles.goBack}>
+                <GroupedButtons data={buttonProps} />
+              </div>
+            </>
+          )}
+        </div>
+      </AuthLayout>
       <Notification setOpen={setOpen} open={open.open} message={open.message} />
       {auth.Loading ? <Loader /> : null}
-    </MaxWidthContainer>
+    </>
   );
 };
 

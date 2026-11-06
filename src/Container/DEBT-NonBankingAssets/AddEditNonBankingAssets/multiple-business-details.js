@@ -205,7 +205,7 @@ const MultipleBusinessDetails = ({
         </AccordionSummary>
         <AccordionDetails>
           <Typography className={styles["typographywidth"]}>
-            <Paper padding="2" className={styles["nbabusinessPaper"]}>
+            <Paper section padding="2" className={styles["nbabusinessPaper"]}>
               <div align="right">
                 <Tooltip title="Delete" color={"Red"}>
                   {/* {ind  && ( */}
@@ -485,7 +485,7 @@ const MultipleBusinessDetails = ({
         </AccordionSummary>
         <AccordionDetails>
           <Typography className={styles["typographywidth"]}>
-            <Paper padding="2" className={styles["nbabusinessPaper"]}>
+            <Paper section padding="2" className={styles["nbabusinessPaper"]}>
               <div align="right">
                 <Tooltip title="Delete" color={"Red"}>
                   {/* {ind  && ( */}

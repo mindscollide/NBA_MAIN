@@ -1,20 +1,24 @@
 .sectionConsolidated {
-  background-color: #e7f5f4;
+  background-color: #E4EDE1;
 }
 .border-primary {
-  border: 1px solid #025f5c;
+  border: 1px solid #8EB974;
 }
 .sectionConsolidated .box {
   padding: 15px 10px !important;
   position: relative;
-  border: 1px solid #025f5c;
+  border: 1px solid #8EB974;
+  /* rounded like the section cards */
+  border-radius: 12px;
 }
 .sectionConsolidated .box > .boxHeading {
   position: absolute;
   top: -16px;
-  background-color: #e7f5f4;
+  /* clear of the rounded corner */
+  left: 14px;
+  background-color: #E4EDE1;
   padding: 5px;
-  color: #025f5c;
+  color: #035F5C;
   font-size: 12px;
   font-weight: 600;
   display: inline-block;
@@ -22,7 +26,7 @@
   max-width: 90%;
 }
 .disable {
-  color: #758181 !important;
+  color: #6D6D6D !important;
 }
 .contentbox {
   margin-top: 10px;
@@ -32,7 +36,7 @@
 } */
 
 .grid {
-  background-color: #e7f5f4 !important;
+  background-color: #E4EDE1 !important;
   padding: 1% !important;
 }
 
@@ -45,7 +49,7 @@
 }
 
 .fancyStyle {
-  background-color: #e7f5f4 !important;
+  background-color: #E4EDE1 !important;
   padding: 1% !important;
 }
 

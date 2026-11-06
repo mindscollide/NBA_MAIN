@@ -1,24 +1,23 @@
 import React, { useRef, useState, useEffect } from "react";
 import styles from "./style.module.css";
-import { Input, Typography } from "antd";
-import { UserOutlined } from "@ant-design/icons";
-import { Button, Loader, Notification } from "../../../Components/Elements";
-import { useNavigate, Link } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
+import { Input } from "antd";
 import {
-  signIn,
-  signupREsponseMessageCleare,
-} from "../../../store/actions/auth-actions";
+  UserOutlined,
+  LockOutlined,
+  EyeOutlined,
+  EyeInvisibleOutlined,
+} from "@ant-design/icons";
+import { Loader, Notification, AuthLayout } from "../../../Components/Elements";
+import { useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { signIn } from "../../../store/actions/auth-actions";
 import Helper from "../../../Common/Functions/history_logout";
 import { clearestateBackbutton } from "./../../../store/actions/auth-actions";
-import { Row, Col } from "antd";
-import MaxWidthContainer from "../../../Components/Elements/MaxWidthContainer/max-width-container";
 const Login = () => {
-  const state = useSelector((state) => state);
+  const auth = useSelector((state) => state.auth);
+  const ui = useSelector((state) => state.ui);
   const UserIDInput = useRef(null);
   const dispatch = useDispatch();
-  const { auth, ui } = state;
-  const { Title } = Typography;
   const navigate = useNavigate();
   Helper.navigate = navigate;
   const [credentials, setCredentials] = useState({
@@ -30,6 +29,7 @@ const Login = () => {
     open: false,
     message: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
   const setCredentialHandler = (e) => {
     if (e.target.name === "Password") {
       let numChars = e.target.value;
@@ -46,17 +46,18 @@ const Login = () => {
       setCredentials({ ...credentials, [e.target.name]: e.target.value });
     }
   };
-
   const validateHandler = (e) => {
+    // always stay on the page: an empty submit used to reload it before the
+    // "enter all credentials" notification could show
     e.preventDefault();
-    if (credentials.UserName != "" && credentials.Password != "") {
-      dispatch(signIn(credentials, navigate));
-    } else {
+    if (credentials.UserName === "" || credentials.Password === "") {
       setOpen({
         ...open,
         open: true,
         message: "Please Enter All Credentials",
       });
+    } else {
+      dispatch(signIn(credentials, navigate));
     }
   };
 
@@ -82,26 +83,22 @@ const Login = () => {
   useEffect(() => {
     dispatch(clearestateBackbutton());
   }, []);
-
   // for notifications for signup
   useEffect(() => {
-    console.log("notifications", auth.signUpResponseMessage);
-    if (auth.signUpResponseMessage !== "") {
-      console.log("notifications 2", auth.signUpResponseMessage);
-
+    console.log(auth.signUpResponseMessage);
+    if (auth.signUpResponseMessage != "") {
       setOpen({
         ...open,
         open: true,
         message: auth.signUpResponseMessage,
       });
-      // setTimeout(() => {
-      //   setOpen({
-      //     ...open,
-      //     open: false,
-      //     message: "",
-      //   });
-      // }, 10000);
-      // dispatch(signupREsponseMessageCleare())
+      setTimeout(() => {
+        setOpen({
+          ...open,
+          open: false,
+          message: "",
+        });
+      }, 10000);
     }
   }, [auth.signUpResponseMessage]);
 
@@ -123,105 +120,66 @@ const Login = () => {
         open: true,
         message: auth.SessionExpeireResponseMessage,
       });
+    } else {
+      setOpen({
+        ...open,
+        open: false,
+        message: "",
+      });
     }
-    // else{
-    //   setOpen({
-    //     ...open,
-    //     open: false,
-    //     message:"",
-    //   });
-    // }
   }, [auth.SessionExpeireResponseMessage]);
-
-  const [readOnly, setReadOnly] = useState(true);
-
   return (
-    <MaxWidthContainer>
-      <form onSubmit={(e) => validateHandler(e)} autoComplete="disabled">
-        <div className={styles["loginBox"]}>
-          {/* MUI Grid containers were width:100% (plus the gutter); a Row in this
-              flex box would otherwise shrink to its content. */}
-          <Row gutter={[40, 40]} style={{ width: "calc(100% + 40px)" }}>
-            <Col xl={12} lg={12} sm={24}></Col>
-            <Col xl={12} lg={12} sm={24} align="right">
-              <div className={styles.loginBody}>
-                <Title
-                  level={3}
-                  className={styles["loginTitle"]}
-                >
-                  Non-Banking Assets
-                </Title>
-                <div className={styles["M-Top"]} />
-                <Title level={5} className={styles["userid"]}>
-                  User ID
-                </Title>
-                <Input
-                  name="UserName"
-                  size="large"
-                  placeholder="User ID"
-                  prefix={<UserOutlined />}
-                  onChange={setCredentialHandler}
-                  value={credentials.UserName}
-                  ref={UserIDInput}
-                  autoComplete="disabled"
-                  readOnly={readOnly}
-                  onFocus={() => setReadOnly(false)}
-                  onBlur={() => setReadOnly(true)}
-                />
-                <div className={styles["M-Top"]}  />
-                <Title level={5} className={styles["userid"]}>
-                  Password
-                </Title>
-                <Input
-                  // type="password"
-                  name="Password"
-                  size="large"
-                  placeholder="password"
-                  onChange={setCredentialHandler}
-                  // value={credentials.Password}
-                  // autoComplete="new-password"
-                  // style={{ webkitTextSecurity: "disc" }}
-                  // type="text"
-                  // value={credentials.fakePassword}
-                  autoComplete="off"
-                  className={styles["websecurity"]}
-                  // style={{
-                  //   webkitTextSecurity: "disc",
-                  // }}
-                  type="text"
-                />
+    <>
+      <AuthLayout mode="login">
+        <form onSubmit={(e) => validateHandler(e)} className={styles.form}>
+          <h1 className={styles.formTitle}>Sign in to NBA</h1>
+          <p className={styles.formSubtitle}>Use your LDAP User ID and password</p>
 
-                {!auth.isLoggedIn && auth.ResponseMessage !== "" ? (
-                  <div align="center">
-                    <div className={styles.error + " " + styles.fade}>
-                      {auth.ResponseMessage}
-                    </div>
-                  </div>
-                ) : null}
+          <Input
+            name="UserName"
+            size="large"
+            placeholder="User ID"
+            prefix={<UserOutlined />}
+            onChange={setCredentialHandler}
+            value={credentials.UserName}
+            ref={UserIDInput}
+            autoComplete="off"
+            className={styles.field}
+          />
+          <Input
+            name="Password"
+            size="large"
+            placeholder="Password"
+            prefix={<LockOutlined />}
+            suffix={
+              <span
+                className={styles.eye}
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() => setShowPassword((shown) => !shown)}
+              >
+                {showPassword ? <EyeOutlined /> : <EyeInvisibleOutlined />}
+              </span>
+            }
+            onChange={setCredentialHandler}
+            autoComplete="off"
+            className={`${styles.field} ${showPassword ? "" : styles.passwordInputField}`}
+            type="text"
+          />
 
-                <div className={styles["loginbtnbox"]} />
-                <div align="center" style={{ display: "flex", justifyContent: "space-evenly" }}>
-                  <Button
-                    applyClass="btnBorderStyled"
-                    text="Login"
-                    endIcon={<i className="icon-login icon-size-one"></i>}
-                    type="submit"
-                  />
-                  <Link to="/Signup">
-                    <Button
-                      applyClass="btnBorderStyledRedSignup"
-                      text="SIGN UP"
-                    />
-                  </Link>
-                </div>
-              </div>
-            </Col>
-          </Row>
-        </div>
-      </form>
+          {!auth.isLoggedIn && auth.ResponseMessage !== "" ? (
+            <div className={styles.error + " " + styles.fade}>
+              {auth.ResponseMessage}
+            </div>
+          ) : null}
+
+          <button type="submit" className={styles.primaryButton}>
+            SIGN IN
+          </button>
+        </form>
+      </AuthLayout>
       <Notification setOpen={setOpen} open={open.open} message={open.message} />
       {auth.Loading ? <Loader /> : null}
-    </MaxWidthContainer>
+    </>
   );
 };
 

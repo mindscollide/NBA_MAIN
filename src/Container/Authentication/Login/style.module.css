@@ -1,52 +1,103 @@
-.loginBody {
-  width: 400px;
-  padding: 18px;
-  border-radius: 12px;
-  background: rgba(0, 0, 0, 0.2);
-  margin-top: 10%;
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: center;
+}
+
+.formTitle {
+  margin: 0 0 6px;
+  color: #389e0d;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.formSubtitle {
+  margin: 0 0 22px;
+  color: #6D6D6D;
+  font-size: 13px;
+}
+
+/* soft filled fields; the border turns dark teal on focus */
+.form :global(.ant-input-affix-wrapper).field {
+  margin-top: 14px;
+  height: 46px;
+  background: #E4EDE1 !important;
+  border: 1px solid #E4EDE1 !important;
+  border-radius: 10px !important;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.form :global(.ant-input-affix-wrapper).field :global(.ant-input) {
+  background: transparent !important;
+}
+
+/* hover and focus: #389e0d */
+.form :global(.ant-input-affix-wrapper).field:hover {
+  border-color: #389e0d !important;
+}
+
+.form :global(.ant-input-affix-wrapper-focused).field,
+.form :global(.ant-input-affix-wrapper-focused).field:hover {
+  background: #FFFFFF !important;
+  border-color: #389e0d !important;
+}
+
+.form :global(.ant-input-prefix) {
+  margin-right: 10px;
+  color: #8EB974;
+}
+
+.eye {
+  display: inline-flex;
+  color: #6D6D6D;
+  cursor: pointer;
+}
+
+.eye:hover {
+  color: #035F5C;
+}
+
+.passwordInputField {
+  -webkit-text-security: disc;
 }
 
 .error {
-  color: #dc3545;
-  font-size: 11px;
-  width: 100%;
-  background: #ce0000;
-  color: #ffff;
-  padding: 2px;
-  text-align: center !important;
-  margin-top: 10px;
+  margin-top: 12px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: #FC4343;
+  color: #FFFFFF;
+  font-size: 12px;
 }
 
 .fade {
   transition: opacity 0.15s linear;
 }
 
-.loginBox {
-  display: flex !important;
-  align-items: center !important;
-  height: 100vh !important;
+.primaryButton {
+  align-self: center;
+  min-width: 180px;
+  margin-top: 26px;
+  padding: 12px 40px;
+  border: none;
+  border-radius: 999px;
+  background: #8EB974;
+  color: #FFFFFF;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  box-shadow: 0 8px 18px rgba(142, 185, 116, 0.35);
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
 }
 
-.loginTitle {
-  color: white !important;
-  text-align: center !important;
-  margin-top: 10px !important;
+.primaryButton:hover {
+  background: #8EB974;
+  box-shadow: 0 10px 22px rgba(142, 185, 116, 0.45);
 }
 
-.M-Top {
-  margin-top: 6% !important;
-}
-
-.userid {
-  color: white !important;
-  text-align: left !important;
-}
-
-
-.loginbtnbox{
-  margin-top: 10% !important;
-}
-
-.websecurity{
-  -webkit-text-security: disc !important;
+.primaryButton:active {
+  transform: scale(0.97);
 }

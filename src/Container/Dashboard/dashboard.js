@@ -8,7 +8,7 @@ import { useSelector ,useDispatch} from "react-redux";
 import {SomeThingWentWrongRemove} from '../../store/actions/ui-actions'
 import { useNavigate } from "react-router";
 import Helper from "../../Common/Functions/history_logout";
-import styles from "./dashboard.module.css";
+import { APP_NAME } from "../../Common/app-name";
 const Dashboard = () => {
   const state = useSelector((state) => state);
   const navigate = useNavigate();
@@ -54,16 +54,13 @@ const Dashboard = () => {
   const [AppContent, setAppContent] = useState(UserSelection(token, role));
   return  (
     <>
-        <Layout>
+        <Layout style={Style.Shell}>
           <Header
-            title={"Non-Banking Assets & Debt Property Swap"}
+            title={APP_NAME}
             UserDetails={UserDetails}
             Notification ={AppContent.Notification}
           />
-          <Content
-          className={styles["maincontainer"]} 
-          // style={Style.MainContainer}
-          >
+          <Content>
             <Layout>
               <Sidebar Links={AppContent.SidebarData}  ui={ui} />
               <Main
@@ -80,12 +77,14 @@ const Dashboard = () => {
   
 };
 
-// const Style = {
-//   MainContainer: {
-//     position: "relative",
-//     marginTop: "30px",
-//     paddingLeft: `230px`,
-//   },
-// };
+const Style = {
+  // Header, Sidebar, Main and Footer are all fixed-positioned (see their own
+  // CSS), so this just pins the shell to exactly one viewport: the page never
+  // scrolls, only the main card does.
+  Shell: {
+    height: "100vh",
+    overflow: "hidden",
+  },
+};
 
 export default Dashboard;
