@@ -1,5 +1,5 @@
-// this is our base url or machine api: VITE_API_BASE_URL from .env
-// (see .env.example); the local backend (Services/run-local.ps1) by default
+// this is our base url or machine api: VITE_API_BASE_URL from .env / .env.production
+// (e.g. VITE_API_BASE_URL=http://localhost); the local backend (Services/run-local.ps1) by default
 const baseURL = import.meta.env.VITE_API_BASE_URL || "http://localhost";
 // this is our service URLs
 const authenticationServiceURL = ":9020/ERM_Auth";
