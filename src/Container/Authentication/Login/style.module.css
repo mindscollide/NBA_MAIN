@@ -7,7 +7,7 @@
 
 .formTitle {
   margin: 0 0 6px;
-  color: #035F5C;
+  color: #389e0d;
   font-size: 28px;
   font-weight: 700;
 }
@@ -32,14 +32,20 @@
   background: transparent !important;
 }
 
-.form :global(.ant-input-affix-wrapper-focused).field {
+/* hover and focus: #389e0d */
+.form :global(.ant-input-affix-wrapper).field:hover {
+  border-color: #389e0d !important;
+}
+
+.form :global(.ant-input-affix-wrapper-focused).field,
+.form :global(.ant-input-affix-wrapper-focused).field:hover {
   background: #FFFFFF !important;
-  border-color: #035F5C !important;
+  border-color: #389e0d !important;
 }
 
 .form :global(.ant-input-prefix) {
   margin-right: 10px;
-  color: #035F5C;
+  color: #8EB974;
 }
 
 .eye {
@@ -76,20 +82,20 @@
   padding: 12px 40px;
   border: none;
   border-radius: 999px;
-  background: #035F5C;
+  background: #8EB974;
   color: #FFFFFF;
   font-family: inherit;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 1.5px;
-  box-shadow: 0 8px 18px rgba(3, 95, 92, 0.35);
+  box-shadow: 0 8px 18px rgba(142, 185, 116, 0.35);
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
 }
 
 .primaryButton:hover {
-  background: #035F5C;
-  box-shadow: 0 10px 22px rgba(3, 95, 92, 0.45);
+  background: #8EB974;
+  box-shadow: 0 10px 22px rgba(142, 185, 116, 0.45);
 }
 
 .primaryButton:active {

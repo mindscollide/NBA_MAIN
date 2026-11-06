@@ -1,9 +1,8 @@
 /* Button looks (NBA palette). Every class keeps its own size (padding, width,
    height); the colours come from four roles:
-   - Primary  (solid):   #035F5C background and border, white text, 8px
+   - Primary  (solid):   #8EB974 background and border, white text, 8px
                          corners, weight 600. Hover keeps the same colours.
-   - Reset / unselected: white, 1px #8EB974 border, #035F5C text; the border
-                         turns #035F5C on hover.
+   - Reset / unselected: white, 1px #8EB974 border, #035F5C text.
    - Danger:             #FC4343 — outline (red border + text on white) or
                          filled (red with white text).
    - Neutral:            #6D6D6D with white text (disabled look). */
@@ -25,8 +24,8 @@
 .buttonPrimary3,
 .btnSecondarySolid2Search {
   background
-: #035F5C !important;
-  border: 1px solid #035F5C !important;
+: #8EB974 !important;
+  border: 1px solid #8EB974 !important;
   color: #FFFFFF !important;
   cursor: pointer !important;
   border-radius: 8px !important;
@@ -52,8 +51,8 @@
 .buttonPrimary2:hover,
 .buttonPrimary3:hover,
 .btnSecondarySolid2Search:hover {
-  background: #035F5C !important;
-  border-color: #035F5C !important;
+  background: #8EB974 !important;
+  border-color: #8EB974 !important;
   color: #FFFFFF !important;
 }
 
@@ -131,7 +130,7 @@
 /* ---------- Secondary (green): Search and Add Another buttons ----------
    btnSecondarySolid: Add Another Misys Code / Property / Valuation, Add
    Valuation, Add Record, Update Data; btnSecondarySolid2Search and
-   btnMiniPrimary: Search. #8EB974 with black text; declared after the
+   btnMiniPrimary: Search. #8EB974 with white text; declared after the
    Primary group so it wins for these classes. */
 .btnSecondarySolid,
 .btnSecondarySolid2Search,
@@ -141,7 +140,7 @@
 .btnMiniPrimary:hover {
   background: #8EB974 !important;
   border-color: #8EB974 !important;
-  color: #000000 !important;
+  color: #FFFFFF !important;
 }
 
 /* ---------- Reset / unselected ---------- */
@@ -162,7 +161,7 @@
 .btnSecondarySolidReset:hover,
 .btnSecondarySolidResetFull:hover {
   background: #FFFFFF !important;
-  border-color: #035F5C !important;
+  border-color: #8EB974 !important;
   color: #035F5C !important;
 }
 

@@ -2,12 +2,12 @@
   background-color: #E4EDE1;
 }
 .border-primary {
-  border: 1px solid #035F5C;
+  border: 1px solid #8EB974;
 }
 .sectionConsolidated .box {
   padding: 15px 10px !important;
   position: relative;
-  border: 1px solid #035F5C;
+  border: 1px solid #8EB974;
   /* rounded like the section cards */
   border-radius: 12px;
 }

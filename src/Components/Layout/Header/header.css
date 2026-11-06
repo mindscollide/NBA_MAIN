@@ -68,7 +68,7 @@ h3.ant-typography.heading-main {
 }
 
 .header-icon-card:hover {
-  background-color: #035F5C;
+  background-color: #8EB974;
   color: #FFFFFF;
 }
 
@@ -80,7 +80,7 @@ h3.ant-typography.heading-main {
 
 /* count badge on the card's top-right corner */
 .noti-icon .ant-badge-count {
-  background-color: #035F5C;
+  background-color: #8EB974;
   color: #FFFFFF;
   font-size: 11px;
   font-weight: 600;
@@ -132,7 +132,7 @@ h3.ant-typography.heading-main {
   width: 40px;
   height: 40px;
   border-radius: 100%;
-  border: 2px solid #035F5C;
+  border: 2px solid #8EB974;
   background-color: #E4EDE1;
   overflow: hidden;
   flex-shrink: 0;

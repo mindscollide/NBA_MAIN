@@ -33,7 +33,7 @@
 
 .formTitle {
   margin: 0 0 6px;
-  color: #035F5C;
+  color: #389e0d;
   font-size: 28px;
   font-weight: 700;
   text-align: center;
@@ -48,6 +48,18 @@
 
 /* LDAP ID: text on the left, a rounded dark-teal icon block overlapping the
    right end of the field (same shape as the password field + arrow button) */
+/* hover and selected (focus) fields share one border colour, #389e0d */
+.signupForm :global(.ant-input):hover,
+.signupForm :global(.ant-input-affix-wrapper):hover,
+.signupForm :global(.ant-select):hover,
+.signupForm :global(.ant-input):focus,
+.signupForm :global(.ant-input-focused),
+.signupForm :global(.ant-input-affix-wrapper-focused),
+.signupForm :global(.ant-select.ant-select-focused) {
+  border-color: #389e0d !important;
+  box-shadow: none !important;
+}
+
 .ldapField {
   display: flex;
   align-items: stretch;
@@ -70,7 +82,7 @@
   height: 40px;
   margin-left: -8px;
   border-radius: 8px;
-  background: #035F5C;
+  background: #8EB974;
   color: #FFFFFF;
   font-size: 18px;
 }

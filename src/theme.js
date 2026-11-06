@@ -7,8 +7,8 @@
 //   Black     #000000 / #FFFFFF   (#035F5C also as text/border on light)
 const theme = {
   token: {
-    colorPrimary: "#035F5C",
-    colorInfo: "#035F5C",
+    colorPrimary: "#8EB974",
+    colorInfo: "#8EB974",
     colorLink: "#035F5C",
     colorBgLayout: "#F4FFF0",
     colorText: "#000000",

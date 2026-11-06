@@ -1,6 +1,6 @@
 /* Each top-level menu is its own rounded card */
 .menuMainItem {
-  border: 1px solid #035F5C;
+  border: 1px solid #8EB974;
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 12px;
@@ -144,10 +144,10 @@
   color: #000000 !important;
 }
 
-/* Parent menu of the current page: Secondary green (#8EB974) with black text
+/* Parent menu of the current page: main green (#8EB974) with white text
    (declared last so it wins over the open/hover colors above) */
 .menuSidebarStyle :global(.ant-menu-submenu-selected > .ant-menu-submenu-title),
 .menuSidebarStyle :global(.ant-menu-submenu-selected > .ant-menu-submenu-title:hover) {
   background-color: #8EB974 !important;
-  color: #000000 !important;
+  color: #FFFFFF !important;
 }

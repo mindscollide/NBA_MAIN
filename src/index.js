@@ -12,7 +12,7 @@ import customParseFormat from "dayjs/plugin/customParseFormat";
 import "antd/dist/reset.css";
 import "./index.css";
 import App from "./App";
-import { HashRouter as Router } from "react-router";
+import { BrowserRouter as Router } from "react-router";
 import  {Provider}  from "react-redux";
 import store from "./store/store";
 import theme from "./theme";

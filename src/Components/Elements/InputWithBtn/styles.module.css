@@ -16,8 +16,8 @@
 .uploadButton,
 .btnSecondarySolidAddMoreComment,
 .next {
-  background-color: #035F5C !important;
-  border: 1px solid #035F5C !important;
+  background-color: #8EB974 !important;
+  border: 1px solid #8EB974 !important;
   color: #FFFFFF !important;
   box-shadow: none !important;
   height: 40px !important;
@@ -31,13 +31,13 @@
   font-size: 18px;
 }
 
-/* search buttons: Secondary green (#8EB974) with a black icon */
+/* search buttons: main green (#8EB974) with a white icon */
 .search,
 .search2,
 .search-cnic {
   background-color: #8EB974 !important;
   border: 1px solid #8EB974 !important;
-  color: #000000 !important;
+  color: #FFFFFF !important;
   box-shadow: none !important;
   height: 40px !important;
 }

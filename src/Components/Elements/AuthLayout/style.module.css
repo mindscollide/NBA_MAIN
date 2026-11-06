@@ -36,7 +36,7 @@
   padding: 22px 32px 0;
   font-size: 14px;
   font-weight: 700;
-  color: #035F5C;
+  color: #389e0d;
   letter-spacing: 0.3px;
 }
 
@@ -60,7 +60,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: #035F5C;
+  background: #8EB974;
   color: #FFFFFF;
 }
 
@@ -236,7 +236,7 @@
   z-index: 5;
   pointer-events: none;
   visibility: hidden;
-  background: #035F5C;
+  background: #8EB974;
 }
 
 /* the panel's shape on each page (40% wide, rounded edge facing the form) */
