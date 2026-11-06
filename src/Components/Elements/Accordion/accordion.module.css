@@ -1,0 +1,46 @@
+/* MUI v4 Accordion metrics, with the overrides App.less used to apply
+   (.MuiAccordion-rounded / .MuiAccordionSummary-content / expandIcon). */
+.accordion {
+  position: relative;
+  background-color: #dfe8e8;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 16px;
+  cursor: pointer;
+  outline: none;
+}
+
+.content {
+  display: flex;
+  flex-grow: 1;
+  margin: 12px 0;
+}
+
+.content :global(article.ant-typography) {
+  color: #21706d;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.icon {
+  display: inline-flex;
+  margin-right: -4px;
+  padding: 12px;
+  font-size: 18px;
+  color: #21706d;
+  transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.iconOpen {
+  transform: rotate(180deg);
+}
+
+.details {
+  padding: 8px 16px 16px;
+}

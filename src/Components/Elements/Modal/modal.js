@@ -12,7 +12,7 @@ const CustomModal = ({ modalTitle, children, modalState, closeModal,width,paddin
         padding={padding}
         centered
         title={modalTitle}
-        visible={modalState}
+        open={modalState}
         footer={null}
         onCancel={closeModal}
         width={width}

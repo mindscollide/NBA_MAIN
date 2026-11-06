@@ -1,0 +1,18 @@
+/* MUI v4 <Container maxWidth="lg">: 1280px wide at most, 16px side padding,
+   24px from 600px up. */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (min-width: 600px) {
+  .container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}

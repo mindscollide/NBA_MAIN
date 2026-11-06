@@ -1,0 +1,42 @@
+/* Same placement and look as the MUI Snackbar + filled Alert it replaces. */
+.snackbar {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  left: auto;
+  z-index: 1400;
+  display: flex;
+  justify-content: flex-end;
+  min-width: 288px;
+  max-width: 560px;
+}
+
+.alert {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 64px;
+  padding: 6px 16px;
+  border-radius: 4px;
+  background-color: #078480;
+  color: #fff;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14),
+    0 1px 18px 0 rgba(0, 0, 0, 0.12);
+}
+
+.message {
+  flex: 1;
+  padding: 8px 0;
+}
+
+.close {
+  margin-left: 16px;
+  padding: 4px;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  line-height: 1;
+}

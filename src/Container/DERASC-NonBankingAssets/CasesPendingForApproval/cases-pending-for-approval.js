@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-import { Grid, Box } from "@material-ui/core";
 
 import { Typography, Tooltip } from "antd";
 
@@ -21,7 +20,7 @@ import {
   TimeAndDisplayFormat,
 } from "../../../Common/Functions/date-formatter";
 
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router";
 import styles from "../DERASC.module.css";
 
 import { CommaFormter } from "../../../Common/Functions/date-formatter";
@@ -37,9 +36,10 @@ import {
   notificationFalse,
 } from "../../../store/actions/nonbanking-assets-actions";
 import { enableGoBack, disableGoBack } from "../../../store/actions/ui-actions";
+import { Row, Col } from "antd";
 
 const SearchNBADPSCasesRASC = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { Title } = Typography;
   const [filter, setfilter] = useState(1);
   const dispatch = useDispatch();
@@ -151,7 +151,7 @@ const SearchNBADPSCasesRASC = () => {
     await dispatch(ViewREMTeamData(Data));
     await dispatch(enableGoBack());
     console.log("ViewREMTeamData", value, Data);
-    history.push("/NBA/DataEntryRASC/ViewNonBankingAssets");
+    navigate("/NBA/DataEntryRASC/ViewNonBankingAssets");
   };
 
   const Edit = async (e, value) => {
@@ -162,7 +162,7 @@ const SearchNBADPSCasesRASC = () => {
     await dispatch(ViewREMTeamData(Data));
     await dispatch(enableGoBack());
     console.log("ViewREMTeamData", value, Data);
-    history.push("/NBA/DataEntryRASC/EditNonBankingAssets");
+    navigate("/NBA/DataEntryRASC/EditNonBankingAssets");
   };
 
   const viewApprovalColumn = [
@@ -647,18 +647,18 @@ const SearchNBADPSCasesRASC = () => {
     <>
       <Title level={4}>Cases Pending for Approval</Title>
       <>
-        <Grid container spacing={2}>
-          <Grid item lg={3} md={3} sm={12} xs={12}>
+        <Row gutter={[16, 16]}>
+          <Col xl={6} lg={6} sm={24} xs={24}>
             <FilterBar
               Options={options}
               change={handleFilter}
               placeholder={"Filter by Duration"}
               defaultValue={options[0].title}
             />
-          </Grid>
-          {/* <Grid item lg={5} md={5}></Grid> */}
+          </Col>
+          {/* <Col xl={10} lg={10}></Col> */}
           <div className={styles["inputseacrh"]} />
-          <Grid item lg={5} md={5} className="SearchPendingApprovals">
+          <Col xl={10} lg={10} className="SearchPendingApprovals">
             <InputWithBtn
               label="Search"
               fullWidth
@@ -671,8 +671,8 @@ const SearchNBADPSCasesRASC = () => {
               onchange={searchHandler}
               value={searchData}
             />
-          </Grid>
-          <Grid item lg={1} md={1} sm={12}>
+          </Col>
+          <Col xl={2} lg={2} sm={24}>
             <Button
               text="Reset"
               icon={<i className="icon-reset"></i>}
@@ -680,8 +680,8 @@ const SearchNBADPSCasesRASC = () => {
               size="small"
               click={resetData}
             />
-          </Grid>
-          <Grid item lg={12} md={12}>
+          </Col>
+          <Col xl={24} lg={24}>
             <Table
               rows={allPendingForApprovalData}
               columns={columns}
@@ -692,23 +692,19 @@ const SearchNBADPSCasesRASC = () => {
                 pageSizeOptions: ["5", "10", "20", "30"],
               }}
             />
-          </Grid>
-        </Grid>
+          </Col>
+        </Row>
       </>
       <Modal closeModal={handleCancel} modalState={isModalVisible} width={700}>
         {/* this data will be pass to modal when delete icon btn in the table  will be clicked */}
         {actions.delete && (
           <>
-            <Box
-              display="flex"
-              justifyContent="center"
-              // style={{ padding: "40px" }}
-            >
+            <div style={{ display: "flex", justifyContent: "center" }}>
               <i className="icon-trash icon-size-two"></i>
               <Title level={3} align="center">
                 Are you sure you want to delete this case?
               </Title>
-            </Box>
+            </div>
             <GroupedButtons data={buttonProps} />
           </>
         )}

@@ -1,34 +1,23 @@
 import React, { useEffect } from "react";
-import { Layout, Typography, Tooltip } from "antd";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Avatar from "@material-ui/core/Avatar";
-import Badge from "@material-ui/core/Badge";
-import IconButton from "@material-ui/core/IconButton";
-import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
+import { Layout, Typography, Tooltip, Badge, Dropdown } from "antd";
+import { BellOutlined } from "@ant-design/icons";
 // import Logout from '@material-ui/core/Logout';
 import UserImage from "../../../assets/images/user.png";
 import Logo from "../../../assets/images/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../../store/actions/auth-actions";
 import {
-  getApprovalCount,
-  getApprovals,
-} from "../../../store/actions/wof-approvals-actions";
-import {
   newRequestList,
   newRequestListCount,
 } from "../../../store/actions/request-actions";
 import Helper from "../../../Common/Functions/history_logout";
 import "./header.css";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { disableGoBack } from "../../../store/actions/ui-actions";
 import { makeTabAvtive } from "../../../store/actions/ui-actions";
 const Header = ({ Notification, title, UserDetails }) => {
   console.log(Notification);
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
   const { wofApprovals, requestReducer, ui } = state;
@@ -36,31 +25,14 @@ const Header = ({ Notification, title, UserDetails }) => {
   const { Header } = Layout;
   const Details = JSON.parse(localStorage.getItem("UserDetails"));
   const role = parseInt(JSON.parse(localStorage.getItem("role")));
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  Helper.history = history;
+  Helper.navigate = navigate;
   useEffect(() => {
-    Helper.history = history;
+    Helper.navigate = navigate;
   }, []);
   const openUserRequest = () => {
     console.log(Details.userID);
     dispatch(newRequestList(Details.userID));
   };
-  useEffect(() => {
-    console.log("DetailsDetails", wofApprovals.ApprovalsCount);
-    if (Details.userID === 2) {
-      dispatch(getApprovalCount(Details.userID));
-    } else if (Details.roleID === 3) {
-      dispatch(getApprovalCount(Details.userID));
-    }
-  }, []);
   useEffect(() => {
     // define increment counter part
     const tabsOpen = localStorage.getItem("tabsOpen");
@@ -87,7 +59,7 @@ const Header = ({ Notification, title, UserDetails }) => {
       if (value == "true") {
         console.log("ali12345", value == "true", 3);
         if (newTabCount2 - 1 == 0) {
-          dispatch(signOut(history));
+          dispatch(signOut(navigate));
           window.localStorage.isMySessionActive = "false";
         } else {
           window.localStorage.isMySessionActive = "false";
@@ -138,51 +110,50 @@ const Header = ({ Notification, title, UserDetails }) => {
         {Notification !== null && Notification === true ? (
           <Tooltip placement="bottom" title="Notification">
             <div className="notify">
-              <IconButton onClick={handleClick}>
-                <Badge
-                  badgeContent={
-                    Details.roleID === 2
-                      ? requestReducer.userRequestCount
-                      : wofApprovals.ApprovalsCount
-                  }
-                  color="secondary"
-                  overlap="circular"
-                >
-                  <NotificationsNoneIcon
-                    fontSize="large"
-                    className="noti-icon"
-                  />
-                </Badge>
-              </IconButton>
-              <Menu
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                onClick={handleClose}
-                // style={{ top: "45px", left: "35px" }}
+              <Dropdown
+                trigger={["click"]}
+                menu={{
+                  items: [
+                    {
+                      key: "newUserRequests",
+                      label: (
+                        <span
+                          onClick={() => {
+                            dispatch(newRequestList(Details.userID));
+                            // localStorage.setItem("parent", "sub1");
+                            // localStorage.setItem("child", "15");
+                            dispatch(makeTabAvtive());
+                            navigate("/NBA/Admin/NewRequestList");
+                          }}
+                        >
+                          <i className="icon-chevron-right color-black icon-s mr-2"></i>
+                          {requestReducer.userRequestCount} New User Requests
+                        </span>
+                      ),
+                    },
+                  ],
+                }}
               >
-                <MenuItem>
-                  <ListItemIcon
-                    onClick={() => {
-                      dispatch(newRequestList(Details.userID));
-                      // localStorage.setItem("parent", "sub1");
-                      // localStorage.setItem("child", "15");
-                      dispatch(makeTabAvtive());
-                      history.push("/NBA/Admin/NewRequestList");
-                    }}
+                <button type="button" className="notify-button">
+                  <Badge
+                    count={
+                      Details.roleID === 2
+                        ? requestReducer.userRequestCount
+                        : wofApprovals.ApprovalsCount
+                    }
+                    color="#f50057"
                   >
-                    <i className="icon-chevron-right color-black icon-s mr-2"></i>
-                    {requestReducer.userRequestCount} New User Requests
-                  </ListItemIcon>
-                </MenuItem>
-              </Menu>
+                    <BellOutlined className="noti-icon" />
+                  </Badge>
+                </button>
+              </Dropdown>
             </div>
           </Tooltip>
         ) : null}
         {/* {/ its logout button /} */}
         <Tooltip placement="bottom" title="Logout">
           <div className="logout-icon-section">
-            <div onClick={() => dispatch(signOut(history))}>
+            <div onClick={() => dispatch(signOut(navigate))}>
               <div className="logout-icon">
                 <i className="icon-login icon-size-one "></i>
               </div>

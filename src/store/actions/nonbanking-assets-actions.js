@@ -111,7 +111,7 @@ const GetAllInProcess = (filter) => {
         console.log("Response", response);
         if (response.data.responseCode === 417) {
           await dispatch(refreshToken());
-          dispatch(GetAllInProcess(Data));
+          dispatch(GetAllInProcess(filter));
         } else if (response.data.responseCode === 200) {
           if (response.data.responseResult.isExecuted === true) {
             dispatch(GetAllInProcessSuccess(response.data.responseResult));
@@ -171,7 +171,7 @@ const GetAllPendingForApproval = (filter) => {
         console.log("Response", response);
         if (response.data.responseCode === 417) {
           await dispatch(refreshToken());
-          dispatch(GetAllPendingForApproval(Data));
+          dispatch(GetAllPendingForApproval(filter));
         } else if (response.data.responseCode === 200) {
           if (response.data.responseResult.isExecuted === true) {
             dispatch(
@@ -235,7 +235,7 @@ const GetAllApprovedCases = (filter) => {
         console.log("Response", response);
         if (response.data.responseCode === 417) {
           await dispatch(refreshToken());
-          dispatch(GetAllApprovedCases(Data));
+          dispatch(GetAllApprovedCases(filter));
         } else if (response.data.responseCode === 200) {
           if (response.data.responseResult.isExecuted === true) {
             dispatch(GetAllApprovedCasesSuccess(response.data.responseResult));
@@ -354,7 +354,7 @@ const SearchCustomerMysis = (
   setMisysErrMsg,
   misysErrMsg
 ) => {
-  let history = Helper.history;
+  let navigate = Helper.navigate;
   let token = JSON.parse(localStorage.getItem("token"));
   console.log("SearchCustomerMysis", JSON.stringify(object));
   let Data = { MiSysCode: object };
@@ -375,9 +375,7 @@ const SearchCustomerMysis = (
         console.log("SearchCustomerMysis", response);
         if (response.data.responseCode === 417) {
           await dispatch(refreshToken());
-          dispatch(
-            SearchCustomerMysis(object, setCustomerSection, customerSection)
-          );
+          dispatch(SearchCustomerMysis(object, setCustomerSection, customerSection, setMisysError, misysError, setMisysErrMsg, misysErrMsg));
         } else if (response.data.responseCode === 200) {
           if (response.data.responseResult.isExecuted === true) {
             await dispatch(
@@ -471,7 +469,7 @@ const GetApprovalHistoryFail = (response) => {
 
 //View Status History
 const GetApprovalHistory = (object, showModal, setAction, actions) => {
-  let history = Helper.history;
+  let navigate = Helper.navigate;
   let token = JSON.parse(localStorage.getItem("token"));
   console.log("GetApprovalHistory", object);
   let Data = {
@@ -577,7 +575,7 @@ const SearchNBACase = (object, State) => {
         console.log("SearchNBACase", response);
         if (response.data.responseCode === 417) {
           await dispatch(refreshToken());
-          dispatch(SearchNBACase(object));
+          dispatch(SearchNBACase(object, State));
         } else if (response.data.responseCode === 200) {
           if (response.data.responseResult.isExecuted === true) {
             dispatch(SearchNBACaseSuccess(response.data.responseResult));
@@ -686,7 +684,7 @@ const ApproveCase = (object, filter) => {
         console.log("ApproveCase", response);
         if (response.data.responseCode === 417) {
           await dispatch(refreshToken());
-          dispatch(ApproveCase(object));
+          dispatch(ApproveCase(object, filter));
         } else if (response.data.responseCode === 200) {
           if (response.data.responseResult.isExecuted === true) {
             console.log("ApproveCase", response.data.responseResult);
@@ -805,7 +803,7 @@ const SaveBusinessTeamDataFail = (response) => {
 
 // Save Business Team Data
 const SaveBusinessTeamData = (data) => {
-  let history = Helper.history;
+  let navigate = Helper.navigate;
   console.log("SaveBusinessTeamData", data);
   let token = JSON.parse(localStorage.getItem("token"));
   console.log("SaveBusinessTeamData", data, token);
@@ -833,7 +831,7 @@ const SaveBusinessTeamData = (data) => {
             dispatch(SaveBusinessTeamDataSuccess(response.data.responseResult));
             localStorage.setItem("parent", "sub1");
             localStorage.setItem("child", "1");
-            history.push("/NBA/DataEntryBusinessTeam/CasesInProcess");
+            navigate("/NBA/DataEntryBusinessTeam/CasesInProcess");
           } else {
             dispatch(SaveBusinessTeamDataFail(response.data.responseResult));
             dispatch(LOADERFALSE());
@@ -867,7 +865,7 @@ const ViewBusinessTeamDataFail = (response) => {
 
 // View Business Team Data
 const ViewBusinessTeamData = (data) => {
-  let history = Helper.history;
+  let navigate = Helper.navigate;
   console.log("ViewBusinessTeamData", data);
   let token = JSON.parse(localStorage.getItem("token"));
   console.log("ViewBusinessTeamData", data, token);
@@ -914,7 +912,7 @@ const ViewBusinessTeamData = (data) => {
 
 // Edit Business Team Data
 const EditBusinessTeamData = (data) => {
-  let history = Helper.history;
+  let navigate = Helper.navigate;
   console.log("EditBusinessTeamData", data);
   let token = JSON.parse(localStorage.getItem("token"));
   console.log("EditBusinessTeamData", data, token);
@@ -942,7 +940,7 @@ const EditBusinessTeamData = (data) => {
             dispatch(SaveBusinessTeamDataSuccess(response.data.responseResult));
             await localStorage.setItem("parent", "sub1");
             await localStorage.setItem("child", "1");
-            history.push("/NBA/DataEntryBusinessTeam/CasesInProcess");
+            navigate("/NBA/DataEntryBusinessTeam/CasesInProcess");
           } else {
             dispatch(SaveBusinessTeamDataFail(response.data.responseResult));
             dispatch(LOADERFALSE());
@@ -976,7 +974,7 @@ const ViewREMTeamDataFail = (response) => {
 
 // View REM Team Data
 const ViewREMTeamData = (data) => {
-  let history = Helper.history;
+  let navigate = Helper.navigate;
   console.log("ViewREMTeamData", data);
   let token = JSON.parse(localStorage.getItem("token"));
   console.log("ViewREMTeamData", data, token);
@@ -1023,7 +1021,7 @@ const ViewREMTeamData = (data) => {
 
 // Save REM Team Data
 const SaveREMTeamData = (data) => {
-  let history = Helper.history;
+  let navigate = Helper.navigate;
   console.log("SaveREMTeamData", data);
   let token = JSON.parse(localStorage.getItem("token"));
   console.log("SaveREMTeamData", data, token);
@@ -1049,7 +1047,7 @@ const SaveREMTeamData = (data) => {
         } else if (response.data.responseCode === 200) {
           if (response.data.responseResult.isExecuted === true) {
             dispatch(SaveBusinessTeamDataSuccess(response.data.responseResult));
-            history.push("/NBA/DataEntryREM/CasesInProcess");
+            navigate("/NBA/DataEntryREM/CasesInProcess");
           } else {
             dispatch(SaveBusinessTeamDataFail(response.data.responseResult));
             dispatch(LOADERFALSE());
@@ -1068,7 +1066,7 @@ const SaveREMTeamData = (data) => {
 
 // Save RASA Team Data
 const SaveRASAeamData = (data) => {
-  let history = Helper.history;
+  let navigate = Helper.navigate;
   console.log("SaveRASAeamData", data);
   let token = JSON.parse(localStorage.getItem("token"));
   console.log("SaveRASAeamData", data, token);
@@ -1094,7 +1092,7 @@ const SaveRASAeamData = (data) => {
         } else if (response.data.responseCode === 200) {
           if (response.data.responseResult.isExecuted === true) {
             dispatch(SaveBusinessTeamDataSuccess(response.data.responseResult));
-            history.push("/NBA/DataEntryRaSc/CasesInProcess");
+            navigate("/NBA/DataEntryRaSc/CasesInProcess");
           } else {
             dispatch(SaveBusinessTeamDataFail(response.data.responseResult));
             dispatch(LOADERFALSE());

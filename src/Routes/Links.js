@@ -100,11 +100,12 @@ const DataEntryRemLinks = [
       //   name: "Approved Cases",
       //   link: "/DataEntryRem/ApprovedCases",
       // },
-      // {
-      //   key: 3,
-      //   name: "Reverted Cases",
-      //   link: "/DataEntryRem/RevertedCases",
-      // },
+      // Cases Manager REM reverted to DE REM (status 9)
+      {
+        key: 4,
+        name: "Reverted Cases",
+        link: "/DataEntryRem/RevertedCases",
+      },
       {
         key: 3,
         name: "Search NBA & DPS Cases",
@@ -137,11 +138,12 @@ const ManagerRemLinks = [
         name: "Approved Cases",
         link: "/ManagerRem/ApprovedCases",
       },
-      // {
-      //   key: 3,
-      //   name: "Reverted Cases",
-      //   link: "/ManagerRem/RevertedCases",
-      // },
+      // Cases DE RASC reverted to Manager REM (status 13)
+      {
+        key: 4,
+        name: "Reverted Cases",
+        link: "/ManagerRem/RevertedCases",
+      },
       {
         key: 3,
         name: "Search NBA & DPS Cases",

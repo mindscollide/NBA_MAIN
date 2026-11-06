@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Grid, Box } from "@material-ui/core";
 import { DownloadOutlined } from "@ant-design/icons";
 import { Typography, Radio, Tooltip } from "antd";
 import styles from "../../Container/Reports/Reports.module.css";
@@ -28,6 +27,7 @@ import {
 } from "../../Common/Functions/date-formatter";
 import { useDispatch, useSelector } from "react-redux";
 import { NBACaseReport } from "./../../store/actions/reports_actions";
+import { Row, Col } from "antd";
 
 const NBAAssetsReports = () => {
   const { Title } = Typography;
@@ -240,8 +240,8 @@ const NBAAssetsReports = () => {
     <>
       <Title level={4}>Reports – Non-Banking Assets</Title>
 
-      <Grid container spacing={1}>
-        <Grid item lg={3} md={3} sm={12}>
+      <Row gutter={[8, 8]}>
+        <Col xl={6} lg={6} sm={24}>
           <FormattedInputs
             name={"FromAmount"}
             value={
@@ -256,8 +256,8 @@ const NBAAssetsReports = () => {
             change={(e) => handleSearch(e)}
             autoComplete="off"
           />
-        </Grid>
-        <Grid item lg={3} md={3} sm={12}>
+        </Col>
+        <Col xl={6} lg={6} sm={24}>
           <FormattedInputs
             name={"ToAmount"}
             value={
@@ -272,8 +272,8 @@ const NBAAssetsReports = () => {
             change={(e) => handleSearch(e)}
             autoComplete="off"
           />
-        </Grid>
-        <Grid item lg={3} md={3} sm={12} className={styles["mysisCustomer"]}>
+        </Col>
+        <Col xl={6} lg={6} sm={24} className={styles["mysisCustomer"]}>
           <TextField
             fullWidth
             name={"MiSysCode"}
@@ -285,8 +285,8 @@ const NBAAssetsReports = () => {
             change={(e) => handleSearch(e)}
             value={searchData.MiSysCode}
           />
-        </Grid>
-        <Grid item lg={3} md={3} sm={12} className={styles["mysisCustomer"]}>
+        </Col>
+        <Col xl={6} lg={6} sm={24} className={styles["mysisCustomer"]}>
           <TextField
             fullWidth
             name={"ECIBCode"}
@@ -298,8 +298,8 @@ const NBAAssetsReports = () => {
             change={(e) => handleSearch(e)}
             value={searchData.ECIBCode}
           />
-        </Grid>
-        <Grid item lg={3} md={3} sm={12}className={styles["mysisCustomer"]}>
+        </Col>
+        <Col xl={6} lg={6} sm={24} className={styles["mysisCustomer"]}>
           <TextField
             fullWidth
             name={"BorrowerName"}
@@ -310,8 +310,8 @@ const NBAAssetsReports = () => {
             change={(e) => handleSearch(e)}
             value={searchData.BorrowerName}
           />
-        </Grid>
-        <Grid item lg={3} md={3} sm={12}>
+        </Col>
+        <Col xl={6} lg={6} sm={24}>
           <label>
             <b className={styles["font"]}>Date of Acquisition</b>
           </label>
@@ -332,11 +332,11 @@ const NBAAssetsReports = () => {
             }
             DateRange={true}
           />
-        </Grid>
-        <Grid item lg={3} md={3} sm={12}></Grid>
-        <Grid item lg={3} md={3} sm={12}></Grid>
-        <Grid item lg={4} md={4} sm={12}></Grid>
-        <Grid item lg={2} md={2} sm={12} align="right">
+        </Col>
+        <Col xl={6} lg={6} sm={24}></Col>
+        <Col xl={6} lg={6} sm={24}></Col>
+        <Col xl={8} lg={8} sm={24}></Col>
+        <Col xl={4} lg={4} sm={24} align="right">
           <Button
             text="Download"
             icon={<DownloadOutlined />}
@@ -344,8 +344,8 @@ const NBAAssetsReports = () => {
             size="small"
             click={downloadReport}
           />
-        </Grid>
-        <Grid item lg={2} md={2} sm={12}>
+        </Col>
+        <Col xl={4} lg={4} sm={24}>
           <Button
             text="Reset"
             icon={<i className="icon-reset"></i>}
@@ -353,9 +353,9 @@ const NBAAssetsReports = () => {
             size="small"
             click={resetHandler}
           />
-        </Grid>
-        <Grid item lg={4} md={4} sm={12}></Grid>
-      </Grid>
+        </Col>
+        <Col xl={8} lg={8} sm={24}></Col>
+      </Row>
       {reports.isLoading ? <Loader /> : null}
       <Notification setOpen={setOpen} open={open.flag} message={open.message} />
     </>
