@@ -1,11 +1,20 @@
 import React from "react";
-import { DatePicker, Space, Typography } from "antd";
+import { DatePicker } from "antd";
 import dayjs from "dayjs";
-import styles from "../StartToEndDate/startdate.module.css"
-const StartToEndDate = ({ label, width, size, change, DateRange ,startvalue,endvalue}) => {
-  const { Text } = Typography;
+import styles from "../field.module.css";
+
+const StartToEndDate = ({
+  label,
+  width,
+  size,
+  change,
+  DateRange,
+  startvalue,
+  endvalue,
+  required,
+}) => {
   const { RangePicker } = DatePicker;
-  let dateFormat = "DD-MM-YYYY"
+  let dateFormat = "DD-MM-YYYY";
   const picker = (e, dateStr) => {
     const date = {
       name: "dater",
@@ -19,15 +28,23 @@ const StartToEndDate = ({ label, width, size, change, DateRange ,startvalue,endv
     return value && value > dayjs().endOf("day");
   };
   return (
-    <div style={{ display: "flex", alignItems: "center" }}>
-      {label ? <Text className={styles["label"]}>{label}</Text> : null}
+    <div className={label ? styles.wrapper : undefined}
+      style={{ display: "flex", alignItems: "center" }}>
+      {label ? <span className={styles.floatingLabel}>{label}</span> : null}
       <RangePicker
         disabledDate={DateRange ? disabledDate : false}
         onChange={picker}
-        value={startvalue && endvalue?[dayjs(startvalue, dateFormat), dayjs(endvalue, dateFormat)]:null}
+        value={
+          startvalue && endvalue
+            ? [dayjs(startvalue, dateFormat), dayjs(endvalue, dateFormat)]
+            : null
+        }
         format={dateFormat}
         size={size}
-        // style={{ width: `${width}`, marginLeft: "5px" }}
+        // callers pass e.g. "100%!important", which is not a valid inline style
+        // value (the browser drops it); keep just the width, default full width
+        style={{ width: width ? String(width).replace("!important", "").trim() : "100%" }}
+        required={required}
       />
     </div>
   );

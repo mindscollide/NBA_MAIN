@@ -19,7 +19,7 @@ const theme = {
   },
   components: {
     Table: {
-      headerBg: "#8EB974",
+      headerBg: "#CCDDC5",
       headerColor: "#000000",
       headerSplitColor: "transparent", // no column separators in the header
       rowHoverBg: "#CCDDC5",
@@ -36,7 +36,7 @@ const theme = {
       itemColor: "#000000",
       itemHoverColor: "#035F5C",
       itemSelectedColor: "#000000",
-      itemSelectedBg: "#8EB974",
+      itemSelectedBg: "#CCDDC5",
       itemHoverBg: "#E4EDE1",
       itemActiveBg: "#E4EDE1",
       itemMarginInline: 0,

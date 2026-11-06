@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
-import { CloseOutlined } from "@ant-design/icons";
-import styles from "./notification.module.css";
+import { useEffect } from "react";
+import { notification } from "antd";
+import { BellFilled, CloseOutlined } from "@ant-design/icons";
+
 const Message = {
   success: "success",
   error: "error",
@@ -8,37 +9,49 @@ const Message = {
   warning: "warning",
 };
 
-// Replaces MUI's Snackbar + filled Alert with the same behaviour: a teal card
-// at the top right that hides itself after 2s or on its close button, and
-// reports closing through the same setOpen(!open) every caller already uses.
+// Kept as a controlled component with the exact same {setOpen, open, message}
+// API every caller already uses — antd's notification is an imperative
+// singleton, so this wrapper triggers it internally instead of changing
+// every call site.
 const Notification = ({ setOpen, open, message }) => {
   const handleClose = () => {
-    setOpen(!open);
+    // Preserved exactly as before — some callers key their own state on
+    // "open", others on "flag"; this always writes "flag", a pre-existing
+    // inconsistency this wrapper isn't meant to fix.
+    setOpen({
+      flag: false,
+      message: "",
+    });
   };
+
   useEffect(() => {
-    if (!open || message === "") return undefined;
-    const timer = setTimeout(handleClose, 2000);
-    return () => clearTimeout(timer);
+    if (open && message !== "") {
+      // longer messages stay up longer so the whole text can be read
+      const text = typeof message === "string" ? message : "";
+      const duration = Math.min(8, Math.max(3.5, text.length / 14));
+      notification.open({
+        title: message,
+        placement: "topRight",
+        duration,
+        // antd's own time-left bar along the bottom (coloured in App.less);
+        // it pauses, like the auto-close timer, while the pointer is over it
+        showProgress: true,
+        pauseOnHover: true,
+        icon: (
+          <span className="app-notification-icon">
+            <BellFilled />
+          </span>
+        ),
+        closeIcon: <CloseOutlined />,
+        // a raised dark-teal card that flips in (see App.less)
+        className: "app-teal-notification",
+        onClose: handleClose,
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, message]);
-  return (
-    <>
-      {message !== "" && open ? (
-        <div className={styles.snackbar} role="alert">
-          <div className={styles.alert}>
-            <span className={styles.message}>{message}</span>
-            <button
-              type="button"
-              aria-label="Close"
-              className={styles.close}
-              onClick={handleClose}
-            >
-              <CloseOutlined />
-            </button>
-          </div>
-        </div>
-      ) : null}
-    </>
-  );
+
+  return null;
 };
+
 export { Notification, Message };

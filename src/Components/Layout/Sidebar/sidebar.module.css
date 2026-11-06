@@ -134,9 +134,9 @@
   background-color: #E4EDE1 !important;
 }
 
-/* The current page: a Secondary pill with black text */
+/* The current page: a Hover-green (#CCDDC5) pill with black text */
 .menuSidebarStyle :global(.ant-menu-sub .ant-menu-item-selected) {
-  background-color: #8EB974 !important;
+  background-color: #CCDDC5 !important;
 }
 
 .menuSidebarStyle :global(.ant-menu-sub .ant-menu-item-selected),
@@ -144,10 +144,10 @@
   color: #000000 !important;
 }
 
-/* Parent menu of the current page: Primary with white text
+/* Parent menu of the current page: Secondary green (#8EB974) with black text
    (declared last so it wins over the open/hover colors above) */
 .menuSidebarStyle :global(.ant-menu-submenu-selected > .ant-menu-submenu-title),
 .menuSidebarStyle :global(.ant-menu-submenu-selected > .ant-menu-submenu-title:hover) {
-  background-color: #035F5C !important;
-  color: #FFFFFF !important;
+  background-color: #8EB974 !important;
+  color: #000000 !important;
 }

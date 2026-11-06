@@ -29,7 +29,8 @@ const InputWithBtn = ({
   size,
 }) => {
   return (
-    <div style={{ display: "flex" }}>
+    // one pill-shaped control: field + attached button (styles.attachedBar)
+    <div className={styles.attachedBar} style={{ display: "flex" }}>
       {/* flex:1 so the input fills all space the Button doesn't need */}
       <div style={{ flex: 1 }}>
         <TextField

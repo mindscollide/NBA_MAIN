@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Input } from "antd";
 import { NumericFormat } from "react-number-format";
-import styles from "../FormatedInput/Finput.module.css";
 import fieldStyles from "../field.module.css";
 
 export const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
@@ -53,15 +52,16 @@ export const FormattedInputs = ({
   autoComplete,
   tabindex,
 }) => {
+  // `label` is a caption above the field, like the <label><b>…</b></label>
+  // captions NBA pages put above their other fields (so the fields line up);
+  // `Label` is the floating chip on the field's border.
   return (
     <>
       {label ? (
-        <b className={styles["fontsize"]}>
+        <label className={fieldStyles.caption}>
           {label}
-          {required ? (
-            <i className={styles["fontorcolor"]}>*</i>
-          ) : null}
-        </b>
+          {required ? <span className={fieldStyles.required}> *</span> : null}
+        </label>
       ) : null}
       <div className={fieldStyles.wrapper}>
         {Label ? (

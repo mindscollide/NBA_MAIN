@@ -8,8 +8,7 @@ const CustomModal = ({ modalTitle, children, modalState, closeModal,width,paddin
         Open Modal
       </Button> */}
       <Modal
-        // style={{padding:`${padding}px!important`}}
-        padding={padding}
+        style={{padding:`${padding}px!important`}}
         centered
         title={modalTitle}
         open={modalState}

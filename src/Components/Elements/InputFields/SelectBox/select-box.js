@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo } from "react";
 import { Select } from "antd";
 import styles from "../../field.module.css";
 
@@ -35,7 +35,6 @@ const SelectBox = memo(
     propertyName,
     disable,
   }) => {
-    const [focused, setFocused] = useState(false);
     const options = option ? option : content;
     const isEmpty =
       value === "" ||
@@ -75,12 +74,10 @@ const SelectBox = memo(
       change(null, idx === undefined ? null : options[idx]);
     };
 
-    // Label inside the empty field at rest, on the border otherwise (MUI).
-    const resting = label && selected === undefined && !focused;
     return (
       <div className={styles.wrapper}>
         {label ? (
-          <span className={resting ? styles.restingLabel : styles.floatingLabel}>
+          <span className={styles.floatingLabel}>
             {label}
             {required ? <span className={styles.required}> *</span> : null}
           </span>
@@ -88,14 +85,10 @@ const SelectBox = memo(
         <Select
           showSearch
           disabled={disable}
-          onFocus={(e) => {
-            setFocused(true);
-            if (focus) focus(e);
-          }}
-          onBlur={() => setFocused(false)}
+          onFocus={focus}
           id={name}
           value={selected}
-          placeholder={resting ? undefined : placeholder && placeholder}
+          placeholder={placeholder && placeholder}
           size="large"
           className={styles.field}
           options={antdOptions}

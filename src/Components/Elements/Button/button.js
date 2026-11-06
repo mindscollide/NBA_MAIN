@@ -10,35 +10,34 @@ const CustomButton = ({
   endIcon,
   disableBtn,
   disableClass,
-  size,
-  align,
   type,
   fullWidth,
-  style,
 }) => {
   return (
-    <>
-      <Button
-        // style={style}
-        block={fullWidth}
-        // antd's `type` is the visual variant (primary/dashed/...), so the
-        // native button type that callers pass ("submit") goes to htmlType.
-        htmlType={type}
-        size={size === "large" ? "large" : "middle"}
-        className={`${styles.muiButton} ${size === "small" ? styles.muiSmall : size === "large" ? styles.muiLarge : ""} ${styles[applyClass]} ${styles[disableClass]}`}
-        disabled={disableBtn}
-        onClick={click}
-        align={align}
-      >
-        {/* One flex row spaces both antd icons and the plain
-            <i className="icon-..."> font icons this app passes in. */}
-        <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
-          {icon ? icon : null}
-          {text ? <span>{text}</span> : null}
-          {endIcon ? endIcon : null}
-        </span>
-      </Button>
-    </>
+    <Button
+      // antd's `type` is the visual variant (primary/dashed/...), not the
+      // native HTML button type — `type="submit"` callers need `htmlType`.
+      htmlType={type}
+      block={fullWidth}
+      // All buttons render at antd's "large" (40px) regardless of the
+      // "small"/"large" prop this app passes in.
+      size="large"
+      className={styles[applyClass] + " " + styles[disableClass]}
+      disabled={disableBtn}
+      onClick={click}
+    >
+      {/* antd only auto-spaces its own icon components (via CSS targeting
+          .anticon) when passed through the `icon` prop — this app also
+          passes plain <i className="icon-..."> font icons as icon/endIcon,
+          which that CSS doesn't reach, and endIcon has no spacing rule at
+          all since it isn't a dedicated prop. One flex row with a fixed
+          gap aligns and spaces both icon types the same way regardless. */}
+      <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+        {icon ? icon : null}
+        {text ? <span>{text}</span> : null}
+        {endIcon ? endIcon : null}
+      </span>
+    </Button>
   );
 };
 
